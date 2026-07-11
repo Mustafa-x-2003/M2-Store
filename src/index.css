@@ -1,0 +1,235 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* =========================
+      BACKGROUND
+  ========================== */
+
+  --background: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-secondary: #F1F5F9;
+  --card: #FFFFFF;
+
+  /* =========================
+      TEXT
+  ========================== */
+
+  --text: #0F172A;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --text-inverse: #FFFFFF;
+
+  /* =========================
+      BORDER
+  ========================== */
+
+  --border: #E2E8F0;
+  --border-hover: #CBD5E1;
+
+  /* =========================
+      PRIMARY
+  ========================== */
+
+  --primary: #2563EB;
+  --primary-hover: #1D4ED8;
+  --primary-light: #c0d7f5;
+
+  /* =========================
+      STATUS
+  ========================== */
+
+  --success: #16A34A;
+  --success-light: #9df0ba;
+
+  --warning: #F59E0B;
+  --warning-light: #FEF3C7;
+
+  --danger: #DC2626;
+  --danger-light: #ffd0d0;
+
+  --info: #0EA5E9;
+  --info-light: #E0F2FE;
+
+  /* =========================
+      LAYOUT
+  ========================== */
+
+  --sidebar: #FFFFFF;
+  --navbar: #FFFFFF;
+  --sidebar-hover: #F1F5F9;
+  --sidebar-active: #DBEAFE;
+
+  /* =========================
+      INPUT
+  ========================== */
+
+  --input-bg: #FFFFFF;
+  --input-border: #CBD5E1;
+  --input-focus: #2563EB;
+
+  /* =========================
+      BUTTON
+  ========================== */
+
+  --button-secondary: #F1F5F9;
+  --button-secondary-hover: #f1f1f1;
+
+  /* =========================
+      TABLE
+  ========================== */
+
+  --table-header: #e4edf8;
+  --table-hover: #F8FAFC;
+  --table-striped: #F9FAFB;
+
+  /* =========================
+      SHADOW
+  ========================== */
+
+  --shadow:
+    0 4px 8px rgba(0,0,0,.05),
+    0 4px 8px  rgba(0,0,0,.05);
+
+  /* =========================
+      OVERLAY
+  ========================== */
+
+  --overlay: rgba(15,23,42,.5);
+}
+/* ==================================================================== */
+.dark {
+
+  /* =========================
+      BACKGROUND
+  ========================== */
+
+  --background: #020617;
+  --surface: #0F172A;
+  --surface-secondary: #1E293B;
+  --card: #111827;
+
+  /* =========================
+      TEXT
+  ========================== */
+
+  --text: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-inverse: #020617;
+
+  /* =========================
+      BORDER
+  ========================== */
+
+  --border: #334155;
+  --border-hover: #475569;
+
+  /* =========================
+      PRIMARY
+  ========================== */
+
+  --primary: #1e58b6;
+  --primary-hover: #60A5FA;
+  --primary-light: rgba(59,130,246,.15);
+
+  /* =========================
+      STATUS
+  ========================== */
+
+  --success: #117f39;
+  --success-light: rgba(34,197,94,.15);
+
+  --warning: #FBBF24;
+  --warning-light: rgba(251,191,36,.15);
+
+  --danger: #ca2f2f;
+  --danger-light: rgba(239,68,68,.15);
+
+  --info: #38BDF8;
+  --info-light: rgba(56,189,248,.15);
+
+  /* =========================
+      LAYOUT
+  ========================== */
+
+  --sidebar: #020617;
+  --navbar: #020617;
+  --sidebar-hover: #1E293B;
+  --sidebar-active: rgba(59,130,246,.18);
+
+  /* =========================
+      INPUT
+  ========================== */
+
+  --input-bg: #0F172A;
+  --input-border: #334155;
+  --input-focus: #60A5FA;
+
+  /* =========================
+      BUTTON
+  ========================== */
+
+  --button-secondary: #1E293B;
+  --button-secondary-hover: #1F2937;
+
+  /* =========================
+      TABLE
+  ========================== */
+
+  --table-header: #0f1a38;
+  --table-hover: #1E293B;
+  --table-striped: #111827;
+
+  /* =========================
+      SHADOW
+  ========================== */
+
+  --shadow:
+    0 1px 2px rgba(0,0,0,.35),
+    0 8px 16px rgba(0,0,0,.45);
+
+  /* =========================
+      OVERLAY
+  ========================== */
+
+  --overlay: rgba(0,0,0,.65);
+
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(.95) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+}
+
+/*==============================
+
+================================
+*/
+
+
+@utility  bg-card {
+
+  @apply bg-gray-900   lg:border lg:rounded-4xl lg:border-white/10 
+}
+
+@utility  inputDesign {
+
+  @apply w-full bg-gray-800 p-5 rounded-[10px] text-xl text-white font-thin 
+}
+
+@utility  labelDesign {
+
+  @apply flex flex-col gap-5  
+}
+@utility  skeltonDesign {
+
+  @apply mb-7 p-1 rounded-2xl border border-white/5 
+}
