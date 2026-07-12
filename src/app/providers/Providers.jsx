@@ -1,10 +1,12 @@
-import React from 'react'
+import { ThemeProvider } from "../../context/ThemeContext";
+import { AuthProvider } from "../../context/AuthContext";
 
-export default function Providers() {
+export default function Providers({ children }) {
   return (
-    <div>
-      
-    </div>
-  )
+    <ThemeProvider>
+      <AuthProvider>
+        {children}
+      </AuthProvider>
+    </ThemeProvider>
+  );
 }
-
