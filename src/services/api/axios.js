@@ -1,9 +1,15 @@
-import React from 'react'
+import axios from "axios";
 
-export default function axios() {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const baseURL = import.meta.env.VITE_API_URL ?? "/api";
+
+const axiosInstance = axios.create({
+  baseURL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  timeout: 15000,
+  withCredentials: false,
+});
+
+export default axiosInstance;
+

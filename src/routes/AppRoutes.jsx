@@ -6,10 +6,8 @@ import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
 import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
+import HomePage from "../features/HomePage/pages/HomePage";
 
-function HomePage() {
-  return <div>Home Page</div>;
-}
 
 function ProductsPage() {
   return <div>Shop Page</div>;
