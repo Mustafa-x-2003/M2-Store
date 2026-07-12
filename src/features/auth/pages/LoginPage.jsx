@@ -57,7 +57,7 @@ export default function LoginPage() {
           <div className="mb-3 flex items-center justify-center gap-2 text-[var(--primary)]">
             <Zap size={34} strokeWidth={2.4} />
 
-            <h1 className="text-3xl font-bold">Koda Store</h1>
+            <h1 className="text-3xl font-bold">M2-Store</h1>
           </div>
 
           <h2 className="text-2xl font-semibold text-[var(--text)]">

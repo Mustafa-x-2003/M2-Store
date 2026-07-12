@@ -14,7 +14,7 @@ export default function Footer() {
               <Zap size={28} strokeWidth={2.4} />
 
               <span className="text-2xl font-bold">
-                Koda Store
+                M2-Store
               </span>
             </Link>
 
@@ -69,7 +69,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Website"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--secondary)] transition  hover:text-[var(--primary-hover)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)] transition  hover:text-[var(--primary-hover)]"
               >
                 <Globe size={19} />
               </a>
@@ -95,7 +95,7 @@ export default function Footer() {
 
         <div className="mt-10 border-t border-[var(--border)] pt-7 text-center">
           <p className="text-m text-[var(--text-muted)]">
-            © 2026 Koda Store. All rights reserved.
+            © 2026 M2-Store. All rights reserved.
           </p>
         </div>
       </div>

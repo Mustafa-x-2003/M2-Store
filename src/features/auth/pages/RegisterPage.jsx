@@ -68,8 +68,8 @@ export default function RegisterPage() {
               className="text-[var(--primary)]"
             />
 
-            <h1 className="text-2xl font-bold text-[var(--primary)]">
-              Koda Store
+            <h1 className="text-3xl font-bold text-[var(--primary)]">
+              M2-Store
             </h1>
           </div>
 
