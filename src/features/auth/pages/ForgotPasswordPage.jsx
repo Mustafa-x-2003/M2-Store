@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
-import { Mail, LockKeyhole, Zap } from "lucide-react";
+import { Mail, Zap } from "lucide-react";
 import toast from "react-hot-toast";
-import { loginUser } from "../service/authService";
-import { useAuth } from "../../../context/AuthContext";
+import { sendForgotPasswordOtp } from "../service/authService";
 
-export default function LoginPage() {
+export default function ForgotPasswordPage() {
   const navigate = useNavigate();
-  const { login } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
@@ -18,7 +16,6 @@ export default function LoginPage() {
   } = useForm({
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
@@ -26,20 +23,22 @@ export default function LoginPage() {
     try {
       setIsSubmitting(true);
 
-      const data = await loginUser(formData);
+      await sendForgotPasswordOtp(formData);
 
-      login(data.user, data.token);
+      sessionStorage.setItem("resetEmail", formData.email);
 
-      toast.success("Login successful");
+      toast.success("Reset code sent successfully");
 
-      navigate("/home", { replace: true });
+      navigate("/reset-password", {
+        state: {
+          email: formData.email,
+        },
+      });
     } catch (error) {
-      console.error("LOGIN ERROR:", error);
-
       const errorMessage =
         error.response?.data?.message ||
         error.response?.data?.error ||
-        "Login failed. Please check your credentials.";
+        "Failed to send reset code.";
 
       toast.error(errorMessage);
     } finally {
@@ -54,18 +53,16 @@ export default function LoginPage() {
     <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4 py-10">
       <div className="w-full max-w-[500px]">
         <div className="mb-10 text-center">
-          <div className="mb-3 flex items-center justify-center gap-2 text-[var(--primary)]">
-            <Zap size={34} strokeWidth={2.4} />
-
-            <h1 className="text-3xl font-bold">Koda Store</h1>
+          <div className="mb-3 flex items-center justify-center text-[var(--primary)]">
+            <Zap size={44} strokeWidth={2.1} />
           </div>
 
           <h2 className="text-2xl font-semibold text-[var(--text)]">
-            Welcome back
+            Forgot Password?
           </h2>
 
           <p className="mt-2 text-base text-[var(--text-secondary)]">
-            Sign in to your account
+            Enter your email and we'll send you a reset code.
           </p>
         </div>
 
@@ -74,7 +71,7 @@ export default function LoginPage() {
           className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow)] sm:p-6"
           noValidate
         >
-          <div className="mb-5">
+          <div className="mb-6">
             <label
               htmlFor="email"
               className="mb-2 block text-sm font-semibold text-[var(--text-secondary)]"
@@ -110,66 +107,21 @@ export default function LoginPage() {
             )}
           </div>
 
-          <div className="mb-3">
-            <label
-              htmlFor="password"
-              className="mb-2 block text-sm font-semibold text-[var(--text-secondary)]"
-            >
-              Password
-            </label>
-
-            <div className="relative">
-              <LockKeyhole
-                size={18}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)]"
-              />
-
-              <input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                className={inputClass}
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 8,
-                    message: "Password must be at least 8 characters",
-                  },
-                })}
-              />
-            </div>
-
-            {errors.password && (
-              <p className="mt-2 text-sm text-[var(--danger)]">
-                {errors.password.message}
-              </p>
-            )}
-          </div>
-
-          <div className="mb-6 flex justify-end">
-            <Link
-              to="/forgot-password"
-              className="font-medium text-[var(--primary)] transition hover:text-[var(--primary-hover)]"
-            >
-              Forgot password?
-            </Link>
-          </div>
-
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex h-14 w-full items-center justify-center rounded-xl bg-[var(--primary)] text-lg font-semibold text-[var(--text-inverse)] transition hover:bg-[var(--primary-hover)] disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex h-14 w-full items-center justify-center rounded-xl bg-[var(--primary)] text-lg font-semibold text-white transition hover:bg-[var(--primary-hover)] disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isSubmitting ? "Signing in..." : "Sign In"}
+            {isSubmitting ? "Sending..." : "Send Reset Code"}
           </button>
 
-          <p className="mt-6 text-center text-base text-m text-[var(--text-secondary)]">
-            Don&apos;t have an account?{" "}
+          <p className="mt-6 text-center text-base text-[var(--text-secondary)]">
+            Remember your password?{" "}
             <Link
-              to="/register"
+              to="/login"
               className="font-semibold text-[var(--primary)] transition hover:text-[var(--primary-hover)]"
             >
-              Sign up
+              Sign In
             </Link>
           </p>
         </form>
