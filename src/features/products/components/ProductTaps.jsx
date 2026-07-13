@@ -24,10 +24,10 @@ export default function ProductTabs() {
   return (
     <div className="mt-20 lg:mt-32">
       {/* Tab buttons */}
-      <div className="flex border-b border-slate-200 dark:border-slate-800 mb-8">
+      <div className="flex w-full overflow-x-auto border-b border-slate-200 dark:border-slate-800 mb-8 hide-scrollbar">
         <button
           onClick={() => setActiveTab("description")}
-          className={`pb-4 px-4 sm:px-8 text-lg font-bold transition-colors relative cursor-pointer ${
+          className={`flex-1 sm:flex-none text-center pb-4 px-4 sm:px-8 text-base sm:text-lg font-bold transition-colors relative cursor-pointer whitespace-nowrap ${
             activeTab === "description"
               ? "text-slate-900 dark:text-white"
               : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
@@ -40,7 +40,7 @@ export default function ProductTabs() {
         </button>
         <button
           onClick={() => setActiveTab("reviews")}
-          className={`pb-4 px-4 sm:px-8 text-lg font-bold transition-colors relative cursor-pointer ${
+          className={`flex-1 sm:flex-none text-center pb-4 px-4 sm:px-8 text-base sm:text-lg font-bold transition-colors relative cursor-pointer whitespace-nowrap ${
             activeTab === "reviews"
               ? "text-slate-900 dark:text-white"
               : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
@@ -56,8 +56,8 @@ export default function ProductTabs() {
       {/* Tab content */}
       <div className="py-4">
         {activeTab === "description" ? (
-          <div className="prose prose-slate dark:prose-invert max-w-3xl">
-            <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
+          <div className="max-w-3xl">
+            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed break-words whitespace-pre-wrap">
               {product.description}
             </p>
           </div>
@@ -125,11 +125,11 @@ export default function ProductTabs() {
                   >
                     {/* Review header */}
                     <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-semibold text-slate-900 dark:text-white uppercase">
+                      <div className="flex items-center gap-3 overflow-hidden">
+                        <span className="text-sm font-semibold text-slate-900 dark:text-white uppercase truncate">
                           {review.user?.username || "Anonymous"}
                         </span>
-                        <span className="text-xs text-slate-400 dark:text-slate-500">
+                        <span className="text-xs text-slate-400 dark:text-slate-500 flex-shrink-0">
                           {new Date(review.createdAt).toLocaleDateString("en-US", {
                             year: "numeric",
                             month: "short",
