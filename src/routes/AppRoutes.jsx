@@ -6,6 +6,7 @@ import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
 import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
+import Wishlist from "../features/Wishlist/page/Wishlist";
 
 function HomePage() {
   return <div>Home Page</div>;
@@ -52,7 +53,7 @@ export default function AppRoutes() {
           path="/wishlist"
           element={
             <ProtectedRoute>
-              <div>Wishlist Page</div>
+              <Wishlist />
             </ProtectedRoute>
           }
         />
