@@ -1,6 +1,5 @@
 import { BsStars } from "react-icons/bs";
 import { useNavigate } from "react-router";
-
 export default function FirstSection() {
   const navigate = useNavigate();
   return (
@@ -30,12 +29,12 @@ export default function FirstSection() {
         </p>
 
         <div className="flex flex-wrap gap-3 mt-1">
-          <button onClick={() => navigate('/products')} className="px-5 py-2.5 rounded-md bg-white text-[#4338ca] text-sm font-semibold hover:bg-white/90 active:scale-95 transition-all duration-150 cursor-pointer">
+          <button onClick={()=>navigate('/products')} className="px-5 py-2.5 rounded-md bg-white text-[#4338ca] text-sm font-semibold hover:bg-white/90 active:scale-95 transition-all duration-150 cursor-pointer">
             Shop Now
           </button>
-          <button
-            onClick={() => document.getElementById('shopCategory')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-5 py-2.5 rounded-md border border-white/60 text-white text-sm font-semibold hover:bg-white/10 active:scale-95 transition-all duration-150 cursor-pointer">
+          <button className="px-5 py-2.5 rounded-md border border-white/60 text-white text-sm font-semibold hover:bg-white/10 active:scale-95 transition-all duration-150 cursor-pointer"
+          onClick={()=>document.getElementById('shopCategory').scrollIntoView({behavior: 'smooth'})}
+          >
             View Categories
           </button>
         </div>

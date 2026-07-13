@@ -3,7 +3,6 @@ import { useState } from "react";
 import ImagesList from "./imgesLIst";
 import CategoryCardList from "./categoryCardLIst";
 import { useNavigate } from "react-router";
-import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 
 export default function ProductCard({product, onView, AddToCart }) {
@@ -41,12 +40,7 @@ export default function ProductCard({product, onView, AddToCart }) {
 
                 <div className="flex items-start justify-between gap-2">
                     <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-base leading-snug line-clamp-2 flex-1">{product.name}</h3>
-                    <button onClick={() => setClickedFav(!clickedFav)} className="transition-colors cursor-pointer">
-                        {clickedFav
-                            ? <FaHeart className="text-2xl text-red-500" />
-                            : <CiHeart className="text-2xl text-gray-400" />
-                        }
-                    </button>
+                    <button onClick={()=>setClickedFav(!clickedFav)} className={`transition-colors ${clickedFav ? "text-red-500" : "text-gray-200"}`}><FaHeart className="text-2xl" /></button>
                 </div>
 
                 <p className="text-gray-500 dark:text-gray-400 text-xs line-clamp-2 leading-relaxed">{product.shortDescription}</p>

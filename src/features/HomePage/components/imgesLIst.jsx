@@ -5,26 +5,11 @@ import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 export default function ImagesList({ images, featured }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const intervalRef = useRef(null);
 
-  const startAutoPlay = useCallback(() => {
-    if (!images || images.length <= 1) return;
-    intervalRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
-  }, [images]);
+  
 
-  const stopAutoPlay = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  }, []);
+  
 
-  useEffect(() => {
-    if (!isHovered) startAutoPlay();
-    return () => stopAutoPlay();
-  }, [images, isHovered, startAutoPlay, stopAutoPlay]);
 
   const handlePrev = (e) => {
     e.stopPropagation();
