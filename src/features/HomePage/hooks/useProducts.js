@@ -12,7 +12,7 @@ function useProducts(){
                 const response = await getAllProducts(signal)
                 setProducts(Array.isArray(response?.data?.products) ? response.data.products : []);
             } catch (err) {
-               if (axios.isCancel(err) || err?.code === "ERR_CANCELED") return;
+               if (err?.code === "ERR_CANCELED" || err?.name === "AbortError") return;
                setError(err);
             }finally{
                 if (!signal?.aborted) setLoading(false);
