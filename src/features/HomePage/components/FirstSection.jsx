@@ -1,6 +1,7 @@
 import { BsStars } from "react-icons/bs";
-
+import { useNavigate } from "react-router";
 export default function FirstSection() {
+  const navigate = useNavigate();
   return (
     <section className="relative w-full overflow-hidden bg-[#3730a3] dark:bg-[#0d0b2b] min-h-[220px] sm:min-h-[260px] md:min-h-[300px]">
       <div className="absolute inset-0 bg-gradient-to-br from-[#4f46e5] via-[#4338ca] to-[#3730a3] dark:from-[#312e81] dark:via-[#1e1b4b] dark:to-[#0d0b2b] opacity-90" />
@@ -28,10 +29,12 @@ export default function FirstSection() {
         </p>
 
         <div className="flex flex-wrap gap-3 mt-1">
-          <button className="px-5 py-2.5 rounded-md bg-white text-[#4338ca] text-sm font-semibold hover:bg-white/90 active:scale-95 transition-all duration-150 cursor-pointer">
+          <button onClick={()=>navigate('/products')} className="px-5 py-2.5 rounded-md bg-white text-[#4338ca] text-sm font-semibold hover:bg-white/90 active:scale-95 transition-all duration-150 cursor-pointer">
             Shop Now
           </button>
-          <button className="px-5 py-2.5 rounded-md border border-white/60 text-white text-sm font-semibold hover:bg-white/10 active:scale-95 transition-all duration-150 cursor-pointer">
+          <button className="px-5 py-2.5 rounded-md border border-white/60 text-white text-sm font-semibold hover:bg-white/10 active:scale-95 transition-all duration-150 cursor-pointer"
+          onClick={()=>document.getElementById('shopCategory').scrollIntoView({behavior: 'smooth'})}
+          >
             View Categories
           </button>
         </div>

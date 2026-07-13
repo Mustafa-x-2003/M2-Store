@@ -7,11 +7,9 @@ import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
 import HomePage from "../features/HomePage/pages/HomePage";
+import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
 
 
-function ProductsPage() {
-  return <div>Shop Page</div>;
-}
 
 export default function AppRoutes() {
   return (

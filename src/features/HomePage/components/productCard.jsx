@@ -3,12 +3,13 @@ import { useState } from "react";
 import ImagesList from "./imgesLIst";
 import CategoryCardList from "./categoryCardLIst";
 import { useNavigate } from "react-router";
-
+import { FaHeart } from "react-icons/fa";
 
 export default function ProductCard({product, onView, AddToCart }) {
     const [clickAdd, setClickAdd] = useState(false);
     const navigate = useNavigate();
     const hasDiscount = Number(product.discountPrice) !== 0;
+    const [clickedFav, setClickedFav] = useState(false);
 
     return (
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group">
@@ -39,7 +40,7 @@ export default function ProductCard({product, onView, AddToCart }) {
 
                 <div className="flex items-start justify-between gap-2">
                     <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-base leading-snug line-clamp-2 flex-1">{product.name}</h3>
-                    
+                    <button onClick={()=>setClickedFav(!clickedFav)} className={`transition-colors ${clickedFav ? "text-red-500" : "text-gray-200"}`}><FaHeart className="text-2xl" /></button>
                 </div>
 
                 <p className="text-gray-500 dark:text-gray-400 text-xs line-clamp-2 leading-relaxed">{product.shortDescription}</p>

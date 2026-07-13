@@ -12,7 +12,7 @@ import {
     BsController,
     BsScissors,
 } from "react-icons/bs";
-
+import { useNavigate } from "react-router";
 const CATEGORY_ICON_MAP = {
     "electronics":      BsLaptop,
     "phone":            BsPhone,
@@ -38,6 +38,7 @@ function getCategoryIcon(category) {
 }
 
 export default function CategoryBlock({ category, products }) {
+    const navigate = useNavigate();
     const numberOfProducts = products.filter(
         (product) => product.category === category
     ).length;
@@ -51,6 +52,7 @@ export default function CategoryBlock({ category, products }) {
 
     return (
         <div
+        onClick={()=>navigate(`/products?category=${category}`)}
             className="
                 flex flex-col items-center justify-center gap-4
                 bg-white dark:bg-slate-900 rounded-2xl py-7 px-4 cursor-pointer
