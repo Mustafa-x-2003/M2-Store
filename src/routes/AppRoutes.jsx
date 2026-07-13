@@ -6,6 +6,7 @@ import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
 import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
+import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
 
 function HomePage() {
   return <div>Home Page</div>;
@@ -23,7 +24,7 @@ export default function AppRoutes() {
 
         <Route path="/home" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
-
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/verify-otp" element={<VerifyOtpPage />} />
