@@ -242,7 +242,7 @@ export default function ProductInfo() {
 
           {/* Wishlist */}
           <button
-            onClick={toggleWishlist}
+            onClick={() => toggleWishlist(product._id)}
             disabled={wishlistLoading}
             className={`p-4 sm:p-0 sm:w-16 sm:h-16 flex items-center justify-center border-2 rounded-2xl transition-all group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
               isInWishlist
