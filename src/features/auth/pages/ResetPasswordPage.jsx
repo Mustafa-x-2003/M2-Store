@@ -136,14 +136,14 @@ export default function ResetPasswordPage() {
               value={newPassword}
               onChange={(event) => setNewPassword(event.target.value)}
               placeholder="Enter new password"
-              className="h-13 w-full rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 text-[var(--text)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[var(--input-focus)] focus:ring-2 focus:ring-[var(--input-focus)]/15"
+              className="h-13 w-full rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 text-[var(--text)] outline-none  placeholder:text-[var(--text-muted)] focus:border-[var(--input-focus)] focus:ring-2 focus:ring-[var(--input-focus)]/15"
             />
           </div>
 
           <button
             type="submit"
             disabled={isVerifying}
-            className="mt-8 flex h-14 w-full items-center justify-center rounded-xl bg-[var(--primary)] text-lg font-semibold text-white transition hover:bg-[var(--primary-hover)] disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-8 flex h-14 w-full items-center justify-center rounded-xl bg-[var(--primary)] text-lg font-semibold text-white  hover:bg-[var(--primary-hover)] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isVerifying ? "Resetting..." : "Reset Password"}
           </button>
