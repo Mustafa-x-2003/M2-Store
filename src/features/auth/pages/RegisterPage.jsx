@@ -55,10 +55,10 @@ export default function RegisterPage() {
   };
 
   const inputClass =
-    "h-11 w-full rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] pl-11 pr-4 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[var(--input-focus)] focus:ring-2 focus:ring-[var(--input-focus)]/15";
+    "h-11 w-full rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] pl-11 pr-4 text-sm text-[var(--text)] outline-none  placeholder:text-[var(--text-muted)] focus:border-[var(--input-focus)] focus:ring-2 focus:ring-[var(--input-focus)]/15";
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4 py-5 transition-colors">
+    <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4 py-5">
       <div className="w-full max-w-[500px]">
         <div className="mb-5 text-center">
           <div className="mb-2 flex items-center justify-center gap-2">
@@ -84,8 +84,7 @@ export default function RegisterPage() {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow)] transition-colors sm:p-6"
-          noValidate
+          className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow)] sm:p-6"
         >
           <div className="mb-4">
             <label
@@ -234,7 +233,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex h-12 w-full items-center justify-center rounded-xl bg-[var(--primary)] text-base font-semibold text-[var(--text-inverse)] transition hover:bg-[var(--primary-hover)] disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex h-12 w-full items-center justify-center rounded-xl bg-[var(--primary)] text-base font-semibold text-white transition hover:bg-[var(--primary-hover)] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? "Creating account..." : "Create Account"}
           </button>
