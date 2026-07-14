@@ -7,15 +7,15 @@ import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProfilePage from "../features/profile/pages/profile";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
+
+import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
+
 import HomePage from "../features/HomePage/pages/HomePage";
 import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
 
 function ProductDetailsPage() {
-  return (
-    <div>Product Details Page</div>
-  )
+  return <div>Product Details Page</div>;
 }
-  
 
 export default function AppRoutes() {
   return (
@@ -36,7 +36,7 @@ export default function AppRoutes() {
           path="/profile"
           element={
             <ProtectedRoute>
-             <ProfilePage />
+              <ProfilePage />
             </ProtectedRoute>
           }
         />
@@ -46,6 +46,15 @@ export default function AppRoutes() {
           element={
             <ProtectedRoute>
               <div>My Orders Page</div>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/orders/:id"
+          element={
+            <ProtectedRoute>
+              <OrderDetailsPage />
             </ProtectedRoute>
           }
         />
