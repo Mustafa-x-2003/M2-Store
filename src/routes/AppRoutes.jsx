@@ -7,6 +7,7 @@ import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProfilePage from "../features/profile/pages/profile";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
+import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
 
 import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 
