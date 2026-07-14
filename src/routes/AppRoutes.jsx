@@ -4,17 +4,23 @@ import RegisterPage from "../features/auth/pages/RegisterPage";
 import VerifyOtpPage from "../features/auth/pages/VerifyOtpPage";
 import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
 import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
+import ProfilePage from "../features/profile/pages/profile";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
 import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 
-function HomePage() {
-  return <div>Home Page</div>;
-}
+import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 
-function ProductsPage() {
-  return <div>Shop Page</div>;
+import HomePage from "../features/HomePage/pages/HomePage";
+import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
+
+
+function ProductDetailsPage() {
+  return (
+    <div>Product Details Page</div>
+  )
 }
+  
 
 export default function AppRoutes() {
   return (
@@ -24,7 +30,7 @@ export default function AppRoutes() {
 
         <Route path="/home" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
-
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/verify-otp" element={<VerifyOtpPage />} />
@@ -35,7 +41,7 @@ export default function AppRoutes() {
           path="/profile"
           element={
             <ProtectedRoute>
-              <div>Profile Page</div>
+             <ProfilePage />
             </ProtectedRoute>
           }
         />

@@ -47,8 +47,8 @@ export default function LoginPage() {
     }
   };
 
-  const inputClass =
-    "h-11 w-full rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] pl-11 pr-4 text-sm text-[var(--text)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[var(--input-focus)] focus:ring-2 focus:ring-[var(--input-focus)]/15";
+ const inputClass =
+  "h-11 w-full rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] pl-11 pr-4 text-sm text-[var(--text)] outline-none placeholder:text-[var(--text-muted)] focus:border-[var(--input-focus)] focus:ring-2 focus:ring-[var(--input-focus)]/15";
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4 py-10">
@@ -158,7 +158,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex h-14 w-full items-center justify-center rounded-xl bg-[var(--primary)] text-lg font-semibold text-[var(--text-inverse)] transition hover:bg-[var(--primary-hover)] disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex h-14 w-full items-center justify-center rounded-xl bg-[var(--primary)] text-lg font-semibold text-white transition hover:bg-[var(--primary-hover)] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? "Signing in..." : "Sign In"}
           </button>

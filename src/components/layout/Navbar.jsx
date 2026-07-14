@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/Logo.png";
 
 import {
   Heart,
