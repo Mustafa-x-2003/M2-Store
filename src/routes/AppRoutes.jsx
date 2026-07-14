@@ -14,10 +14,6 @@ import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 import HomePage from "../features/HomePage/pages/HomePage";
 import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
 
-function ProductDetailsPage() {
-  return <div>Product Details Page</div>;
-}
-
 export default function AppRoutes() {
   return (
     <Routes>
