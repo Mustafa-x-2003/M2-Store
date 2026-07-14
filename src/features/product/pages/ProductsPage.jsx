@@ -7,6 +7,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import useProductsFilter from "../../../hooks/useProductsFilter";
 import { LuSlidersHorizontal } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
+import ProductCard from "../../../components/common/productCard";
 export default function ProductsPage() {
   const [isloading, setisloading] = useState(true);
   const [products, setproducts] = useState([]);
@@ -18,7 +19,7 @@ export default function ProductsPage() {
     maxPrice: "",
     sort: "",
     page: 1,
-    limit: 3,
+    limit: 6,
   });
   const { setFilter, getFilter, serachParams, setsearchParams } =
     useProductsFilter();
@@ -160,7 +161,7 @@ export default function ProductsPage() {
             </button>
           )}
         </div>
-        <div className="mainContent flex gap-10">
+        <div className="mainContent  pr-20 flex gap-10">
           <div className="filterSide hidden xl:block">
             <FilterCom
               filters={filters}
@@ -168,19 +169,17 @@ export default function ProductsPage() {
               products={products}
             />
           </div>
-          <div className="cardsSide flex justify-center xl:justify-start gap-10 flex-wrap flex-grow ">
+          <div className="cardsSide flex justify-center xl:justify-start gap-10 flex-wrap flex-grow   ">
             <ProductSkelton isloading={isloading}>
+              <div className="grid grid-cols-1 sm:grid-cols-2  2xl:grid-cols-3 gap-7 w-full">
               {products?.length > 0 ? (
                 products.map((item) => {
                   return (
-                    <div
-                      key={item?.id}
-                      className=" flex flex-col items-center justify-center h-150 border w-100 bg-blue-600 text-white"
-                    >
-                      <h5>{item?.name}</h5>
-                      <p>{item?.category}</p>
-                      <p>{item?.price}</p>
-                    </div>
+                                        <ProductCard
+                                            key={item._id}
+                                            product={item}
+                                        />
+                                   
                   );
                 })
               ) : (
@@ -188,6 +187,7 @@ export default function ProductsPage() {
                   No Product Found
                 </div>
               )}
+              </div>
             </ProductSkelton>
 
             <div className="pagination  w-[85%]  py-5  flex justify-between items-center">

@@ -11,11 +11,8 @@ import ProductsPage from "../features/product/pages/ProductsPage";
 import Wishlist from "../features/Wishlist/page/Wishlist";
 import HomePage from "../features/HomePage/pages/HomePage";
 import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
-
 import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 
-import HomePage from "../features/HomePage/pages/HomePage";
-import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
 export default function AppRoutes() {
   return (
     <Routes>
