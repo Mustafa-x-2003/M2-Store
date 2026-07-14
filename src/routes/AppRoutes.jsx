@@ -4,6 +4,7 @@ import RegisterPage from "../features/auth/pages/RegisterPage";
 import VerifyOtpPage from "../features/auth/pages/VerifyOtpPage";
 import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
 import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
+import ProfilePage from "../features/profile/pages/profile";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
 import HomePage from "../features/HomePage/pages/HomePage";
@@ -30,7 +31,7 @@ export default function AppRoutes() {
           path="/profile"
           element={
             <ProtectedRoute>
-              <div>Profile Page</div>
+             <ProfilePage />
             </ProtectedRoute>
           }
         />
