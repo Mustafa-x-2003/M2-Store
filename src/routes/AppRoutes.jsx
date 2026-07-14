@@ -10,7 +10,7 @@ import MainLayout from "../layouts/MainLayout";
 import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
 
 import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
-
+import Wishlist from "../features/Wishlist/page/Wishlist";
 import HomePage from "../features/HomePage/pages/HomePage";
 import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
 
@@ -60,7 +60,7 @@ export default function AppRoutes() {
           path="/wishlist"
           element={
             <ProtectedRoute>
-              
+             <Wishlist />
             </ProtectedRoute>
           }
         />
