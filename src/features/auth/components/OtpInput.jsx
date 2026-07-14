@@ -58,7 +58,7 @@ export default function OtpInput({ value, onChange }) {
           onChange={(event) => handleChange(index, event.target.value)}
           onKeyDown={(event) => handleKeyDown(index, event)}
           onPaste={handlePaste}
-          className="h-14 w-12 rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] text-center text-xl font-semibold text-[var(--text)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[var(--input-focus)] focus:ring-2 focus:ring-[var(--input-focus)]/15"
+          className="h-14 w-12 rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] text-center text-xl font-semibold text-[var(--text)] outline-none  placeholder:text-[var(--text-muted)] focus:border-[var(--input-focus)] focus:ring-2 focus:ring-[var(--input-focus)]/15"
           aria-label={`OTP digit ${index + 1}`}
         />
       ))}
