@@ -180,7 +180,7 @@ export default function ProductInfo() {
 
         {/* Price */}
         <div className="flex items-end gap-4 mb-8">
-          <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <span className="text-4xl sm:text-5xl font-extrabold text-[#1e58b6] dark:text-[#1e58b6] tracking-tight">
             EGP&nbsp;{product.discountPrice}
           </span>
           {product.discountPrice < product.price && (
@@ -229,7 +229,7 @@ export default function ProductInfo() {
             className={`flex-1 flex items-center justify-center gap-3 px-8 py-4 sm:py-0 rounded-2xl font-bold text-lg transition-all cursor-pointer disabled:cursor-not-allowed ${
               isOutOfStock
                 ? "bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500"
-                : "bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.12)] hover:shadow-none hover:scale-[0.98]"
+                : "bg-[#1e58b6] text-white hover:bg-[#1a4fa0] shadow-[0_8px_30px_rgb(30,88,182,0.35)] hover:shadow-none hover:scale-[0.98]"
             }`}
           >
             {addToCartLoading ? (
@@ -244,13 +244,13 @@ export default function ProductInfo() {
           <button
             onClick={() => toggleWishlist(product._id)}
             disabled={wishlistLoading}
-            className={`p-4 sm:p-0 sm:w-16 sm:h-16 flex items-center justify-center border-2 rounded-2xl transition-all group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
+            className={`p-3 sm:p-0 sm:w-11 sm:h-11 flex items-center self-center justify-center border-2 rounded-xl transition-all group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
               isInWishlist
                 ? "border-rose-500 bg-rose-50 dark:bg-rose-950/30 text-rose-500"
                 : "border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 text-slate-400 hover:text-rose-500"
             }`}
           >
-            <Heart className={`w-6 h-6 transition-colors ${isInWishlist ? "fill-rose-500" : "group-hover:fill-rose-500"}`} />
+            <Heart className={`w-[18px] h-[18px] transition-colors ${isInWishlist ? "fill-rose-500" : "group-hover:fill-rose-500"}`} />
           </button>
         </div>
       </div>

@@ -126,7 +126,7 @@ export default function RelatedProducts() {
 
                   {/* Price */}
                   <div className="mt-auto flex items-center gap-2 mb-4">
-                    <span className="text-xl font-extrabold text-slate-900 dark:text-white">
+                    <span className="text-xl font-extrabold text-[#1e58b6] dark:text-[#1e58b6]">
                       EGP&nbsp;{item.discountPrice}
                     </span>
                     {item.discountPrice < item.price && (
@@ -157,7 +157,7 @@ export default function RelatedProducts() {
                         handleAddRelatedToCart(item._id);
                       }}
                       disabled={addingRelatedCartId === item._id}
-                      className="w-full py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="w-full py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all bg-[#1e58b6] text-white hover:bg-[#1a4fa0] shadow-[0_4px_15px_rgb(30,88,182,0.3)] hover:shadow-none cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                       {addingRelatedCartId === item._id ? (
                         <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
