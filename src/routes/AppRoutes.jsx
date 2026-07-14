@@ -19,6 +19,7 @@ export default function AppRoutes() {
 
         <Route path="/home" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products/:query" element={<ProductsPage />} />
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -62,7 +63,7 @@ export default function AppRoutes() {
           }
         />
 
-        <Route path="*" element={<Navigate to="/home" replace />} />
+        {/* <Route path="*" element={<Navigate to="/home" replace />} /> */}
       </Route>
     </Routes>
   );

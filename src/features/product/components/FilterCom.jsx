@@ -1,11 +1,19 @@
-import React from 'react'
+import {useEffect , useState} from 'react'
+import { GetAllCategory } from '../service/ProductPageService'
 
-export default function FilterCom({setfilters , filters}) {
+export default function FilterCom({setfilters , filters , products}) {
+const [categories , setcategories] = useState([])
+  useEffect(()=>{
+GetAllCategory().then(res=>{
+   setcategories ([ ...new Set( res.products.map(item =>  item.category))])
+
+}).catch(error=>{
+  console.error("Error while fetching categories data" , error)
+})
+  } , [])
+
     const addCAt = (e)=>{
-    setfilters({...filters , category : e.target.id})
-    }
-    const AddPrice = (e)=>{
-        setfilters({...filters , maxPrice : e.target.value})
+    setfilters({...filters ,page : 1 ,category : e.target.id})
     }
     const Addsort = (e)=>{
       setfilters({...filters , sort : e.target.value})
@@ -16,25 +24,19 @@ export default function FilterCom({setfilters , filters}) {
         <h5 className='text-2xl '>Category</h5>
      <div className='tracking-[.12rem] flex flex-col gap-3'>
             <div className='flex gap-3 items-center'>
-                <input type="radio" id="all" name="filter" className='w-5 h-5' onChange={(e)=>addCAt(e)} />
+                <input type="radio" id="" name="filter" checked={!filters.category} className='w-5 h-5' onChange={(e)=>addCAt(e)} />
                 <p>All </p>
             </div>
     
-             <div className='flex gap-3 items-center'>
-                <input type="radio" id="newest" name="filter"className='w-5 h-5' onChange={(e)=>addCAt(e)}/>
-                <p>All</p>
+        
+    {categories?.map(item=>{
+      return  <div className='flex gap-3 items-center' key={item}>
+                <input type="radio" name="filter" className='w-5 h-5' id={item} onChange={(e)=>addCAt(e)}/>
+                <p>{item}</p>
             </div>
+    })}
     
-    
-             <div className='flex gap-3 items-center'>
-                <input type="radio" name="filter" className='w-5 h-5' id="expensive" onChange={(e)=>addCAt(e)}/>
-                <p>All</p>
-            </div>
-    
-             <div className='flex gap-3 items-center'>
-                <input type="radio" name="filter" className='w-5 h-5' id="cheapest" onChange={(e)=>addCAt(e)}/>
-                <p>All</p>
-            </div>
+            
     
      </div>
       </div>
@@ -42,8 +44,8 @@ export default function FilterCom({setfilters , filters}) {
       <div>
         <h5 className='text-2xl'>Price Range</h5>
         <div className='flex justify-between gap-3  mt-6'>
-            <input type="number" placeholder='Min' className='border border-gray-600 w-40 p-2 rounded focus:border-[var(--primary)] focus:outline-none  bg-[var(--surface-secondary)]' onChange={(e)=> setfilters({...filters , minPrice : Number(e.target.value)})}/>
-            <input type="number" placeholder='Max' className='border border-gray-600 w-40 p-2 rounded focus:border-[var(--primary)] focus:outline-none bg-[var(--surface-secondary)]'onChange={(e)=> setfilters({...filters , maxPrice : Number(e.target.value)})} />
+            <input type="number" placeholder='Min' className='border border-gray-600 w-40 p-2 rounded focus:border-[var(--primary)] focus:outline-none   bg-[var(--surface-secondary)]' value={filters.minPrice} onChange={(e)=> setfilters({...filters , minPrice : e.target.value ? Number(e.target.value) : undefined})}/>
+            <input type="number" placeholder='Max' className='border border-gray-600 w-40 p-2 rounded focus:border-[var(--primary)] focus:outline-none  bg-[var(--surface-secondary)]'  value={filters.maxPrice} onChange={(e)=>{  setfilters({...filters , maxPrice : e.target.value ? Number(e.target.value) : undefined})}} />
         </div>
       </div>
 
@@ -63,8 +65,8 @@ export default function FilterCom({setfilters , filters}) {
     minPrice : "",
     maxPrice : "",
     sort : "",
-    page : "",
-    limit : "" ,
+    page : 1,
+    limit : 13 ,
 
   })
         }}>Clear All Filters</button>
