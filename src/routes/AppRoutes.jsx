@@ -10,6 +10,12 @@ import MainLayout from "../layouts/MainLayout";
 import ProductsPage from "../features/product/pages/ProductsPage";
 import Wishlist from "../features/Wishlist/page/Wishlist";
 import HomePage from "../features/HomePage/pages/HomePage";
+import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
+
+import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
+
+import HomePage from "../features/HomePage/pages/HomePage";
+import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -18,8 +24,7 @@ export default function AppRoutes() {
 
         <Route path="/home" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
-        <Route path="/products/:query" element={<ProductsPage />} />
-
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/verify-otp" element={<VerifyOtpPage />} />
@@ -30,7 +35,7 @@ export default function AppRoutes() {
           path="/profile"
           element={
             <ProtectedRoute>
-             <ProfilePage />
+              <ProfilePage />
             </ProtectedRoute>
           }
         />
@@ -40,6 +45,15 @@ export default function AppRoutes() {
           element={
             <ProtectedRoute>
               <div>My Orders Page</div>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/orders/:id"
+          element={
+            <ProtectedRoute>
+              <OrderDetailsPage />
             </ProtectedRoute>
           }
         />
