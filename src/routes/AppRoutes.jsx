@@ -10,7 +10,12 @@ import MainLayout from "../layouts/MainLayout";
 import HomePage from "../features/HomePage/pages/HomePage";
 import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
 
-
+function ProductDetailsPage() {
+  return (
+    <div>Product Details Page</div>
+  )
+}
+  
 
 export default function AppRoutes() {
   return (
@@ -20,7 +25,7 @@ export default function AppRoutes() {
 
         <Route path="/home" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
-
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/verify-otp" element={<VerifyOtpPage />} />
