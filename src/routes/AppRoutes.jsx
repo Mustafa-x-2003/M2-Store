@@ -65,7 +65,7 @@ export default function AppRoutes() {
           }
         />
 
-        {/* <Route path="*" element={<Navigate to="/home" replace />} /> */}
+        <Route path="*" element={<Navigate to="/home" replace />} />
       </Route>
     </Routes>
   );

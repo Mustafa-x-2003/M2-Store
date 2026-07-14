@@ -46,6 +46,7 @@ const userLabel = !user
   const handleSearch = (e)=>{
     if(e.key === "Enter"){
       navigate(`/products?search=${e.target.value}`)
+      setShowSearch(false)
     }
   }
 
