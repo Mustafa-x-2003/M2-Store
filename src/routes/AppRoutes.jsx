@@ -6,6 +6,7 @@ import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
 import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
+import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 
 function HomePage() {
   return <div>Home Page</div>;
@@ -44,6 +45,15 @@ export default function AppRoutes() {
           element={
             <ProtectedRoute>
               <div>My Orders Page</div>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/orders/:id"
+          element={
+            <ProtectedRoute>
+              <OrderDetailsPage />
             </ProtectedRoute>
           }
         />
