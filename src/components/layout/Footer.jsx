@@ -69,7 +69,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Website"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)] transition  hover:text-[var(--primary-hover)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)]   hover:text-[var(--primary-hover)]"
               >
                 <Globe size={19} />
               </a>
@@ -77,7 +77,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Messages"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)] transition  hover:text-[var(--primary)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)]   hover:text-[var(--primary)]"
               >
                 <MessageCircle size={19} />
               </a>
@@ -85,7 +85,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Favorites"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)] transition  hover:text-[var(--primary)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)]   hover:text-[var(--primary)]"
               >
                 <Heart size={19} />
               </a>
