@@ -60,7 +60,7 @@ export default function AppRoutes() {
           path="/wishlist"
           element={
             <ProtectedRoute>
-              <div>Wishlist Page</div>
+              
             </ProtectedRoute>
           }
         />
