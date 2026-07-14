@@ -4,15 +4,13 @@ import RegisterPage from "../features/auth/pages/RegisterPage";
 import VerifyOtpPage from "../features/auth/pages/VerifyOtpPage";
 import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
 import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
+import ProfilePage from "../features/profile/pages/profile";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
 import ProductsPage from "../features/product/pages/ProductsPage";
 import Wishlist from "../features/Wishlist/page/Wishlist";
-
-function HomePage() {
-  return <div>Home Page</div>;
-}
-
+import HomePage from "../features/HomePage/pages/HomePage";
+import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -33,7 +31,7 @@ export default function AppRoutes() {
           path="/profile"
           element={
             <ProtectedRoute>
-              <div>Profile Page</div>
+             <ProfilePage />
             </ProtectedRoute>
           }
         />
@@ -51,7 +49,7 @@ export default function AppRoutes() {
           path="/wishlist"
           element={
             <ProtectedRoute>
-              <Wishlist />
+              <div>Wishlist Page</div>
             </ProtectedRoute>
           }
         />

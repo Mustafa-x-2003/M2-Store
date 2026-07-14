@@ -18,6 +18,7 @@
   --text-secondary: #64748B;
   --text-muted: #94A3B8;
   --text-inverse: #FFFFFF;
+  --text-darker:#475569;
 
   /* =========================
       BORDER
@@ -116,6 +117,7 @@
   --text-secondary: #CBD5E1;
   --text-muted: #94A3B8;
   --text-inverse: #020617;
+  --text-darker:#CBD5E1;
 
   /* =========================
       BORDER
