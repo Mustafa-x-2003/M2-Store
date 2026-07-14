@@ -1,4 +1,4 @@
-import ProductCard from "./productCard"
+import ProductCard from "../../../components/common/productCard"
 import { HiOutlineEmojiSad, HiArrowNarrowRight } from "react-icons/hi"
 
 export default function ProductList({products, loading, error, AddToCart }) {
@@ -27,7 +27,7 @@ export default function ProductList({products, loading, error, AddToCart }) {
     )
 
     return (
-        <div className="bg-[#f8fafc] dark:bg-[#020617] mx-0 px-4 sm:px-8 md:px-12 lg:px-20 pb-12 pt-10">
+        <div className="bg-[#f8fafc] dark:bg-[#020617] mx-auto px-4 sm:px-8 md:px-12 max-w-[1350px] lg:px-20 pb-12 pt-10">
             {/* Header Section */}
             <div className="flex items-end justify-between mb-8">
                 <div>

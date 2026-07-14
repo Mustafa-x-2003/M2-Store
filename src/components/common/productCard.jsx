@@ -1,7 +1,7 @@
 import {  HiShoppingCart } from "react-icons/hi";
 import { useState } from "react";
-import ImagesList from "./imgesLIst";
-import CategoryCardList from "./categoryCardLIst";
+import ImagesList from "../../features/HomePage/components/imgesLIst"
+import CategoryCardList from "../../features/HomePage/components/categoryCardLIst"
 import { useNavigate } from "react-router";
 import { FaHeart } from "react-icons/fa";
 
@@ -12,7 +12,9 @@ export default function ProductCard({product, onView, AddToCart }) {
     const [clickedFav, setClickedFav] = useState(false);
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group"
+            onClick={()=>navigate(`/products/${product._id}`)}
+        >
 
             <div className="relative overflow-hidden">
                 <ImagesList featured={product.featured} images={product.images} />
