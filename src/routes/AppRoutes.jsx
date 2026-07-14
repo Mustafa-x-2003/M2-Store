@@ -7,12 +7,12 @@ import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProfilePage from "../features/profile/pages/profile";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
-<<<<<<< HEAD
+
 import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
-=======
+
 import HomePage from "../features/HomePage/pages/HomePage";
 import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
->>>>>>> aacc7166049b417ec2141eb2d5c04db8de7bc39e
+
 
 function ProductDetailsPage() {
   return (
