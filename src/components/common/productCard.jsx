@@ -1,7 +1,7 @@
 import {  HiShoppingCart } from "react-icons/hi";
 import { useState } from "react";
-import ImagesList from "./imgesLIst";
-import CategoryCardList from "./categoryCardLIst";
+import ImagesList from "../../features/HomePage/components/imgesLIst"
+import CategoryCardList from "../../features/HomePage/components/categoryCardLIst"
 import { useNavigate } from "react-router";
 import { FaHeart } from "react-icons/fa";
 
