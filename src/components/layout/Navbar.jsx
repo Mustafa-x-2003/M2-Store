@@ -149,34 +149,13 @@ const userLabel = !user
             </span>
           </Link>
 
-          {user ? (
-  <div className="group relative">
-    <button
-      type="button"
-      className="flex h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] px-4 text-sm font-semibold text-[var(--text-secondary)]  shadow-sm transition  hover:text-[var(--primary)] hover:!bg-[var(--surface)]"
-    >
-      <UserRound size={18} />
-      {userLabel}
-    </button>
-
-    <div className="invisible absolute right-0 top-full mt-2 w-40 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-2 opacity-0 shadow-[var(--shadow)] transition group-hover:visible group-hover:opacity-100">
-      <Link
-        to="/profile"
-        className="block rounded-lg px-3 py-2 text-sm text-[var(--text-secondary)] transition hover:bg-[var(--surface-secondary)] hover:text-[var(--primary)]"
-      >
-        Profile
-      </Link>
-
-      <button
-        type="button"
-        onClick={handleLogout}
-        className="block w-full rounded-lg px-3 py-2 text-left text-sm text-[var(--danger)] transition hover:bg-[var(--danger-light)]"
-      >
-        Logout
-      </button>
-    </div>
-  </div>
-) : (
+         {user ? (
+       <Link to="/profile"
+        className="flex h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] px-4 text-sm font-semibold text-[var(--text-secondary)] shadow-sm transition hover:text-[var(--primary)] hover:!bg-[var(--surface)]">
+        <UserRound size={18} />
+        {userLabel}
+       </Link>
+      ) : (
   <Link
     to="/login"
     className="flex h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] px-4 text-sm font-semibold text-[var(--text-secondary)] shadow-sm transition hover:text-[var(--primary)]"
