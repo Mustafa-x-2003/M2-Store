@@ -1,9 +1,7 @@
-import React from 'react'
+import axios from "axios";
 
-export default function axios() {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const axiosInstance = axios.create({
+  baseURL: "https://e-commerce-api-3wara.vercel.app",
+});
+
+export default axiosInstance;

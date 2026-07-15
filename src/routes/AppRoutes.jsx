@@ -6,7 +6,7 @@ import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
 import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
-
+import CartsPage from "../features/cart/pages/CartsPage";
 function HomePage() {
   return <div>Home Page</div>;
 }
@@ -61,7 +61,7 @@ export default function AppRoutes() {
           path="/cart"
           element={
             <ProtectedRoute>
-              <div>Cart Page</div>
+              <CartsPage />
             </ProtectedRoute>
           }
         />
