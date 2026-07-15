@@ -7,8 +7,9 @@ import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProfilePage from "../features/profile/pages/profile";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
-import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
 
+import CartsPage from "../features/cart/pages/CartsPage";
+import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
 import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 
 import HomePage from "../features/HomePage/pages/HomePage";
@@ -69,7 +70,7 @@ export default function AppRoutes() {
           path="/cart"
           element={
             <ProtectedRoute>
-              <div>Cart Page</div>
+              <CartsPage />
             </ProtectedRoute>
           }
         />
