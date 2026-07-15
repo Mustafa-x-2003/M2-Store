@@ -8,15 +8,11 @@ import ProfilePage from "../features/profile/pages/profile";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
 import ProductsPage from "../features/product/pages/ProductsPage";
-
 import CartsPage from "../features/cart/pages/CartsPage";
 import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
 import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 import Wishlist from "../features/Wishlist/page/Wishlist";
 import HomePage from "../features/HomePage/pages/HomePage";
-import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
-import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
-
 export default function AppRoutes() {
   return (
     <Routes>

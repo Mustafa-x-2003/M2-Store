@@ -25,17 +25,17 @@ export default function FilterCom({ setfilters, filters, products  , setshowMode
     setshowModel(false)
   };
   return (
-    <div className="p-3  flex flex-col gap-6  text-xl ">
-      <div className="text-[var(--text)] flex flex-col gap-6 ">
-        <h5 className="text-2xl ">Category</h5>
-        <div className="tracking-[.12rem] flex flex-col gap-3">
+    <div className="p-3  flex flex-col gap-8  text-xl ">
+      <div className=" flex flex-col gap-6 ">
+        <h5 className="text-[28px] font-semibold">Category</h5>
+        <div className="tracking-[.07rem] flex flex-col gap-3">
           <div className="flex gap-3 items-center">
             <input
               type="radio"
               id=""
               name="filter"
               checked={!filters.category}
-              className="w-5 h-5"
+              className="w-4.5 h-4.5"
               onChange={(e) => addCAt(e)}
             />
             <p>All </p>
@@ -43,12 +43,12 @@ export default function FilterCom({ setfilters, filters, products  , setshowMode
 
           {categories?.map((item) => {
             return (
-              <div className="flex gap-3 items-center" key={item}>
+              <div className="flex gap-3 items-center capitalize" key={item}>
                 <input
                   type="radio"
                  checked={ filters.category == item}
                   name="filter"
-                  className="w-5 h-5"
+                  className="w-4.5 h-4.5"
                   id={item}
                   onChange={(e) => addCAt(e)}
                 />
@@ -60,19 +60,19 @@ export default function FilterCom({ setfilters, filters, products  , setshowMode
       </div>
 
       <div>
-        <h5 className="text-2xl">Price Range</h5>
-        <div className="flex justify-between gap-3  mt-6">
+        <h5 className="text-[28px] font-semibold">Price Range</h5>
+        <div className="flex  text-black dark:text-white justify-between gap-3  mt-6">
           <input
             type="number"
             placeholder="Min"
-            className="border border-gray-600 w-40 p-2 rounded focus:border-[var(--primary)] focus:outline-none   bg-[var(--surface-secondary)]"
+            className="border border-gray-300 w-47  dark:border-gray-50/20  p-3.5 rounded-[12px] focus:border-[var(--primary)] focus:outline-none   dark:bg-[var(--surface)] bg-white/70"
             value={filters.minPrice}
             onChange={(e) => setFilter("minPrice", Number(e.target.value))}
           />
           <input
             type="number"
             placeholder="Max"
-            className="border border-gray-600 w-40 p-2 rounded focus:border-[var(--primary)] focus:outline-none  bg-[var(--surface-secondary)]"
+            className="border border-gray-300 w-47   dark:border-gray-50/20  p-3.5  rounded-[12px] focus:border-[var(--primary)] focus:outline-none  dark:bg-[var(--surface)] bg-white/70"
             value={filters.maxPrice}
             onChange={(e) => {
               setFilter("maxPrice", Number(e.target.value));
@@ -82,9 +82,9 @@ export default function FilterCom({ setfilters, filters, products  , setshowMode
       </div>
 
       <div className="flex flex-col gap-5   ">
-        <h5 className="text-2xl">Sort By</h5>
+        <h5 className="text-[28px] font-semibold">Sort By</h5>
         <select
-          className="border rounded p-3 py-2 text-[19px] focus:border-[var(--primary)] focus:outline-none bg-[var(--surface-secondary)]"
+          className="border  border-gray-300 dark:border-gray-50/20 rounded-[12px] p-3 text-[22px] focus:border-[var(--primary)] focus:outline-none dark:bg-[var(--surface)] bg-white/70"
           onChange={Addsort}
         >
           <option hidden>Default</option>
@@ -95,7 +95,7 @@ export default function FilterCom({ setfilters, filters, products  , setshowMode
         </select>
 
         <button
-          className="border border-[var(--primary)] text-[var(--primary)] rounded p-1 text-xl hover:bg-blue-500/15 mt-10"
+          className="border border-[var(--primary)] text-[var(--primary)] rounded-xl p-2.5 text-2xl hover:bg-blue-500/15 mt-3"
           onClick={() => {
             setsearchParams({});
           }}

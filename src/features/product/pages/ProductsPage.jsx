@@ -4,10 +4,11 @@ import FilterCom from "../components/FilterCom";
 import { GetProduct } from "../service/ProductPageService";
 import ProductSkelton from "../components/ProductSkelton";
 import "react-loading-skeleton/dist/skeleton.css";
+import ProductCard from "../../../components/common/productCard";
 import useProductsFilter from "../../../hooks/useProductsFilter";
 import { LuSlidersHorizontal } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
-import ProductCard from "../../../components/common/productCard";
+import { CiSearch } from "react-icons/ci";
 export default function ProductsPage() {
   const [isloading, setisloading] = useState(true);
   const [products, setproducts] = useState([]);
@@ -106,13 +107,13 @@ export default function ProductsPage() {
   return (
     <section className="">
       <div className="flex flex-col gap-5 mt-10 p-5 w-full xl:w-[85%] m-auto ">
-        <div className="flex justify-between gap-5">
+        <div className="flex justify-between pl-5 gap-5 relative">
+          <CiSearch className="text-3xl absolute top-5.5 left-9 in-focus-within:top-6" />
           <input
             type="text"
             value={filters.search}
             placeholder="Serach Product .."
-            className="border border-3
-         border-white/25 focus:border-violet-500 focus:outline-0 rounded-xl text-xl p-4 px-5 grow bg-[var(--surface-secondary)] "
+            className="text-black dark:text-white  border border-gray-300/40 focus:border-4 focus:border-violet-500  shadow-sm focus:outline-0 rounded-2xl text-2xl p-5 pl-13 font-semibold tracking-[.02em] grow dark:bg-[var(--surface)] bg-white/70"
             onChange={(e) => {
               setFilter("search", e.target.value);
             }}
@@ -169,9 +170,9 @@ export default function ProductsPage() {
               products={products}
             />
           </div>
-          <div className="cardsSide flex justify-center xl:justify-start gap-10 flex-wrap flex-grow   ">
+          <div className="cardsSide  flex justify-center xl:justify-start gap-10 flex-wrap flex-grow   ">
             <ProductSkelton isloading={isloading}>
-              <div className="grid grid-cols-1 sm:grid-cols-2  2xl:grid-cols-3 gap-7 w-full">
+              <div className="grid grid-cols-1  sm:grid-cols-2  2xl:grid-cols-3 gap-7 w-full">
               {products?.length > 0 ? (
                 products.map((item) => {
                   return (
@@ -183,14 +184,14 @@ export default function ProductsPage() {
                   );
                 })
               ) : (
-                <div className=" flex w-full justify-center xl:ml-[-100px]   text-4xl">
+                <div className=" flex col-span-4  justify-center xl:ml-[-230px]   text-4xl">
                   No Product Found
                 </div>
               )}
               </div>
             </ProductSkelton>
 
-            <div className="pagination  w-[85%]  py-5  flex justify-between items-center">
+            <div className="pagination  w-[100%]  py-5  flex justify-between items-center">
               <button
                 disabled={filters.page === 1}
                 className=" disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50 bg-sky-400 p-2 px-4 rounded-full "
