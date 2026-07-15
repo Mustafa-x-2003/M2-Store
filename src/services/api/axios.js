@@ -1,7 +1,22 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://e-commerce-api-3wara.vercel.app",
+  baseURL: "https://e-commerce-api-3wara.vercel.app/",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  timeout: 15000,
+  withCredentials: false,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
 });
 
 export default axiosInstance;

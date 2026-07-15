@@ -1,16 +1,33 @@
+import axios from "axios";
 import axiosInstance from "./axios";
 
-axiosInstance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token");
+axiosInstance.interceptors.response.use(
+  (response) => response,
 
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+  (error) => {
+    if (axios.isCancel(error) || error?.code === "ERR_CANCELED") {
+      return Promise.reject(error);
     }
 
-    return config;
-  },
-  (error) => {
+    const status = error.response?.status;
+    const payload = error.response?.data;
+
+    if (status) {
+      console.error(
+        `[API Error] ${error.config?.method?.toUpperCase()} ${error.config?.url} → ${status}`,
+        payload ?? "(no body)"
+      );
+
+      error.message = `Request failed: ${status} ${
+        error.response?.statusText ?? ""
+      }`.trim();
+    } else {
+      console.error(
+        `[API Error] ${error.config?.method?.toUpperCase()} ${error.config?.url} → No response (${error.code ?? "ERR_NETWORK"})`,
+        error.message
+      );
+    }
+
     return Promise.reject(error);
   }
 );

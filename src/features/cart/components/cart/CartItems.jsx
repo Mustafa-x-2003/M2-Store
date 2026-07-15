@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { FiShoppingCart } from "react-icons/fi";
 import CartHeader from "./CartHeader";
 import { Navigate, useNavigate } from "react-router";
+import { removeCoupon } from "../../services/cartApi";
 const CartItems=({cart,getCartItems})=>{
     const handleUpdateQuantity = async (productId, quantity) => {
   try {
@@ -16,13 +17,19 @@ const CartItems=({cart,getCartItems})=>{
 }
 const deleteproduct = async (productId) => {
   try {
-    const response=await deleteitem(productId);
-    getCartItems();
-    toast.success("Removed from cart")
+    const response = await deleteitem(productId);
+
+    if (response.data.itemCount === 0) {
+      await removeCoupon();
+    }
+
+    await getCartItems();
+
+    toast.success("Removed from cart");
   } catch (err) {
     console.log(err);
   }
-}
+};
     return (
         <>
         <div className="border-1 border-[var(--border)] p-4 w-[100%] h-fit bg-[var(--card)] rounded-2xl">
