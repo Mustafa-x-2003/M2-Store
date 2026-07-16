@@ -4,8 +4,10 @@ import ImagesList from "../../features/HomePage/components/imgesLIst"
 import CategoryCardList from "../../features/HomePage/components/categoryCardLIst"
 import { useNavigate } from "react-router";
 import { FaHeart } from "react-icons/fa";
+import useProductCart from "../../features/HomePage/hooks/useProductCart";
 
-export default function ProductCard({product, onView, AddToCart }) {
+export default function ProductCard({product }) {
+    const {loading ,error , addProduct} = useProductCart()
     const [clickAdd, setClickAdd] = useState(false);
     const navigate = useNavigate();
     const hasDiscount = Number(product.discountPrice) !== 0;
@@ -41,8 +43,8 @@ export default function ProductCard({product, onView, AddToCart }) {
                 </p>
 
                 <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-base leading-snug line-clamp-2  text-[25px] flex-1">{product.name}</h3>
-                    <button onClick={()=>setClickedFav(!clickedFav)} className={`transition-colors ${clickedFav ? "text-red-500" : "text-gray-200"}`}><FaHeart className="text-2xl" /></button>
+                    <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-base leading-snug line-clamp-2 flex-1">{product.name}</h3>
+                    <button onClick={(e)=>{ e.stopPropagation(); setClickedFav(!clickedFav); }} className={`transition-colors ${clickedFav ? "text-red-500" : "text-gray-200"}`}><FaHeart className="text-2xl" /></button>
                 </div>
 
                 <p className="text-gray-500 dark:text-gray-400 text-md line-clamp-2 leading-relaxed">{product.shortDescription}</p>
@@ -64,19 +66,20 @@ export default function ProductCard({product, onView, AddToCart }) {
                     
                     
                         <button
-                        onClick={() => {
-                            setClickAdd(!clickAdd);
-                            AddToCart(product);
-                            
+                        onClick={async (e) => {
+                            e.stopPropagation();
+                            const res = await addProduct({productId: product._id , quantity: 1});
+                            if (res) setClickAdd(true);
                         }}
-                        className={`flex items-center justify-center gap-2 w-full py-2 my-3 rounded-[10px] text-xl font-semibold transition-all duration-200 active:scale-95
+                        disabled={loading}
+                        className={`flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 active:scale-95
                             ${clickAdd 
                                 ? "bg-red-50 text-red-500 hover:bg-red-100 border border-red-200"
                                 : "bg-blue-800 text-white shadow-xl  hover:bg-blue-800/50"
                             }`}
                     >
                         <HiShoppingCart className="text-base" />
-                        {clickAdd ? "added to cart" : "Add to Cart"}
+                        {loading ? "Adding..." : clickAdd ? "Added to Cart" : "Add to Cart"}
                     </button>
                     
                 </div>
