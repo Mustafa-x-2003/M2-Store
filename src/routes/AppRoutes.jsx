@@ -87,13 +87,13 @@ export default function AppRoutes() {
         />
 
         <Route
-          path="/success"
-          element={
-            <ProtectedRoute>
-              <OrderSuccessPage />
-            </ProtectedRoute>
-          }
-        />
+    path="/success/:id"
+    element={
+        <ProtectedRoute>
+            <OrderSuccessPage />
+        </ProtectedRoute>
+    }
+/>
 
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Route>

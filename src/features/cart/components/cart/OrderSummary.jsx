@@ -53,7 +53,12 @@ export const OrderSummary = ({ cart }) => {
                     }).format(cart.total + tax + shipping)}</h2>
                 </div>
             </div>
-            <button className="w-full mx-auto text-center bg-[var(--primary)] text-[var(--text-inverse)] p-3 rounded-lg text-medium font-medium mt-3 hover:bg-[var(--primary-hover)] transition-all duration-200">Proceed to Checkout</button>
+            <Link
+    to="/checkout"
+    className="w-full block text-center bg-[var(--primary)] text-[var(--text-inverse)] p-3 rounded-lg font-medium mt-3 hover:bg-[var(--primary-hover)] transition-all duration-200"
+>
+    Proceed to Checkout
+</Link>
             <Link to="/products" className="text-[var(--primary)] flex justify-center mt-3">Continue Shopping</Link>
         </div>
     )

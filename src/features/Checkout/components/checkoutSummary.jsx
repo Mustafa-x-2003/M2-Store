@@ -29,18 +29,18 @@ function CheckoutSummary({ cart }) {
 
             <div className="space-y-4">
 
-                {cart.items.map((item) => (
+                {cart?.items?.map((item) => (
 
                     <div
-                        key={item.productId._id}
+                        key={item._id}
                         className="flex justify-between items-center"
                     >
 
                         <div className="flex gap-3 items-center">
 
                             <img
-                                src={item.productId.image}
-                                alt={item.productId.name}
+                                src={item.image}
+                                alt={item.name}
                                 className="w-14 h-14 rounded-lg object-cover bg-[var(--surface-secondary)]"
                             />
 
@@ -50,7 +50,7 @@ function CheckoutSummary({ cart }) {
                                     className="font-medium"
                                     style={{ color: "var(--text)" }}
                                 >
-                                    {item.productId.name}
+                                    {item.productId?.name}
                                 </h3>
 
                                 <p
@@ -68,7 +68,7 @@ function CheckoutSummary({ cart }) {
                             className="font-semibold"
                             style={{ color: "var(--text)" }}
                         >
-                            {formatCurrency(item.productId.price * item.quantity)}
+                            {formatCurrency(item.price * item.quantity)}
                         </h3>
 
                     </div>
@@ -78,8 +78,6 @@ function CheckoutSummary({ cart }) {
             </div>
 
             <hr className="border-[var(--border)]" />
-
-            {/* Prices */}
 
             <div className="space-y-3">
 

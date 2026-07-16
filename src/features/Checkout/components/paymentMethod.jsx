@@ -2,12 +2,12 @@ import React from "react";
 
 function PaymentMethod({ register, errors, watch, }) {
 
-    const paymentMethod = [
+    const paymentMethods = [
         {
             id: "cash",
             value: "cash",
             label: "Cash on Delivery",
-            descriotion: "Pay when you receive your order"
+            description: "Pay when you receive your order"
         },
     ];
 
@@ -29,9 +29,13 @@ function PaymentMethod({ register, errors, watch, }) {
             {paymentMethods.map((method) => (
                 <label
                     key={method.id}
-                    className="border rounded-2xl p-5 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                    className="block w-full border rounded-2xl p-5 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
                     style={{
-                        ...cardStyle,
+                        background:
+                            selectedPayment === method.value
+                                ? "rgba(59,130,246,.08)"
+                                : "var(--card)",
+
                         borderColor:
                             selectedPayment === method.value
                                 ? "var(--primary)"
@@ -44,11 +48,11 @@ function PaymentMethod({ register, errors, watch, }) {
                             id={method.id}
                             type="radio"
                             value={method.value}
+                            className="mt-1 h-4 w-4 accent-[var(--primary)]"
                             {...register("paymentMethod", {
                                 required: "Please select a payment method",
                             })}
                         />
-
                         <div>
                             <h3
                                 className="font-semibold"

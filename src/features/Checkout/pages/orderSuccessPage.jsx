@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router";
-import { FiCheckCircle } from "react-icons/fi";
+import { FiPackage, FiCheckCircle } from "react-icons/fi";
 import { HiOutlineCube } from "react-icons/hi2";
 import { FiShoppingBag } from "react-icons/fi";
 
