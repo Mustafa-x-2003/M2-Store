@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCart } from "../services/cartApi";
+import { getCart } from "../../cart/services/cartApi";
 import { useForm } from "react-hook-form";
 import { createOrder } from "../services/checkoutApi";
 import toast from "react-hot-toast";
