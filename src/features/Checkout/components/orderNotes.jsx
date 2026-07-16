@@ -1,14 +1,28 @@
 import React from "react";
+import { HiOutlineDocumentText } from "react-icons/hi2";
 
 function OrderNotes({ register }) {
     return (
-        <section className="space-y-5">
-            <h2
-                className="text-xl font-bold"
-                style={{ color: "var(--text)" }}
-            >
-                Order Notes (Optional)
-            </h2>
+        <section
+            className="rounded-2xl border p-6 space-y-6"
+            style={{
+                background: "var(--card)",
+                borderColor: "var(--border)",
+            }}
+        >
+            <div className="flex items-center gap-3">
+                <HiOutlineDocumentText
+                    className="text-2xl"
+                    style={{ color: "var(--primary)" }}
+                />
+
+                <h2
+                    className="text-xl font-bold"
+                    style={{ color: "var(--text)" }}
+                >
+                    Order Notes (Optional)
+                </h2>
+            </div>
             <textarea
                 rows={4}
                 placeholder="Any special instructions for your order..."

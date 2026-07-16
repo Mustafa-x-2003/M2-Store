@@ -1,6 +1,6 @@
 import React from "react";
 
-function CheckoutSummary({ cart }) {
+function CheckoutSummary({ cart, isLoading }) {
 
     const tax = Math.round(cart.total * 0.14);
     const shipping = cart.subtotal > 1000 ? 0 : 50;
@@ -138,13 +138,28 @@ function CheckoutSummary({ cart }) {
 
             <button
                 type="submit"
-                className="w-full rounded-xl py-3 font-semibold transition-all duration-300 hover:bg-[var(--primary-hover)]"
+                disabled={isLoading}
+                className={`w-full rounded-xl py-3 font-semibold transition-all duration-300 flex justify-center items-center gap-3
+                ${isLoading
+                        ? "opacity-70 cursor-not-allowed"
+                        : "hover:bg-[var(--primary-hover)]"}`}
                 style={{
                     background: "var(--primary)",
                     color: "var(--text-inverse)",
                 }}
             >
-                Place Order
+
+                {isLoading ? (
+                    <>
+                        <div
+                            className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+                        />
+                        Placing Order...
+                    </>
+                ) : (
+                    "Place Order"
+                )}
+
             </button>
 
         </aside>

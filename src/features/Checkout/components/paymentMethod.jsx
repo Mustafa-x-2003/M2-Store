@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { HiOutlineCreditCard } from "react-icons/hi2";
 
-function PaymentMethod({ register, errors, watch, }) {
+function PaymentMethod({ register, errors, watch, setValue, }) {
 
     const paymentMethods = [
         {
@@ -12,65 +13,88 @@ function PaymentMethod({ register, errors, watch, }) {
     ];
 
     const selectedPayment = watch("paymentMethod");
+    const [hoveredMethod, setHoveredMethod] = useState(null);
 
-    const cardStyle = {
-        background: "var(--card)",
-    };
+    useEffect(() => {
+        register("paymentMethod", {
+            required: "Please select a payment method",
+        });
+    }, [register]);
 
     return (
-        <section className="space-y-5">
-            <h2
-                className="text-xl font-bold"
-                style={{ color: "var(--text)" }}
-            >
-                Payment Method
-            </h2>
-
+        <section
+            className="rounded-2xl border p-6 space-y-6"
+            style={{
+                background: "var(--card)",
+                borderColor: "var(--border)",
+            }}
+        >
+            <div className="flex items-center gap-3">
+                <HiOutlineCreditCard
+                    className="text-2xl"
+                    style={{ color: "var(--primary)" }}
+                />
+                <h2
+                    className="text-xl font-bold"
+                    style={{ color: "var(--text)" }}
+                >
+                    Payment Method
+                </h2>
+            </div>
             {paymentMethods.map((method) => (
-                <label
+                <div
                     key={method.id}
-                    className="block w-full border rounded-2xl p-5 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                    onClick={() =>
+                        setValue("paymentMethod", method.value, {
+                            shouldValidate: true,
+                            shouldDirty: true,
+                        })
+                    }
+                    onMouseEnter={() => setHoveredMethod(method.id)}
+                    onMouseLeave={() => setHoveredMethod(null)}
+                    className="rounded-2xl border p-6 cursor-pointer transition-all duration-300 hover:scale-[1.01] hover:shadow-lg"
                     style={{
                         background:
                             selectedPayment === method.value
-                                ? "rgba(59,130,246,.08)"
-                                : "var(--card)",
+                                ? "var(--primary-soft)"
+                                : hoveredMethod === method.id
+                                    ? "var(--primary-soft-hover)"
+                                    : "var(--card)",
 
                         borderColor:
                             selectedPayment === method.value
                                 ? "var(--primary)"
-                                : "var(--border)",
+                                : hoveredMethod === method.id
+                                    ? "var(--primary)"
+                                    : "var(--border)",
+                        boxShadow:
+                            selectedPayment === method.value
+                                ? "0 8px 24px rgba(59,130,246,.12)"
+                                : "none",
                     }}
                 >
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-center">
 
-                        <input
-                            id={method.id}
-                            type="radio"
-                            value={method.value}
-                            className="mt-1 h-4 w-4 accent-[var(--primary)]"
-                            {...register("paymentMethod", {
-                                required: "Please select a payment method",
-                            })}
+                        <HiOutlineCreditCard
+                            className="text-2xl"
+                            style={{ color: "var(--primary)" }}
                         />
-                        <div>
+                        <div className="ml-4 flex-1">
                             <h3
                                 className="font-semibold"
                                 style={{ color: "var(--text)" }}
                             >
                                 {method.label}
                             </h3>
-
                             <p
                                 className="text-sm mt-1"
                                 style={{ color: "var(--text-secondary)" }}
                             >
                                 {method.description}
                             </p>
-                        </div>
 
-                    </div>
-                </label>
+                        </div></div>
+                </div>
             ))}
 
             {errors.paymentMethod && (

@@ -98,8 +98,9 @@ function ShippingAddressForm({ register, errors }) {
                 className="text-xl font-bold"
                 style={{ color: "var(--text)" }}
             >
-                Shipping Address
+                Checkout
             </h2>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {
                     fields.map((field) => (
