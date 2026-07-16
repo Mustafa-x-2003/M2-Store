@@ -14,6 +14,8 @@ import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 import Wishlist from "../features/Wishlist/page/Wishlist";
 import HomePage from "../features/HomePage/pages/HomePage";
 import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
+import CheckoutPage from "../features/Checkout/pages/checkoutPage";
+import OrderSuccessPage from "../features/Checkout/pages/orderSuccessPage";
 
 export default function AppRoutes() {
   return (
@@ -61,7 +63,7 @@ export default function AppRoutes() {
           path="/wishlist"
           element={
             <ProtectedRoute>
-             <Wishlist />
+              <Wishlist />
             </ProtectedRoute>
           }
         />
@@ -71,6 +73,24 @@ export default function AppRoutes() {
           element={
             <ProtectedRoute>
               <CartsPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/success"
+          element={
+            <ProtectedRoute>
+              <OrderSuccessPage />
             </ProtectedRoute>
           }
         />

@@ -1,8 +1,7 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import InputField from "../components/inputField";
+import InputField from "./inputField";
 
-function CheckoutForm() {
+function ShippingAddressForm({ register, errors }) {
 
     const fields = [
         {
@@ -16,7 +15,7 @@ function CheckoutForm() {
                 required: "Full Name is Required",
                 minLength: {
                     value: 3,
-                    message:"Minimum 3 characters"
+                    message: "Full name must be at least 3 characters"
                 }
             }
         },
@@ -31,8 +30,8 @@ function CheckoutForm() {
             validation: {
                 required: "Phone Number is Required",
                 pattern: {
-                    value: /01^[0125][0-9]{8}$/,
-                    message:"Enter a valid phone number"
+                    value: /^01[0125][0-9]{8}$/,
+                    message: "Enter a valid phone number"
                 }
             }
         },
@@ -46,9 +45,9 @@ function CheckoutForm() {
             autoComplete: "country-name",
             validation: {
                 required: "Country Name is Required",
-                minLength: {
-                    value: 2,
-                    message:"Country Name must be at least 2 characters"
+                pattern: {
+                    value: /^[A-Za-z\s]+$/,
+                    message: "Country Name must be at least 2 characters"
                 }
             }
         },
@@ -62,9 +61,9 @@ function CheckoutForm() {
             autoComplete: "address-level2",
             validation: {
                 required: "City Name is Required",
-                minLength: {
-                    value: 2,
-                    message:"City Name must be at least 2 characters"
+                pattern: {
+                    value: /^[A-Za-z\s]+$/,
+                    message: "City Name must be at least 2 characters"
                 }
             }
         },
@@ -81,38 +80,40 @@ function CheckoutForm() {
                 required: "Address is Required",
                 minLength: {
                     value: 5,
-                    message:"Address must be at least 5 characters"
+                    message: "Address must be at least 5 characters"
                 }
             }
         }
     ]
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
-
-    const onSubmit = (data) => {
-        console.log(data);
-    }
-
     return (
-        <form
-        onSubmit={handleSubmit(onSubmit)} 
-        className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {
-                fields.map((field) => (
-                    <InputField
-                        key={field.id}
-                        {...field}
-                        register={register}
-                        error = {errors[field.name]}
-                    />
-                ))
-            }
-        </form>
+        <section
+            className="rounded-2xl border p-6 space-y-6"
+            style={{
+                background: "var(--card)",
+                borderColor: "var(--border)"
+            }}
+        >
+            <h2
+                className="text-xl font-bold"
+                style={{ color: "var(--text)" }}
+            >
+                Shipping Address
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {
+                    fields.map((field) => (
+                        <InputField
+                            key={field.id}
+                            {...field}
+                            register={register}
+                            error={errors[field.name]}
+                        />
+                    ))
+                }
+            </div>
+        </section>
     );
 }
 
-export default CheckoutForm;
+export default ShippingAddressForm;
