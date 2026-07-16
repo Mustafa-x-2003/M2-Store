@@ -14,11 +14,11 @@ export default function ProductCard({product }) {
     const [clickedFav, setClickedFav] = useState(false);
 
     return (
-        <div className="bg-white w-full max-w-full h-150 dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group"
+        <div className="bg-white w-full max-w-full  dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group"
             onClick={()=>navigate(`/products/${product._id}`)}
         >
 
-            <div className="relative h-100 overflow-hidden">
+            <div className="relative overflow-hidden">
                 <ImagesList featured={product.featured} images={product.images} />
 
                 <div className="absolute bottom-2 left-2">
@@ -34,9 +34,9 @@ export default function ProductCard({product }) {
                 </div>
             </div>
 
-            <div className="p-4 flex flex-col gap-3 flex-1">
+            <div className="p-4  flex flex-col justify-between gap-3 flex-1">
 
-                <p className="text-md text-gray-400 dark:text-gray-500 font-medium uppercase tracking-wider">
+                <p className="text-sm  text-gray-400 dark:text-gray-500 font-medium uppercase tracking-wider">
                     {[product.category, product.subcategory, product.brand]
                         .filter(Boolean)
                         .join(" · ")}
@@ -47,7 +47,7 @@ export default function ProductCard({product }) {
                     <button onClick={(e)=>{ e.stopPropagation(); setClickedFav(!clickedFav); }} className={`transition-colors ${clickedFav ? "text-red-500" : "text-gray-200"}`}><FaHeart className="text-2xl" /></button>
                 </div>
 
-                <p className="text-gray-500 dark:text-gray-400 text-md line-clamp-2 leading-relaxed">{product.shortDescription}</p>
+                {/* <p className="text-gray-500 dark:text-gray-400 text-md line-clamp-2 leading-relaxed">{product.shortDescription}</p> */}
 
                 <div>
                     {hasDiscount ? (
@@ -60,7 +60,7 @@ export default function ProductCard({product }) {
                     )}
                 </div>
 
-                <CategoryCardList cats={product.tags} />
+                {/* <CategoryCardList cats={product.tags} /> */}
 
                 <div className="flex flex-col gap-2 mt-3 pt-2 border-t border-gray-50 dark:border-gray-700">
                     

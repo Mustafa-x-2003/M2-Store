@@ -28,7 +28,7 @@ export default function ProductSkelton({ isloading, children }) {
 
       // -------------------------
 
-       <div className="grid grid-cols-1 sm:grid-cols-2  2xl:grid-cols-3 gap-7 w-full">
+       <div className="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 xl:grid-cols-3">
         {Array.from({ length: 9 }).map((item) => (
           <div className="bg-[#2b343f]  bg-[var(--surface-secondary)] rounded-xl w-full h-120 rounded flex flex-col gap-3 animate-pulse">
             <div

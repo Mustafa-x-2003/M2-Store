@@ -65,14 +65,14 @@ export default function FilterCom({ setfilters, filters, products  , setshowMode
           <input
             type="number"
             placeholder="Min"
-            className="border border-gray-300 w-47  dark:border-gray-50/20  p-3.5 rounded-[12px] focus:border-[var(--primary)] focus:outline-none   dark:bg-[var(--surface)] bg-white/70"
+            className="border border-gray-300 w-45  dark:border-gray-50/20  p-3.5 rounded-[12px] focus:border-[var(--primary)] focus:outline-none   dark:bg-[var(--surface)] bg-white/70"
             value={filters.minPrice}
             onChange={(e) => setFilter("minPrice", Number(e.target.value))}
           />
           <input
             type="number"
             placeholder="Max"
-            className="border border-gray-300 w-47   dark:border-gray-50/20  p-3.5  rounded-[12px] focus:border-[var(--primary)] focus:outline-none  dark:bg-[var(--surface)] bg-white/70"
+            className="border border-gray-300 w-45   dark:border-gray-50/20  p-3.5  rounded-[12px] focus:border-[var(--primary)] focus:outline-none  dark:bg-[var(--surface)] bg-white/70"
             value={filters.maxPrice}
             onChange={(e) => {
               setFilter("maxPrice", Number(e.target.value));

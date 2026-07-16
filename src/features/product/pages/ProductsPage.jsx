@@ -106,21 +106,21 @@ export default function ProductsPage() {
 
   return (
     <section className="">
-      <div className="flex flex-col gap-5 mt-10 p-5 w-full xl:w-[85%] m-auto ">
-        <div className="flex justify-between pl-5 gap-5 relative">
+      <div className="flex flex-col gap-5 mt-10 p-5 w-full 2xl:w-[85%] m-auto ">
+        <div className="flex justify-between 2xl:pl-3 gap-5  relative">
           <CiSearch className="text-3xl absolute top-5.5 left-9 in-focus-within:top-6" />
           <input
             type="text"
             value={filters.search}
             placeholder="Serach Product .."
-            className="text-black dark:text-white  border border-gray-300/40 focus:border-4 focus:border-violet-500  shadow-sm focus:outline-0 rounded-2xl text-2xl p-5 pl-13 font-semibold tracking-[.02em] grow dark:bg-[var(--surface)] bg-white/70"
+            className="text-black dark:text-white  border border-gray-300/40 focus:border-4 focus:border-violet-500  shadow-sm focus:outline-0 rounded-2xl text-2xl p-5 pl-13 font-semibold tracking-[.02em] w-full dark:bg-[var(--surface)] bg-white/70"
             onChange={(e) => {
               setFilter("search", e.target.value);
             }}
           />
 
           <button
-            className="border border-white/50 xl:invisible w-15 flex justify-center items-center rounded-xl bg-[var(--surface-secondary)]"
+            className="border border-white/50 2xl:hidden w-15 flex justify-center items-center rounded-xl bg-[var(--surface-secondary)]"
             onClick={() => setshowModel(true)}
           >
             <LuSlidersHorizontal className="text-3xl" />
@@ -162,8 +162,8 @@ export default function ProductsPage() {
             </button>
           )}
         </div>
-        <div className="mainContent  pr-20 flex gap-10">
-          <div className="filterSide hidden xl:block">
+        <div className="mainContent  2xl:pr-20 flex gap-10">
+          <div className="filterSide hidden 2xl:block">
             <FilterCom
               filters={filters}
               setfilters={setfilters}
@@ -172,7 +172,7 @@ export default function ProductsPage() {
           </div>
           <div className="cardsSide  flex justify-center xl:justify-start gap-10 flex-wrap flex-grow   ">
             <ProductSkelton isloading={isloading}>
-              <div className="grid grid-cols-1  sm:grid-cols-2  2xl:grid-cols-3 gap-7 w-full">
+              <div className="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 xl:grid-cols-3 ">
               {products?.length > 0 ? (
                 products.map((item) => {
                   return (
