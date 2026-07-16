@@ -1,9 +1,9 @@
-import { useState  ,useEffect  ,useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getAllProducts } from "../servecies/ProductsAPi";
-function useProducts(){
-    const [loading ,setLoading] = useState(false)
-    const [products ,setProducts] = useState([])
-    const [error , setError] = useState(null)
+function useProducts() {
+    const [loading, setLoading] = useState(false)
+    const [products, setProducts] = useState([])
+    const [error, setError] = useState(null)
     const getProducts = useCallback(
         async (signal) => {
             try {
