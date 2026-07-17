@@ -14,7 +14,7 @@ export default function ProductCard({product }) {
     const [clickedFav, setClickedFav] = useState(false);
 
     return (
-        <div className="bg-white w-full max-w-full  dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group"
+        <div className="bg-white w-full max-w-full  dark:bg-gray-800 rounded-xl shadow-sm border border-gray-300 dark:border-gray-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group"
             onClick={()=>navigate(`/products/${product._id}`)}
         >
 

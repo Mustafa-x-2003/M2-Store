@@ -172,7 +172,7 @@ export default function ProductsPage() {
           </div>
           <div className="cardsSide  flex justify-center xl:justify-start gap-10 flex-wrap flex-grow   ">
             <ProductSkelton isloading={isloading}>
-              <div className="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 xl:grid-cols-3 ">
+              <div className="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  ">
               {products?.length > 0 ? (
                 products.map((item) => {
                   return (
