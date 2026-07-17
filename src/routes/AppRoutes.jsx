@@ -13,6 +13,9 @@ import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
 import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 import Wishlist from "../features/Wishlist/page/Wishlist";
 import HomePage from "../features/HomePage/pages/HomePage";
+import CheckoutPage from "../features/Checkout/pages/checkoutPage";
+import OrderSuccessPage from "../features/Checkout/pages/orderSuccessPage";
+
 export default function AppRoutes() {
   return (
     <Routes>
@@ -59,7 +62,7 @@ export default function AppRoutes() {
           path="/wishlist"
           element={
             <ProtectedRoute>
-             <Wishlist />
+              <Wishlist />
             </ProtectedRoute>
           }
         />
@@ -72,6 +75,24 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+    path="/success/:id"
+    element={
+        <ProtectedRoute>
+            <OrderSuccessPage />
+        </ProtectedRoute>
+    }
+/>
 
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Route>
