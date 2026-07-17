@@ -7,13 +7,12 @@ import ResetPasswordPage from "../features/auth/pages/ResetPasswordPage";
 import ProfilePage from "../features/profile/pages/profile";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
-
+import ProductsPage from "../features/product/pages/ProductsPage";
 import CartsPage from "../features/cart/pages/CartsPage";
 import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
 import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 import Wishlist from "../features/Wishlist/page/Wishlist";
 import HomePage from "../features/HomePage/pages/HomePage";
-import ProductsPage from "../features/ProductsPage/pages/ProductsPage";
 import CheckoutPage from "../features/Checkout/pages/checkoutPage";
 import OrderSuccessPage from "../features/Checkout/pages/orderSuccessPage";
 

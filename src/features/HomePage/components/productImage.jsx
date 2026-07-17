@@ -3,7 +3,7 @@ import { HiStar } from "react-icons/hi";
 
 export default function ProductImage({ imageUrl, featured }) {
   return (
-    <div className="w-full h-48 relative rounded-t-2xl overflow-hidden bg-gray-100 dark:bg-gray-700">
+    <div className="w-full aspect-4/5 relative rounded-t-2xl overflow-hidden bg-gray-100 dark:bg-gray-700">
       <AnimatePresence mode="wait">
         <motion.img
           key={imageUrl}
@@ -17,7 +17,7 @@ export default function ProductImage({ imageUrl, featured }) {
       </AnimatePresence>
 
       {featured && (
-        <div className="absolute top-2 left-2 flex items-center gap-1 bg-amber-400 text-white text-xs font-semibold px-2.5 py-1 rounded-lg shadow">
+        <div className="absolute top-2 left-2 flex items-center gap-1 bg-amber-400 text-white text-md font-semibold px-2.5 py-1 rounded-lg shadow">
           <HiStar className="text-sm" />
           Featured
         </div>

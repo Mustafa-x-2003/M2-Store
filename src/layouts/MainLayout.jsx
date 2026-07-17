@@ -12,7 +12,7 @@ export default function MainLayout() {
 
       <Navbar />
 
-      <main className="flex-1 bg-[var(--background)] transition-colors duration-300">
+      <main className="flex-1 bg-[var(--surface-secondary)] transition-colors duration-300">
 
         <Outlet />
 

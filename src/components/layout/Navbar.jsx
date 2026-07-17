@@ -101,6 +101,13 @@ setCartCount(totalQuantity);
       : "text-[var(--text-secondary)] hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)]"
   }`;
 
+  const handleSearch = (e)=>{
+    if(e.key === "Enter"){
+      navigate(`/products?search=${e.target.value}`)
+      setShowSearch(false)
+    }
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--navbar)]">
       <div className="mx-auto flex h-20 w-full max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -141,6 +148,7 @@ setCartCount(totalQuantity);
                 type="text"
                 placeholder="Search..."
                 autoFocus
+                onKeyDown={handleSearch}
                 className="w-40 bg-transparent px-3 py-3 text-[var(--text)] outline-none placeholder:text-[var(--text-muted)]"
               />
 
