@@ -155,35 +155,62 @@ export function ProductProvider({ children }) {
   };
 
   // Wishlist actions
-  const toggleWishlist = async (productId) => {
-    if (!user) {
-      toast.error("Please login to manage your wishlist");
-      return;
+ const toggleWishlist = async (productId) => {
+  if (!user) {
+    toast.error("Please login to manage your wishlist");
+    return;
+  }
+
+  const idToToggle = productId || state.product?._id;
+  if (!idToToggle) return;
+
+  dispatch({ type: "TOGGLE_WISHLIST_START" });
+
+  const isCurrentlyInWishlist =
+    state.wishlistProductIds.includes(idToToggle);
+
+  try {
+    if (isCurrentlyInWishlist) {
+      const response = await removeFromWishlist(idToToggle);
+
+      console.log("REMOVE RESPONSE:", response);
+
+      dispatch({
+        type: "REMOVE_FROM_WISHLIST_SUCCESS",
+        payload: idToToggle,
+      });
+
+      toast.success("Removed from wishlist");
+    } else {
+      const response = await addToWishlist(idToToggle);
+
+      console.log("ADD RESPONSE:", response);
+
+      dispatch({
+        type: "ADD_TO_WISHLIST_SUCCESS",
+        payload: idToToggle,
+      });
+
+      toast.success("Added to wishlist");
     }
 
-    const idToToggle = productId || state.product?._id;
-    if (!idToToggle) return;
+    window.dispatchEvent(new Event("navbar-counts-update"));
+  } catch (err) {
+    console.error(
+      "WISHLIST ERROR:",
+      err.response?.status,
+      err.response?.data,
+      err
+    );
 
-    dispatch({ type: "TOGGLE_WISHLIST_START" });
+    const message =
+      err.response?.data?.message ||
+      "Failed to update wishlist.";
 
-    const isCurrentlyInWishlist = state.wishlistProductIds.includes(idToToggle);
-
-    try {
-      if (isCurrentlyInWishlist) {
-        await removeFromWishlist(idToToggle);
-        dispatch({ type: "REMOVE_FROM_WISHLIST_SUCCESS", payload: idToToggle });
-        toast.success("Removed from wishlist");
-      } else {
-        await addToWishlist(idToToggle);
-        dispatch({ type: "ADD_TO_WISHLIST_SUCCESS", payload: idToToggle });
-        toast.success("Added to wishlist");
-      }
-    } catch (err) {
-      const message = err.response?.data?.message || "Failed to update wishlist.";
-      dispatch({ type: "TOGGLE_WISHLIST_ERROR" });
-      toast.error(message);
-    }
-  };
+    dispatch({ type: "TOGGLE_WISHLIST_ERROR" });
+    toast.error(message);
+  }
+};
 
   // Cart actions
   const handleAddToCart = async () => {
@@ -201,6 +228,7 @@ export function ProductProvider({ children }) {
 
     try {
       await addToCart(state.product._id, state.quantity);
+      window.dispatchEvent(new Event("navbar-counts-update"));
       dispatch({ type: "ADD_TO_CART_SUCCESS" });
       toast.success("Added to cart successfully!");
     } catch (err) {
@@ -220,6 +248,7 @@ export function ProductProvider({ children }) {
 
     try {
       await addToCart(productId, 1);
+      window.dispatchEvent(new Event("navbar-counts-update"));
       dispatch({ type: "ADD_RELATED_CART_SUCCESS" });
       toast.success("Added to cart successfully!");
     } catch (err) {

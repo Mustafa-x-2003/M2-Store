@@ -5,6 +5,8 @@ import CategoryCardList from "../../features/HomePage/components/categoryCardLIs
 import { useNavigate } from "react-router";
 import { FaHeart } from "react-icons/fa";
 import useProductCart from "../../features/HomePage/hooks/useProductCart";
+import {addToWishlist, removeFromWishlist,
+} from "../../features/products/service/productService";
 
 export default function ProductCard({product }) {
     const {loading ,error , addProduct} = useProductCart()
@@ -44,7 +46,25 @@ export default function ProductCard({product }) {
 
                 <div className="flex items-start justify-between gap-2">
                     <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-base leading-snug line-clamp-2 flex-1">{product.name}</h3>
-                    <button onClick={(e)=>{ e.stopPropagation(); setClickedFav(!clickedFav); }} className={`transition-colors ${clickedFav ? "text-red-500" : "text-gray-200"}`}><FaHeart className="text-2xl" /></button>
+                   <button onClick={async (e) => {
+                    e.stopPropagation();
+                    try {
+                    if (clickedFav) {
+                     await removeFromWishlist(product._id);
+                      setClickedFav(false);
+                     } else {
+                     await addToWishlist(product._id);
+                     setClickedFav(true);}
+                     window.dispatchEvent(
+                        new Event("navbar-counts-update"));
+                    } catch (error) {
+                        console.error("Wishlist update failed:", error);
+                    }
+                }}
+                className={`transition-colors ${
+                    clickedFav ? "text-red-500" : "text-gray-200" }`}>
+                        <FaHeart className="text-2xl" />
+                        </button>
                 </div>
 
                 <p className="text-gray-500 dark:text-gray-400 text-xs line-clamp-2 leading-relaxed">{product.shortDescription}</p>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect , useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import logo from "../../assets/images/Logo.png";
 
@@ -16,10 +16,12 @@ import {
 import { useAuth } from "../../context/AuthContext";
 import { useTheme } from "../../context/ThemeContext";
 
-export default function Navbar() {
-  const navigate = useNavigate();
+import { getCart } from "../../features/cart/services/cartApi";
+import { getWishlist } from "../../features/Wishlist/services/wishlistApi";
 
-  const { user, logout } = useAuth();
+export default function Navbar() {
+const navigate = useNavigate();
+const { user, logout } = useAuth();
 const { theme, toggleTheme } = useTheme();
 
 const userLabel = !user
@@ -31,10 +33,66 @@ const userLabel = !user
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
+const [cartCount, setCartCount] = useState(0);
+const [wishlistCount, setWishlistCount] = useState(0);
+
   const handleLogout = () => {
     logout();
     navigate("/login", { replace: true });
   };
+
+  useEffect(() => {
+  const fetchCounts = async () => {
+    if (!user) {
+      setCartCount(0);
+      setWishlistCount(0);
+      return;
+    }
+
+    try {
+      const cartResponse = await getCart();
+
+      const items = cartResponse.data?.items || [];
+
+const totalQuantity = items.reduce(
+  (total, item) => total + (item.quantity || 0),
+  0
+);
+
+setCartCount(totalQuantity);
+    } catch (error) {
+      console.error("Failed to fetch cart count:", error);
+      setCartCount(0);
+    }
+
+    try {
+      const wishlistResponse = await getWishlist();
+
+      setWishlistCount(
+        wishlistResponse.data?.totalProducts ??
+          wishlistResponse.data?.products?.length ??
+          0
+      );
+    } catch (error) {
+      console.error("Failed to fetch wishlist count:", error);
+      setWishlistCount(0);
+    }
+  };
+
+  fetchCounts();
+
+  window.addEventListener(
+    "navbar-counts-update",
+    fetchCounts
+  );
+
+  return () => {
+    window.removeEventListener(
+      "navbar-counts-update",
+      fetchCounts
+    );
+  };
+}, [user]);
 
   const navLinkClass = ({ isActive }) =>
   `rounded-full px-6 py-1.5 text-base font-semibold transition ${
@@ -123,9 +181,12 @@ const userLabel = !user
           <Link
             to="/wishlist"
             aria-label="Wishlist"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-secondary)] shadow-sm transition hover:border-[var(--border-hover)] hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)]"
+            className=" relative flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-secondary)] shadow-sm transition hover:border-[var(--border-hover)] hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)]"
           >
             <Heart size={19} />
+            <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--primary)] px-1 text-[10px] font-bold text-[var(--text-inverse)]">
+  {wishlistCount}
+</span>
           </Link>
 
       
@@ -137,7 +198,7 @@ const userLabel = !user
             <ShoppingCart size={19} />
 
             <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--primary)] px-1 text-[10px] font-bold text-[var(--text-inverse)]">
-              0
+              {cartCount}
             </span>
           </Link>
 
@@ -248,7 +309,7 @@ const userLabel = !user
               <ShoppingCart size={19} />
 
               <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-[var(--primary)] px-1 text-[9px] font-bold text-[var(--text-inverse)]">
-                0
+               {cartCount}
               </span>
             </Link>
           </div>
