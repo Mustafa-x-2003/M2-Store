@@ -15,7 +15,7 @@ import Wishlist from "../features/Wishlist/page/Wishlist";
 import HomePage from "../features/HomePage/pages/HomePage";
 import CheckoutPage from "../features/Checkout/pages/checkoutPage";
 import OrderSuccessPage from "../features/Checkout/pages/orderSuccessPage";
-
+import OrderPage from "../features/orders/pages/OrdersPage";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -44,7 +44,7 @@ export default function AppRoutes() {
           path="/orders"
           element={
             <ProtectedRoute>
-              <div>My Orders Page</div>
+              <OrderPage/>
             </ProtectedRoute>
           }
         />
