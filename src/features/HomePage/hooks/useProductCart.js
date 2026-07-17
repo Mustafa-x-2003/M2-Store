@@ -10,6 +10,8 @@ function useProductCart(){
                 setLoading(true)
                 setError(null)
                 const response = await addProductToCart({productId,quantity})
+                window.dispatchEvent(new Event("navbar-counts-update"));
+
                 return response
             } catch (error) {
                 setError(error)
