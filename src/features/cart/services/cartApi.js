@@ -19,3 +19,6 @@ export const updatecoupon=(coupon)=>{
 export const removeCoupon=(coupon)=>{
     return axiosInstance.delete("/carts/coupon")
   }
+  export const clearcart=()=>{
+    return axiosInstance.delete("/carts/clear")
+  }
