@@ -10,3 +10,4 @@ export const createProduct    = (data)            => axiosInstance.post(PRODUCTS
 export const updateProduct    = (id, data)        => axiosInstance.patch(PRODUCTS.UPDATE(id), data);
 export const deleteProduct    = (id)              => axiosInstance.delete(PRODUCTS.BY_ID(id));
 export const addProductToCart = ({ productId, quantity }) => axiosInstance.post(CART.ITEMS, { productId, quantity });
+export const getCartItems     = () => axiosInstance.get(CART.ITEMS);

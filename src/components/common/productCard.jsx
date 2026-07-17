@@ -71,15 +71,17 @@ export default function ProductCard({product }) {
                             const res = await addProduct({productId: product._id , quantity: 1});
                             if (res) setClickAdd(true);
                         }}
-                        disabled={loading}
+                        disabled={loading || Number(product.stock) === 0}
                         className={`flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 active:scale-95
-                            ${clickAdd 
-                                ? "bg-red-50 text-red-500 hover:bg-red-100 border border-red-200"
-                                : "bg-teal-500 text-white hover:bg-teal-600 shadow-md shadow-teal-100"
+                            ${Number(product.stock) === 0
+                                ? "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200 dark:bg-gray-700 dark:text-gray-500 dark:border-gray-600"
+                                : clickAdd 
+                                    ? "bg-red-50 text-red-500 hover:bg-red-100 border border-red-200"
+                                    : "bg-teal-500 text-white hover:bg-teal-600 shadow-md shadow-teal-100"
                             }`}
                     >
                         <HiShoppingCart className="text-base" />
-                        {loading ? "Adding..." : clickAdd ? "Added to Cart" : "Add to Cart"}
+                        {loading ? "Adding..." : Number(product.stock) === 0 ? "Out of Stock" : clickAdd ? "Added to Cart" : "Add to Cart"}
                     </button>
                     
                 </div>
