@@ -51,6 +51,12 @@
     --info: #0EA5E9;
     --info-light: #E0F2FE;
 
+    --purple: #A855F7;
+    --purple-light: rgba(168, 85, 247, 0.15);
+
+    --teal: #14B8A6;
+    --teal-light: rgba(20, 184, 166, 0.15);
+
     /* =========================
       LAYOUT
   ========================== */
@@ -151,7 +157,13 @@
     --danger-light: rgba(239, 68, 68, .15);
 
     --info: #38BDF8;
-    --info-light: rgba(56, 189, 248, .15);
+    --info-light: rgba(56, 189, 248, .15); 
+
+    --teal: #2DD4BF;
+    --teal-light: rgba(45, 212, 191, 0.15);
+
+    --purple: #C084FC;
+    --purple-light: rgba(192, 132, 252, 0.15);
 
     /* =========================
       LAYOUT
