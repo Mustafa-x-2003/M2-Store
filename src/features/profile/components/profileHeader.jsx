@@ -39,7 +39,7 @@ export default function ProfileHeader({ user }) {
             </div>
           </div>
           <button  type="button" onClick={() => setIsEditing(true)}
-          className="mt-4 rounded-lg border border-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--primary)] transition hover:bg-[var(--primary)] hover:text-[var(--text-inverse)]">
+          className="mt-4 rounded-lg border border-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--primary)] transition hover:bg-[var(--primary)] hover:text-[var(--text-inverse)] cursor-pointer">
             Edit Profile </button>
         </>
       ) : ( <EditProfile user={userData} onClose={() => setIsEditing(false)} onUpdate={handleUpdate}/>)}

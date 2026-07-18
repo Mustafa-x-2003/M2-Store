@@ -59,11 +59,11 @@ export default function EditProfile({ user, onClose, onUpdate }) {
           type="button"
           onClick={handleSave}
           disabled={isLoading}
-          className="rounded-lg bg-[var(--primary)] px-5 py-2 text-sm font-semibold text-[var(--text-inverse)] transition hover:opacity-90 disabled:opacity-50">
+          className="rounded-lg bg-[var(--primary)] px-5 py-2 text-sm font-semibold text-[var(--text-inverse)] transition hover:opacity-90 disabled:opacity-50 cursor-pointer">
           {isLoading ? "Saving..." : "Save"}
         </button>
         <button type="button" onClick={onClose}
-          className="rounded-lg border border-[var(--border)] bg-[var(--surface-secondary)] px-5 py-2 text-sm font-semibold text-[var(--text-secondary)] transition hover:bg-[var(--surface)]">
+          className="rounded-lg border border-[var(--border)] bg-[var(--surface-secondary)] px-5 py-2 text-sm font-semibold text-[var(--text-secondary)] transition hover:bg-[var(--surface)] cursor-pointer">
           Cancel </button>
       </div>
     </div>

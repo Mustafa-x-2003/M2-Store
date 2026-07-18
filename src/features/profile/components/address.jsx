@@ -103,10 +103,10 @@ export default function Address({ user }) {
           <div className="mt-4 flex gap-2">
             <button
               onClick={handleEdit}
-              className="rounded-lg border border-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--primary)] transition hover:bg-[var(--primary)] hover:text-[var(--text-inverse)]">
+              className="rounded-lg border border-[var(--primary)] px-4 py-2 text-sm font-semibold text-[var(--primary)] transition hover:bg-[var(--primary)] hover:text-[var(--text-inverse)] cursor-pointer">
               Edit </button>
             <button onClick={handleDelete}
-              className="rounded-lg border border-[var(--danger)] px-4 py-2 text-sm font-semibold text-[var(--danger)] transition hover:bg-[var(--danger)] hover:text-[var(--text-inverse)]">
+              className="rounded-lg border border-[var(--danger)] px-4 py-2 text-sm font-semibold text-[var(--danger)] transition hover:bg-[var(--danger)] hover:text-[var(--text-inverse)] cursor-pointer">
               Delete </button>
           </div>
         </div>
@@ -128,8 +128,7 @@ export default function Address({ user }) {
           </div>
           <button
             onClick={handleSave}
-            className="mt-4 flex items-center gap-2 rounded-lg bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--text-inverse)] transition hover:opacity-90"
-          >
+            className="mt-4 flex items-center gap-2 rounded-lg bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--text-inverse)] transition hover:opacity-90 cursor-pointer">
             {isEditing ? "Save Changes" : "+ Add Address"}
           </button>
         </>

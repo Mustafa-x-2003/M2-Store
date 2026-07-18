@@ -350,7 +350,7 @@ setCartCount(totalQuantity);
 
     
           {user ? (
-  <div className="mt-4 flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
+  <div className="mt-4 flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 cursoe-pointer">
     <Link
       to="/profile"
       onClick={() => setIsMenuOpen(false)}
