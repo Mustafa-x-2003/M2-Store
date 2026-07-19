@@ -108,12 +108,12 @@ export default function ProductsPage() {
     <section className="">
       <div className="flex flex-col gap-5 mt-10 p-5 w-full 2xl:w-[85%] m-auto ">
         <div className="flex justify-between 2xl:pl-3 gap-5  relative">
-          <CiSearch className="text-3xl absolute top-5.5 left-9 in-focus-within:top-6" />
+          <CiSearch className="text-3xl absolute top-5.5 left-5 in-focus-within:top-6 text-[var(--text-secondary)]" />
           <input
             type="text"
             value={filters.search}
-            placeholder="Serach Product .."
-            className="text-black dark:text-white  border border-gray-300/40 focus:border-4 focus:border-violet-500  shadow-sm focus:outline-0 rounded-2xl text-2xl p-5 pl-13 font-semibold tracking-[.02em] w-full dark:bg-[var(--surface)] bg-white/70"
+            placeholder="Search product .."
+            className="text-[var(--text)] border border-[var(--border)] focus:border-2 focus:border-[var(--primary)] shadow-sm focus:outline-0 rounded-2xl text-2xl p-5 pl-13 font-semibold tracking-[.02em] w-full dark:bg-[var(--surface)] bg-white/70"
             onChange={(e) => {
               setFilter("search", e.target.value);
             }}
@@ -194,7 +194,7 @@ export default function ProductsPage() {
             <div className="pagination  w-[100%]  py-5  flex justify-between items-center">
               <button
                 disabled={filters.page === 1}
-                className=" disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50 bg-sky-400 p-2 px-4 rounded-full "
+                className="disabled:bg-[var(--background)] disabled:cursor-not-allowed disabled:opacity-50 bg-[var(--primary)] p-2 px-4 rounded-full "
                 onClick={() => setFilter("page", filters.page - 1)}
               >
                 pervious
@@ -207,7 +207,7 @@ export default function ProductsPage() {
                       key={item}
                       className={
                         item === filters.page
-                          ? " bg-sky-400 p-2 px-4 rounded-full"
+                          ? " bg-[var(--primary)] p-2 px-4 rounded-full"
                           : " rounded-full p-2 px-4"
                       }
                       onClick={() => setFilter("page", item)}
@@ -219,7 +219,7 @@ export default function ProductsPage() {
               </div>
               <button
                 disabled={filters.page === pages.length}
-                className="disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50 bg-sky-400 p-2 px-4 rounded-full "
+                className="bg-[var(--background)] disabled:cursor-not-allowed disabled:opacity-50 bg-[var(--primary)] p-2 px-4 rounded-full "
                 onClick={() => setFilter("page", filters.page + 1)}
               >
                 next

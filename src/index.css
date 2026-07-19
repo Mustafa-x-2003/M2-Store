@@ -1,5 +1,19 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+.swiper-pagination {
+  margin-top: 20px;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #94a3b8;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #2563eb;
+}
 :root {
     /* =========================
       BACKGROUND
@@ -123,7 +137,7 @@
     --text: #F8FAFC;
     --text-secondary: #CBD5E1;
     --text-muted: #94A3B8;
-    --text-inverse: #020617;
+    --text-inverse: #FFFFFF;
     --text-darker: #CBD5E1;
 
     /* =========================

@@ -87,7 +87,7 @@ export default function ProductTabs() {
                     <Star
                       className={`w-6 h-6 transition-colors ${
                         star <= reviewRating
-                          ? "fill-amber-400 text-amber-400"
+                          ? "fill-[var(--warning)] text-[var(--warning)]"
                           : "fill-slate-200 dark:fill-slate-600 text-slate-200 dark:text-slate-600"
                       }`}
                     />
@@ -142,7 +142,7 @@ export default function ProductTabs() {
                       {user && (review.user?._id === user._id || review.user === user._id) && (
                         <button
                           onClick={() => handleDeleteReview(review._id)}
-                          className="text-slate-400 hover:text-rose-500 transition-colors cursor-pointer p-1"
+                          className="text-slate-400 hover:text-[var(--danger)] transition-colors cursor-pointer p-1"
                           title="Delete review"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -157,7 +157,7 @@ export default function ProductTabs() {
                           key={star}
                           className={`w-4 h-4 ${
                             star <= review.rating
-                              ? "fill-amber-400 text-amber-400"
+                              ? "fill-[var(--warning)] text-[var(--warning)]"
                               : "fill-slate-200 dark:fill-slate-700 text-slate-200 dark:text-slate-700"
                           }`}
                         />

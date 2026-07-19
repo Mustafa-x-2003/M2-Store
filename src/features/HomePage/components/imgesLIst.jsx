@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import ProductImage from "./productImage";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
-export default function ImagesList({ images, featured }) {
+export default function ImagesList({ images, featured,category }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -31,7 +31,7 @@ export default function ImagesList({ images, featured }) {
       onTouchStart={() => setIsHovered(true)}
       onTouchEnd={() => setIsHovered(false)}
     >
-      <ProductImage featured={featured} imageUrl={images[currentIndex]?.url} />
+      <ProductImage featured={featured} imageUrl={images[currentIndex]?.url} category={category}/>
 
       {/* Left Arrow */}
       <button
@@ -41,12 +41,12 @@ export default function ImagesList({ images, featured }) {
           absolute left-2 top-1/2 z-10
           -translate-y-1/2 transition-all duration-300 ease-in-out
           w-8 h-8 flex items-center justify-center
-          rounded-full bg-white/90 shadow-md backdrop-blur-sm
-          cursor-pointer border-0 text-gray-700
+          rounded-full bg-[var(--card)] shadow-md backdrop-blur-sm
+          cursor-pointer border-0 text-[var(--text-secondary)]
           ${showArrows ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12 pointer-events-none"}
         `}
       >
-        <HiChevronLeft className="text-lg text-gray-700" />
+        <HiChevronLeft className="text-lg text-[var(--text-secondary)]" />
       </button>
 
       {/* Right Arrow */}
@@ -57,12 +57,12 @@ export default function ImagesList({ images, featured }) {
           absolute right-2 top-1/2 z-10
           -translate-y-1/2 transition-all duration-300 ease-in-out
           w-8 h-8 flex items-center justify-center
-          rounded-full bg-white/90 shadow-md backdrop-blur-sm
-          cursor-pointer border-0 text-gray-700
+          rounded-full bg-[var(--card)] shadow-md backdrop-blur-sm
+          cursor-pointer border-0 text-[var(--text-secondary)]
           ${showArrows ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12 pointer-events-none"}
         `}
       >
-        <HiChevronRight className="text-lg text-gray-700" />
+        <HiChevronRight className="text-lg text-[var(--text-secondary)]" />
       </button>
 
       {/* Dot indicators */}
@@ -73,7 +73,7 @@ export default function ImagesList({ images, featured }) {
               key={i}
               className={`
                 block h-1.5 rounded-sm transition-all duration-300 ease-in-out
-                ${i === currentIndex ? "w-4 bg-teal-500" : "w-1.5 bg-white/75"}
+                ${i === currentIndex ? "w-4 bg-[var(--teal-light)]" : "w-1.5 bg-[var(--background)]"}
               `}
             />
           ))}

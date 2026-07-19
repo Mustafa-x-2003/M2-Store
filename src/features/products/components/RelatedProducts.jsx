@@ -20,7 +20,7 @@ export default function RelatedProducts() {
   return (
     <section className="mt-20 lg:mt-32">
       <div className="flex items-center justify-between mb-8 sm:mb-10">
-        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text)] tracking-tight">
           You May Also Like
         </h2>
       </div>
@@ -64,13 +64,13 @@ export default function RelatedProducts() {
                   />
 
                   {/* Category badge */}
-                  <span className="inline-flex items-center px-3 py-1 text-[10px] sm:text-xs font-semibold rounded-full bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 absolute top-4 left-4 backdrop-blur-md shadow-sm border border-slate-200/50 dark:border-slate-700/50 z-10">
+                  <span className="inline-flex items-center px-3 py-1 text-[10px] sm:text-xs font-semibold rounded-full bg-[var(--primary-light)] text-[var(--primary)] absolute top-4 left-4 backdrop-blur-md shadow-sm border border-slate-200/50 dark:border-slate-700/50 z-10">
                     {item.category}
                   </span>
 
                   {/* Discount badge */}
                   {discount > 0 && (
-                    <span className="inline-flex items-center px-3 py-1 text-[10px] sm:text-xs font-bold rounded-full bg-rose-100 dark:bg-rose-900/80 text-rose-700 dark:text-rose-400 absolute top-4 right-16 backdrop-blur-md shadow-sm z-10 border border-rose-200/50 dark:border-rose-800/50">
+                    <span className="inline-flex items-center px-3 py-1 text-[10px] sm:text-xs font-bold rounded-full bg-[var(--danger-light)] dark:bg-rose-900/80 text-[var(--danger)] absolute top-4 right-16 backdrop-blur-md shadow-sm z-10 border border-rose-200/50 dark:border-rose-800/50">
                       -{discount}%
                     </span>
                   )}
@@ -84,17 +84,17 @@ export default function RelatedProducts() {
                     }}
                     className={`absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all backdrop-blur-md shadow-sm z-10 group/btn border cursor-pointer ${
                       isInWishlist
-                        ? "bg-rose-50 border-rose-200 dark:bg-rose-900/30 dark:border-rose-800 text-rose-500"
+                        ? "bg-rose-50 border-rose-200 dark:bg-rose-900/30 dark:border-rose-800 text-[var(--danger)]"
                         : "bg-white/80 border-slate-200/50 dark:bg-slate-800/80 dark:border-slate-700/50 text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30"
                     }`}
                   >
-                    <Heart className={`w-4 h-4 transition-colors ${isInWishlist ? "fill-rose-500 text-rose-500" : "group-hover/btn:fill-rose-500"}`} />
+                    <Heart className={`w-4 h-4 transition-colors ${isInWishlist ? "fill-[var(--danger)] text-[var(--danger)]" : "group-hover/btn:fill-rose-500"}`} />
                   </button>
 
                   {/* Out-of-stock overlay */}
                   {outOfStock && (
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center z-20">
-                      <span className="inline-flex items-center px-3 py-1 text-xs font-bold rounded-full bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400">
+                      <span className="inline-flex items-center px-3 py-1 text-xs font-bold rounded-full bg-[var(--danger-light)] text-[var(--danger)]">
                         Out of Stock
                       </span>
                     </div>
@@ -103,7 +103,7 @@ export default function RelatedProducts() {
 
                 {/* Card body */}
                 <div className="p-5 flex flex-col flex-1">
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white line-clamp-2 mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  <h3 className="text-base font-bold text-[var(--text)] line-clamp-2 mb-2 group-hover:text-[var(--primary)] transition-colors">
                     {item.name}
                   </h3>
 
@@ -114,7 +114,7 @@ export default function RelatedProducts() {
                         key={star}
                         className={`w-3.5 h-3.5 ${
                           star <= Math.round(item.averageRating)
-                            ? "fill-amber-400 text-amber-400"
+                            ? "fill-[var(--warning)] text-[var(--warning)]"
                             : "fill-slate-200 dark:fill-slate-600 text-slate-200 dark:text-slate-600"
                         }`}
                       />
@@ -126,12 +126,12 @@ export default function RelatedProducts() {
 
                   {/* Price */}
                   <div className="mt-auto flex items-center gap-2 mb-4">
-                    <span className="text-xl font-extrabold text-[#1e58b6] dark:text-[#1e58b6]">
-                      EGP&nbsp;{item.discountPrice}
+                    <span className="text-xl font-extrabold text-[var(--primary)]">
+                      EGP&nbsp; {Number(item.discountPrice).toLocaleString("en-US")}
                     </span>
                     {item.discountPrice < item.price && (
-                      <span className="text-sm text-slate-400 dark:text-slate-500 line-through">
-                        EGP&nbsp;{item.price}
+                      <span className="text-sm text-[var(--text-muted)] line-through">
+                        EGP&nbsp; {Number(item.discountPrice).toLocaleString("en-US")}
                       </span>
                     )}
                   </div>
@@ -157,7 +157,7 @@ export default function RelatedProducts() {
                         handleAddRelatedToCart(item._id);
                       }}
                       disabled={addingRelatedCartId === item._id}
-                      className="w-full py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all bg-[#1e58b6] text-white hover:bg-[#1a4fa0] shadow-[0_4px_15px_rgb(30,88,182,0.3)] hover:shadow-none cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="w-full py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all bg-[var(--primary)] text-white shadow-[0_4px_15px_rgb(30,88,182,0.3)] hover:shadow-none cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                       {addingRelatedCartId === item._id ? (
                         <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />

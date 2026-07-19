@@ -32,28 +32,28 @@ export default function Footer() {
             <nav className="mt-4 flex flex-col gap-3">
               <Link
                 to="/products"
-                className="w-fit text-base text-[var(--text-secondary)] transition hover:text-[var(--primary)]"
+                className="w-fit text-base text-[var(--text-secondary)] transition-all duration-200 hover:text-[var(--primary-hover)]"
               >
                 Shop
               </Link>
 
               <Link
                 to="/orders"
-                className="w-fit text-base text-[var(--text-secondary)] transition hover:text-[var(--primary)]"
+                className="w-fit text-base text-[var(--text-secondary)] transition-all duration-200 hover:text-[var(--primary-hover)]"
               >
                 My Orders
               </Link>
 
               <Link
                 to="/wishlist"
-                className="w-fit text-base text-[var(--text-secondary)] transition hover:text-[var(--primary)]"
+                className="w-fit text-base text-[var(--text-secondary)] transition-all duration-200 hover:text-[var(--primary-hover)]"
               >
                 Wishlist
               </Link>
 
               <Link
                 to="/profile"
-                className="w-fit text-base text-[var(--text-secondary)] transition hover:text-[var(--primary)]"
+                className="w-fit text-base text-[var(--text-secondary)] transition-all duration-200 hover:text-[var(--primary-hover)]"
               >
                 Profile
               </Link>
@@ -69,7 +69,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Website"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)]   hover:text-[var(--primary-hover)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 bg-[var(--surface-secondary)] text-[var(--text-secondary)] hover:text-[var(--primary-hover)]"
               >
                 <Globe size={19} />
               </a>
@@ -77,7 +77,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Messages"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)]   hover:text-[var(--primary)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 bg-[var(--surface-secondary)] text-[var(--text-secondary)] hover:text-[var(--primary-hover)]"
               >
                 <MessageCircle size={19} />
               </a>
@@ -85,7 +85,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Favorites"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)]   hover:text-[var(--primary)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 bg-[var(--surface-secondary)] text-[var(--text-secondary)] hover:text-[var(--primary-hover)]"
               >
                 <Heart size={19} />
               </a>

@@ -54,23 +54,23 @@ export default function CategoryBlock({ category, products }) {
         <div
         onClick={()=>navigate(`/products?category=${category}`)}
             className="
-                flex flex-col items-center justify-center gap-4
-                bg-white dark:bg-slate-900 rounded-2xl py-7 px-4 cursor-pointer
-                border border-gray-200 dark:border-slate-800 transition-all duration-200
-                hover:border-indigo-400 dark:hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1
-                w-36 sm:w-40 md:w-44 lg:w-52
+                group flex flex-col items-center justify-center gap-4
+                bg-[var(--card)] rounded-2xl py-7 px-4 cursor-pointer
+                border border-[var(--border)] transition-all duration-200
+                hover:border-[var(--primary)] hover:shadow-lg hover:-translate-y-1
+                w-40 sm:w-50 md:w-60 lg:w-70
             "
         >
-            <div className="flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40">
-                <Icon className="text-indigo-500 dark:text-indigo-400 text-2xl sm:text-3xl" />
+            <div className="flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[var(--info-light)] dark:bg-indigo-950/40 dark:group-hover:bg-[var(--background)] transition-all duration-200">
+                <Icon className="text-[var(--primary)] text-2xl sm:text-3xl" />
             </div>
 
             <div className="text-center">
-                <p className="text-sm sm:text-base font-semibold text-gray-800 dark:text-slate-100 leading-tight">
+                <p className="text-sm sm:text-base font-semibold text-[var(--text)] eading-tight">
                     {label}
                 </p>
-                <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">
-                    {numberOfProducts} product{numberOfProducts !== 1 ? "s" : ""}
+                <p className="text-sm text-[var(--text-muted)] mt-1">
+                    {numberOfProducts} products{numberOfProducts !== 1 ? "s" : ""}
                 </p>
             </div>
         </div>

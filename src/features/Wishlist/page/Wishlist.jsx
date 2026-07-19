@@ -56,8 +56,6 @@ try{
 await addToCart(productId);
 
 window.dispatchEvent(new Event("navbar-counts-update"));
-
-toast.success("Added to cart");
 }
 catch (error){
 console.error(error)

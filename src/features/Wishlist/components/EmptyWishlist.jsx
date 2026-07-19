@@ -8,7 +8,7 @@ const EmptyWishlist =()=>{
                         <div className="flex min-h-[70vh] flex-col items-center justify-center py-20 text-center">
                                 <Heart
                                         size={70}
-                                        className="mb-5 text-gray-300 dark:text-gray-600"
+                                        className="mb-5 text-[var(--text-muted)] p-4 bg-slate-200 rounded-full"
                                 />
                                 <h2 className="text-3xl font-bold text-[var(--text)] dark:text-white">
                                         Your wishlist is empty

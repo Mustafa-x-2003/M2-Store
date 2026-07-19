@@ -42,7 +42,7 @@ export default function ProductInfo() {
   if (error) {
     return (
       <div className="text-center py-20">
-        <p className="text-lg text-rose-500 font-medium">{error}</p>
+        <p className="text-lg text-[var(--danger)] font-medium">{error}</p>
       </div>
     );
   }
@@ -140,11 +140,11 @@ export default function ProductInfo() {
                 {tag}
               </span>
             ))}
-            <span className="inline-flex items-center px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800/50">
+            <span className="inline-flex items-center px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-[var(--primary-light)] text-[var(--primary)] border border-[var(--primary-hover)]">
               {product.category}
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text)] mb-2">
             {product.name}
           </h1>
         </div>
@@ -157,7 +157,7 @@ export default function ProductInfo() {
                 key={star}
                 className={`w-5 h-5 ${
                   star <= Math.round(product.averageRating)
-                    ? "fill-amber-400 text-amber-400"
+                    ? "fill-[var(--warning)] text-[var(--warning)]"
                     : "fill-slate-200 dark:fill-slate-700 text-slate-200 dark:text-slate-700"
                 }`}
               />
@@ -170,8 +170,8 @@ export default function ProductInfo() {
           <span
             className={`inline-flex items-center px-2.5 py-1 text-xs font-medium rounded-full ${
               isOutOfStock
-                ? "bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400"
-                : "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400"
+                ? "bg-[var(--danger-light)] text-[var(--danger)]"
+                : "bg-[var(--success-light)] text-[var(--success)]"
             }`}
           >
             {isOutOfStock ? "Out of Stock" : "In Stock"}
@@ -180,15 +180,15 @@ export default function ProductInfo() {
 
         {/* Price */}
         <div className="flex items-end gap-4 mb-8">
-          <span className="text-4xl sm:text-5xl font-extrabold text-[#1e58b6] dark:text-[#1e58b6] tracking-tight">
-            EGP&nbsp;{product.discountPrice}
+          <span className="text-4xl sm:text-5xl font-extrabold text-[var(--primary)] tracking-tight">
+            EGP&nbsp; {Number(product.discountPrice).toLocaleString("en-US")}
           </span>
           {product.discountPrice < product.price && (
             <>
               <span className="text-xl sm:text-2xl text-slate-400 dark:text-slate-500 line-through mb-1">
-                EGP&nbsp;{product.price}
+                EGP&nbsp; {Number(product.price).toLocaleString("en-US")}
               </span>
-              <span className="inline-flex items-center px-2.5 py-1 text-sm font-bold rounded-lg bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 mb-2">
+              <span className="inline-flex items-center px-2.5 py-1 text-sm font-bold rounded-lg bg-[var(--danger-light)] dark:bg-rose-900/30 text-[var(--danger)] mb-2">
                 -{discountPercentage}%
               </span>
             </>

@@ -94,12 +94,19 @@ setCartCount(totalQuantity);
   };
 }, [user]);
 
-  const navLinkClass = ({ isActive }) =>
-  `rounded-full px-6 py-1.5 text-base font-semibold transition ${
-    isActive
-      ? "bg-[var(--primary)] text-[var(--text-inverse)] shadow-md"
-      : "text-[var(--text-secondary)] hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)]"
-  }`;
+const navLinkClass = ({ isActive }) =>
+  `rounded-full
+   px-4 xl:px-7
+   py-1.5
+   text-sm
+   whitespace-nowrap
+   font-semibold
+   transition-all duration-200
+   ${
+     isActive
+       ? "bg-[var(--primary)] text-[var(--text-inverse)] shadow-md"
+       : "text-[var(--text-secondary)] hover:bg-[var(--surface)] hover:text-[var(--primary-hover)]"
+   }`;
 
   const handleSearch = (e)=>{
     if(e.key === "Enter"){
@@ -107,18 +114,30 @@ setCartCount(totalQuantity);
       setShowSearch(false)
     }
   }
-
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--navbar)]">
-      <div className="mx-auto flex h-20 w-full max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/home" className="shrink-0">
-          <img
-            src={logo}
-            alt="Koda Store"
-            className="h-20 w-auto"
-          />
-        </Link>
-        <nav className="hidden items-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] p-2 shadow-sm md:flex">
+      <div className="mx-auto grid h-20 w-full max-w-[1280px] grid-cols-[auto_1fr_auto] items-center px-4 sm:px-6 lg:px-8">
+        <div className="shrink-0">
+  <Link to="/home" className="justify-self-start">
+    <img
+      src={logo}
+      alt="Koda Store"
+      className="h-16 lg:h-20 w-auto"
+    />
+  </Link>
+</div>
+<div className="hidden lg:flex justify-self-center">
+        <nav className="hidden lg:flex
+    justify-self-center
+    items-center
+    gap-2
+    rounded-full
+    border
+    border-[var(--border)]
+    bg-[var(--surface-secondary)]
+    px-2
+    py-1
+    shadow-sm">
           <NavLink to="/home" className={navLinkClass}>
             Home
           </NavLink>
@@ -135,12 +154,13 @@ setCartCount(totalQuantity);
             Wishlist
           </NavLink>
         </nav>
+        </div>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="ml-auto flex items-center gap-2">
           {showSearch ? (
             <div className="flex items-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] px-4 shadow-sm">
               <Search
-                size={18}
+                size={17}
                 className="text-[var(--text-muted)]"
               />
 
@@ -149,16 +169,16 @@ setCartCount(totalQuantity);
                 placeholder="Search..."
                 autoFocus
                 onKeyDown={handleSearch}
-                className="w-40 bg-transparent px-3 py-3 text-[var(--text)] outline-none placeholder:text-[var(--text-muted)]"
+                className="w-16 sm:w-24 lg:w-40 bg-transparent px-3 py-2 text-[var(--text)] outline-none placeholder:text-[var(--text-muted)]"
               />
 
               <button
                 type="button"
                 onClick={() => setShowSearch(false)}
                 aria-label="Close search"
-                className="text-[var(--text-muted)] transition hover:text-[var(--text)]"
+                className="text-[var(--text-muted)] transition-all duration-200 hover:text-[var(--text)] hover:bg-[var(--surface)] rounded-full p-1"
               >
-                <X size={18} />
+                <X size={17} />
               </button>
             </div>
           ) : (
@@ -166,9 +186,9 @@ setCartCount(totalQuantity);
               type="button"
               onClick={() => setShowSearch(true)}
               aria-label="Open search"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-secondary)] shadow-sm transition hover:border-[var(--border-hover)] hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)]"
+              className="flex h-10 w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-secondary)] shadow-sm transition-all duration-200 hover:border-[var(--border-hover)] hover:bg-[var(--surface)] hover:text-[var(--primary-hover)]"
             >
-              <Search size={19} />
+              <Search size={17} />
             </button>
           )}
 
@@ -176,12 +196,12 @@ setCartCount(totalQuantity);
             type="button"
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--button-secondary)] text-[var(--text-secondary)] transition hover:border-[var(--border-hover)] hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)]"
+            className="flex h-10 w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--button-secondary)] text-[var(--text-secondary)] transition-all duration-200 hover:border-[var(--border-hover)] hover:bg-[var(--surface)] hover:text-[var(--primary-hover)]"
           >
             {theme === "dark" ? (
-              <Sun size={19} />
+              <Sun size={17} />
             ) : (
-              <Moon size={19} />
+              <Moon size={17} />
             )}
           </button>
 
@@ -189,10 +209,10 @@ setCartCount(totalQuantity);
           <Link
             to="/wishlist"
             aria-label="Wishlist"
-            className=" relative flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-secondary)] shadow-sm transition hover:border-[var(--border-hover)] hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)]"
+            className=" relative flex h-10 w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-secondary)] shadow-sm transition-all duration-200 hover:border-[var(--border-hover)] hover:bg-[var(--surface)] hover:text-[var(--primary-hover)]"
           >
-            <Heart size={19} />
-            <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--primary)] px-1 text-[10px] font-bold text-[var(--text-inverse)]">
+            <Heart size={17} />
+            <span className="absolute -right-1 -top-1 flex h-4 min-w-4 text-[9px] items-center justify-center rounded-full bg-[var(--primary)] px-1 text-[10px] font-bold text-[var(--text-inverse)]">
   {wishlistCount}
 </span>
           </Link>
@@ -201,46 +221,69 @@ setCartCount(totalQuantity);
           <Link
             to="/cart"
             aria-label="Cart"
-            className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-secondary)] shadow-sm transition hover:border-[var(--border-hover)] hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)]"
+            className="relative flex h-10 w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-secondary)] shadow-sm transition-all duration-200 hover:border-[var(--border-hover)] hover:bg-[var(--surface)] hover:text-[var(--primary-hover)]"
           >
-            <ShoppingCart size={19} />
-
-            <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--primary)] px-1 text-[10px] font-bold text-[var(--text-inverse)]">
+            <ShoppingCart size={17} />
+            <span className="absolute -right-1 -top-1 flex h-4 min-w-4 text-[9px] items-center justify-center rounded-full bg-[var(--primary)] px-1 text-[10px] font-bold text-[var(--text-inverse)]">
               {cartCount}
             </span>
           </Link>
 
          {user ? (
        <Link to="/profile"
-        className="flex h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] px-4 text-sm font-semibold text-[var(--text-secondary)] shadow-sm transition hover:text-[var(--primary)] hover:!bg-[var(--surface)]">
-        <UserRound size={18} />
+        className="flex h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] px-4 text-sm font-semibold text-[var(--text-secondary)] shadow-sm transition-all duration-200 hover:text-[var(--primary-hover)] hover:!bg-[var(--surface)]">
+        <UserRound size={17} />
         {userLabel}
        </Link>
       ) : (
   <Link
     to="/login"
-    className="flex h-11 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] px-4 text-sm font-semibold text-[var(--text-secondary)] shadow-sm transition hover:text-[var(--primary)]"
+    className="hidden lg:flex
+h-10 lg:h-11
+items-center
+gap-2
+rounded-full
+border
+border-[var(--border)]
+bg-[var(--surface-secondary)]
+px-2 lg:px-4
+text-xs lg:text-sm
+font-semibold
+text-[var(--text-secondary)]
+transition-all duration-200
+hover:bg-[var(--surface)]
+hover:text-[var(--primary-hover)]"
   >
-    <UserRound size={18} />
+    <UserRound size={17} />
     LOGIN
   </Link>
 )}
-        </div>
-
-  
-        <button
+<button
           type="button"
           onClick={() => setIsMenuOpen((current) => !current)}
           aria-label="Toggle navigation menu"
           aria-expanded={isMenuOpen}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] transition hover:border-[var(--border-hover)] hover:bg-[var(--surface-secondary)] md:hidden"
+          className="flex h-10 w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] lg:hidden"
         >
           {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
+        </div>
+
+  
+        {/* <button
+          type="button"
+          onClick={() => setIsMenuOpen((current) => !current)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
+          className="flex h-10 w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] lg:hidden"
+        >
+          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </div> */}
 
       {isMenuOpen && (
-        <div className="border-t border-[var(--border)] bg-[var(--navbar)] px-4 py-4 md:hidden">
+        <div className="border-t border-[var(--border)] bg-[var(--navbar)] px-4 py-4 lg:hidden">
           <nav className="flex flex-col gap-1">
             <NavLink
               to="/home"
@@ -276,12 +319,12 @@ setCartCount(totalQuantity);
           </nav>
 
   
-          <div className="mt-4 grid grid-cols-4 gap-2">
+          {/* <div className="mt-4 grid grid-cols-4 gap-2">
             <button
               type="button"
               aria-label="Search"
               onClick={() => setShowSearch((current) => !current)}
-              className="flex h-11 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text-secondary)] transition hover:border-[var(--border-hover)] hover:bg-[var(--surface-secondary)]"
+              className="flex h-11 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text-secondary)] transition-all duration-200 hover:border-[var(--border-hover)] hover:bg-[var(--surface-secondary)]"
             >
               <Search size={19} />
             </button>
@@ -320,13 +363,13 @@ setCartCount(totalQuantity);
                {cartCount}
               </span>
             </Link>
-          </div>
+          </div> */}
 
 
           {showSearch && (
             <div className="mt-4 flex items-center rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4">
               <Search
-                size={18}
+                size={17}
                 className="text-[var(--text-muted)]"
               />
 
@@ -343,7 +386,7 @@ setCartCount(totalQuantity);
                 aria-label="Close search"
                 className="text-[var(--text-muted)] transition hover:text-[var(--text)]"
               >
-                <X size={18} />
+                <X size={17} />
               </button>
             </div>
           )}
@@ -356,7 +399,7 @@ setCartCount(totalQuantity);
       onClick={() => setIsMenuOpen(false)}
       className="flex items-center gap-2 text-sm font-semibold text-[var(--text-secondary)]"
     >
-      <UserRound size={18} />
+      <UserRound size={17} />
       {userLabel}
     </Link>
 
@@ -372,9 +415,9 @@ setCartCount(totalQuantity);
   <Link
     to="/login"
     onClick={() => setIsMenuOpen(false)}
-    className="mt-4 flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm font-semibold text-[var(--text-secondary)] transition hover:text-[var(--primary)]"
+    className="group mt-4 flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm font-semibold text-[var(--text-secondary)] transition-all hover:text-[var(--primary-hover)]"
   >
-    <UserRound size={18} />
+    <UserRound size={17} className="transition-colors group-hover:text-[var(--primary-hover)]" />
     LOGIN
   </Link>
 )}

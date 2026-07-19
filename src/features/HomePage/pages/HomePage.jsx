@@ -9,7 +9,7 @@ export default function HomePage() {
   const { products, loading, error } = useProducts();
 
   return (
-    <div>
+    <div className="bg-[var(--background)]">
       <FirstSection />
 
       <CategoriesList products={products} />

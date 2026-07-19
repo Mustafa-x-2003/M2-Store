@@ -5,7 +5,7 @@ const CartEmpty=()=>{
     const x=useNavigate()
     return(
         <div className="w-[50%] mx-auto flex flex-col items-center gap-y-4">
-          <div className="w-19 h-19 bg-slate-100 flex items-center justify-center rounded-full">
+          <div className="w-19 h-19 bg-slate-200 flex items-center justify-center rounded-full">
             <FiShoppingCart className="w-9 h-9 text-[var(--text-muted)] font-bold" />
           </div>
 
