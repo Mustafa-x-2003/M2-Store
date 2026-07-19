@@ -4,12 +4,12 @@ import { FiShoppingCart } from "react-icons/fi";
 const CartEmpty=()=>{
     const x=useNavigate()
     return(
-        <div className="w-[50%] mx-auto flex flex-col items-center gap-y-4">
+        <div className="w-[50%] mx-auto flex flex-col items-center gap-y-5 min-h-[60vh] py-20">
           <div className="w-19 h-19 bg-slate-200 flex items-center justify-center rounded-full">
             <FiShoppingCart className="w-9 h-9 text-[var(--text-muted)] font-bold" />
           </div>
 
-          <h2 className="text-[var(--text)] text-xl font-bold">
+          <h2 className="text-[var(--text)] text-2xl font-bold">
             Your cart is empty
           </h2>
 
@@ -18,7 +18,7 @@ const CartEmpty=()=>{
           </p>
 
           <button
-            className="bg-[var(--primary)] text-[var(--button-secondary)] py-2 px-3 rounded-xl hover:bg-[var(--primary-hover)] transition-all duration-200"
+            className="bg-[var(--primary)] text-[var(--button-secondary)] py-3 px-3 mt-2 rounded-xl hover:bg-[var(--primary-hover)] transition-all duration-200"
             onClick={() => x("/products")}
           >
             Start Shopping

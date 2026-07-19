@@ -11,7 +11,7 @@ import ShippingAddressForm from "../components/shippingAddressForm";
 import PaymentMethod from "../components/paymentMethod";
 import OrderNotes from "../components/orderNotes";
 import CheckoutSummary from "../components/checkoutSummary";
-
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 function CheckoutPage() {
 
     const [cart, setCart] = useState(null);
@@ -85,14 +85,17 @@ function CheckoutPage() {
 
     if (!cart) {
         return (
-            <div className="flex justify-center items-center h-screen">
-                <p
-                    className="text-lg"
-                    style={{ color: "var(--text-secondary)" }}
-                >
-                    Loading...
-                </p>
-            </div>
+            // <div className="flex justify-center items-center h-screen">
+            //     <p
+            //         className="text-lg"
+            //         style={{ color: "var(--text-secondary)" }}
+            //     >
+            //         Loading...
+            //     </p>
+            // </div>
+             <div className="flex justify-center items-center min-h-[300px]">
+                      <AiOutlineLoading3Quarters className="animate-spin text-4xl text-[var(--primary)]" />
+                    </div>
         );
     }
 

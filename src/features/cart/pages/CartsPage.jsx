@@ -37,6 +37,9 @@ export default function CartsPage() {
       await clearcart();
       await getCartItems();
       toast.success("Cart cleared!");
+        window.dispatchEvent(
+        new Event("navbar-counts-update")
+      );
     } catch (err) {
       toast.error("Failed to clear cart");
     }

@@ -26,13 +26,14 @@ const CartItems = ({ cart, getCartItems }) => {
         await removeCoupon();
       }
 
-      await getCartItems();
+      // await getCartItems();
 
       window.dispatchEvent(
         new Event("navbar-counts-update")
       );
 
       toast.success("Removed from cart");
+      await getCartItems();
     } catch (err) {
       console.log(err);
     }

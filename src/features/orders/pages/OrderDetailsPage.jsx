@@ -3,11 +3,10 @@ import { useParams, useNavigate } from "react-router";
 import { FiMapPin, FiCreditCard, FiPackage, FiXCircle } from "react-icons/fi";
 import { getOrderById, cancelOrder } from "../services/orderService";
 import OrderProgress from "../components/OrderProgress";
-
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 export default function OrderDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -48,9 +47,9 @@ export default function OrderDetailsPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <p className="text-[var(--text-secondary)]">Loading order details...</p>
-      </div>
+      <div className="flex justify-center items-center min-h-[300px]">
+                <AiOutlineLoading3Quarters className="animate-spin text-4xl text-[var(--primary)]" />
+              </div>
     );
   }
 
@@ -89,8 +88,8 @@ export default function OrderDetailsPage() {
       : status === "cancelled"
         ? "bg-[var(--danger-light)] text-[var(--danger)]"
         : status === "shipped" || status === "processing"
-          ? "bg-[var(--info-light)] text-[var(--info)]"
-          : "bg-[var(--warning-light)] text-[var(--warning)]";
+          ? "bg-[var(--teal-light)] text-[var(--teal)]"
+          : "bg-[var(--info-light)] text-[var(--info)]";
 
   const formattedDate = createdAt
     ? new Date(createdAt).toLocaleDateString("en-US", {
