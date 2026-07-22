@@ -1,8 +1,8 @@
 import ProductCard from "../../../components/common/productCard"
 import { HiOutlineEmojiSad, HiArrowNarrowRight } from "react-icons/hi"
-
+import { useNavigate } from "react-router"
 export default function ProductList({products, loading, error, AddToCart }) {
-
+    const navigate = useNavigate()
     if (loading) return (
         <div className="flex flex-col items-center justify-center py-24 gap-4">
             <div className="w-10 h-10 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
@@ -27,9 +27,9 @@ export default function ProductList({products, loading, error, AddToCart }) {
     )
 
     return (
-        <div className="bg-[#f8fafc] dark:bg-[#020617] mx-auto px-4 sm:px-8 md:px-12 max-w-[1350px] lg:px-20 pb-12 pt-10">
+        <div className=" mx-auto px-4 sm:px-8 md:px-12 max-w-[1350px] lg:px-20 pb-12 pt-10">
             {/* Header Section */}
-            <div className="flex items-end justify-between mb-8">
+            <div className="flex items-start justify-between mb-8">
                 <div>
                     <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">
                         Featured Products
@@ -38,13 +38,14 @@ export default function ProductList({products, loading, error, AddToCart }) {
                         Handpicked just for you
                     </p>
                 </div>
-                <button className="flex items-center gap-1 text-xs sm:text-sm font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors duration-150 cursor-pointer">
+                <button onClick={() => navigate("/shop")} className="flex items-center gap-1 text-xs sm:text-sm font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors duration-150 cursor-pointer">
                     View All <HiArrowNarrowRight className="text-sm sm:text-base" />
+                    
                 </button>
             </div>
 
             {/* Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                 {products.map(product => (
                     <ProductCard
                         key={product._id}

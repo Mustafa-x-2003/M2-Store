@@ -6,10 +6,15 @@ import { clearWishlist } from "../services/wishlistApi";
 import { addToCart } from "../../cart/services/CartsApi";
 import toast from "react-hot-toast";
 import EmptyWishlist from "../components/EmptyWishlist";
+import { useWishlist } from "../../Wishlist/context/WishlistContext";
 const Wishlist =()=>{
 
 const [wishlist, setWishlist] = useState([]);
 const [loading, setLoading] = useState(true);
+  const {
+    removeWishlistLocally,
+    clearWishlistLocally,
+  } = useWishlist();
 const fetchWishlist =async ()=>{
 try{
 setLoading(true);
@@ -34,22 +39,24 @@ useEffect(() => {
 fetchWishlist();
 }, []);
 
+          const handleRemovefromWishlist = async (productId) => {
+            try {
+              await removeFromWishlist(productId);
 
-const handleRemovefromWishlist = async (productId) => {
-try {
-await removeFromWishlist(productId);
+              removeWishlistLocally(productId);
 
-window.dispatchEvent(new Event("navbar-counts-update"));
+              setWishlist((prev) =>
+                prev.filter((item) => item._id !== productId)
+              );
 
-toast.success("Removed from wishlist");
+              window.dispatchEvent(new Event("navbar-counts-update"));
 
-fetchWishlist();
-
-} catch (error) {
-console.error(error);
-toast.error("Failed to remove from wishlist");
-}
-};
+              toast.success("Removed from wishlist");
+            } catch (error) {
+              console.error(error);
+              toast.error("Failed to remove from wishlist");
+            }
+          };  
 
 const handleAddToCart = async (productId)=>{
 try{
@@ -66,25 +73,30 @@ toast.error("Failed to add to cart");
 }
 
 
-const handleClearWishlist = async ()=>{
-try {
-if (!window.confirm("Are you sure you want to clear your wishlist?")) {
-return;
-}
-await clearWishlist();
+  const handleClearWishlist = async () => {
+    try {
+      if (
+        !window.confirm(
+          "Are you sure you want to clear your wishlist?"
+        )
+      ) {
+        return;
+      }
 
-setWishlist([]);
+      await clearWishlist();
 
-window.dispatchEvent(new Event("navbar-counts-update"));
+      clearWishlistLocally();
 
-toast.success("Wishlist cleared");
+      setWishlist([]);
 
-} catch (error) {
-console.error(error);
+      window.dispatchEvent(new Event("navbar-counts-update"));
 
-toast.error("Failed to clear wishlist");
-}
-}
+      toast.success("Wishlist cleared");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to clear wishlist");
+    }
+  };
 if (loading) {
 return <Loading />;
 }

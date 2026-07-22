@@ -53,15 +53,19 @@ export default function CategoryBlock({ category, products }) {
     return (
         <div
         onClick={()=>navigate(`/products?category=${category}`)}
-            className="
-                flex flex-col items-center justify-center gap-4
-                bg-white dark:bg-slate-900 rounded-2xl py-7 px-4 cursor-pointer
-                border border-gray-200 dark:border-slate-800 transition-all duration-200
-                hover:border-indigo-400 dark:hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1
-                w-36 sm:w-40 md:w-44 lg:w-52
-            "
+                            className="
+                flex flex-col items-center justify-center
+                w-[270px] h-[170px]
+                bg-white dark:bg-slate-900
+                rounded-xl
+                border border-gray-200 dark:border-slate-800
+                cursor-pointer
+                transition-all duration-200
+                hover:border-indigo-400 dark:hover:border-indigo-500
+                hover:shadow-lg hover:-translate-y-1
+                "
         >
-            <div className="flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40">
+            {/* <div className="flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40">
                 <Icon className="text-indigo-500 dark:text-indigo-400 text-2xl sm:text-3xl" />
             </div>
 
@@ -71,6 +75,21 @@ export default function CategoryBlock({ category, products }) {
                 </p>
                 <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">
                     {numberOfProducts} product{numberOfProducts !== 1 ? "s" : ""}
+                </p>
+            </div> */}
+
+
+            <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-indigo-50 dark:bg-indigo-950/40">
+                <Icon className="text-indigo-500 text-2xl" />
+            </div>
+
+            <div className="text-center mt-3">
+                <p className="text-xl font-semibold">
+                    {label}
+                </p>
+
+                <p className="text-sm text-gray-400 mt-1">
+                    {numberOfProducts} products
                 </p>
             </div>
         </div>

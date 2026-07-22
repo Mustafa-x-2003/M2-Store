@@ -1,17 +1,19 @@
 import { useNavigate } from "react-router";
 import { Star, ShoppingCart, Heart } from "lucide-react";
 import { useProduct } from "../context/ProductContext";
-
+import { useWishlist } from "../../Wishlist/context/WishlistContext";
 export default function RelatedProducts() {
-  const { 
-    relatedProducts, 
-    relatedLoading, 
-    wishlistProductIds = [], 
-    toggleWishlist,
+  const {
+    relatedProducts,
+    relatedLoading,
     handleAddRelatedToCart,
-    addingRelatedCartId
+    addingRelatedCartId,
   } = useProduct();
-  
+
+  const {
+    wishlistProductIds,
+    toggleWishlist,
+  } = useWishlist();
   const navigate = useNavigate();
 
   // Don't render the section if there are no related products

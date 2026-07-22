@@ -105,34 +105,40 @@ export default function ProductsPage() {
     "text-xl p-1 px-4 rounded-full bg-blue-500/15 text-blue-400";
 
   return (
-    <section className="">
-      <div className="flex flex-col gap-5 mt-10 p-5 w-full 2xl:w-[85%] m-auto ">
-        <div className="flex justify-between 2xl:pl-3 gap-5  relative">
-          <CiSearch className="text-3xl absolute top-5.5 left-9 in-focus-within:top-6" />
+    <section className="  ">
+      
+      <div className="flex flex-col gap-2 max-w-7xl mx-auto w-full px-5">
+
+        {/* Search */}
+        <div className="flex justify-between gap-4 relative mt-5">
+          <CiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-xl text-gray-400" />
+
           <input
             type="text"
             value={filters.search}
-            placeholder="Serach Product .."
-            className="text-black dark:text-white  border border-gray-300/40 focus:border-4 focus:border-violet-500  shadow-sm focus:outline-0 rounded-2xl text-2xl p-5 pl-13 font-semibold tracking-[.02em] w-full dark:bg-[var(--surface)] bg-white/70"
+            placeholder="Search products..."
+            className="w-full h-12 rounded-xl border border-gray-300/50 bg-white/70 dark:bg-[var(--surface)] pl-12 pr-4 text-base font-medium text-black dark:text-white shadow-sm focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition"
             onChange={(e) => {
               setFilter("search", e.target.value);
             }}
           />
 
           <button
-            className="border border-white/50 2xl:hidden w-15 flex justify-center items-center rounded-xl bg-[var(--surface-secondary)]"
+            className="lg:hidden w-12 h-12 rounded-xl border border-gray-300 bg-[var(--surface-secondary)] flex items-center justify-center"
             onClick={() => setshowModel(true)}
           >
-            <LuSlidersHorizontal className="text-3xl" />
+            <LuSlidersHorizontal className="text-2xl" />
           </button>
+
           {showMode && (
-            <div className=" absolute  right-0 top-0 z-100  bg-[var(--surface)] w-115 p-6 h-screen ">
+            <div className="absolute right-0 top-0 z-50 bg-[var(--surface)] w-[320px] p-5 h-screen shadow-xl">
               <button
-                className="ml-auto block m-3"
+                className="ml-auto block"
                 onClick={() => setshowModel(false)}
               >
-                <RxCross2 className="text-3xl" />
+                <RxCross2 className="text-2xl" />
               </button>
+
               <FilterCom
                 filters={filters}
                 setfilters={setfilters}
@@ -142,11 +148,13 @@ export default function ProductsPage() {
             </div>
           )}
         </div>
-        <div className="filtersShow flex gap-5 items-center">
+
+        {/* Active Filters */}
+        <div className="flex flex-wrap items-center gap-2">
           {activeFilters.map((filter) => (
             <button
               key={filter.key}
-              className={badgeClass}
+              className="px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-sm font-medium hover:bg-blue-200 transition"
               onClick={filter.onClear}
             >
               {filter.label}
@@ -155,24 +163,24 @@ export default function ProductsPage() {
 
           {activeFilters.length > 0 && (
             <button
-              className={` ${badgeClass} bg-transparent text-red-500 text-2xl `}
+              className="px-3 py-1 rounded-full border border-red-300 text-red-500 text-sm font-medium hover:bg-red-50 transition"
               onClick={clearAllFilters}
             >
               Clear
             </button>
           )}
         </div>
-        <div className="mainContent  2xl:pr-20 flex gap-10">
-          <div className="filterSide hidden 2xl:block">
+        <div className="flex gap-8 items-start">
+          <div className="hidden lg:block w-[280px] shrink-0">
             <FilterCom
               filters={filters}
               setfilters={setfilters}
               products={products}
             />
           </div>
-          <div className="cardsSide  flex justify-center xl:justify-start gap-10 flex-wrap flex-grow   ">
+          <div className="cardsSide flex-1">
             <ProductSkelton isloading={isloading}>
-              <div className="grid w-full grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  ">
+              <div className="grid w-full grid-cols-1 gap-7  md:grid-cols-2 lg:grid-cols-4 ">
               {products?.length > 0 ? (
                 products.map((item) => {
                   return (

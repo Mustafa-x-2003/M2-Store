@@ -14,7 +14,8 @@ export default function CategoriesList({products}){
                 </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-5 max-w-5xl mx-auto">
+            <div className="mx-auto max-w-[1350px] px-4 sm:px-8 md:px-12 lg:px-20">
+                <div className="flex flex-wrap gap-5">
                 {categories.map((category) => (
                     <CategoryBlock
                         key={category}
@@ -23,7 +24,9 @@ export default function CategoriesList({products}){
                         
                     />
                 ))}
+                </div>
             </div>
+            
         </section>
     )
 }

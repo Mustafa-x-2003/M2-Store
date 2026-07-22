@@ -23,7 +23,7 @@ export default function AppRoutes() {
         <Route path="/" element={<Navigate to="/home" replace />} />
 
         <Route path="/home" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/shop" element={<ProductsPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

@@ -25,7 +25,7 @@ export default function ImagesList({ images, featured }) {
 
   return (
     <div
-      className="relative w-full  overflow-hidden"
+      className="relative w-full  overflow-hidden "
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={() => setIsHovered(true)}

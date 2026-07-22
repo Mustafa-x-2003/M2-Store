@@ -54,7 +54,7 @@ export default function LastSection() {
       </div>
 
       
-      <div className="max-w-5xl mx-auto mt-20">
+      <div className="max-w-7xl w-full p-4 mx-auto mt-20">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#4f46e5] to-[#4338ca]   dark:from-[#312e81] dark:via-[#1e1b4b] dark:to-[#0d0b2b] px-6 py-12 sm:px-12 sm:py-16 md:py-20 text-center shadow-xl shadow-indigo-100 dark:shadow-none">
           
           
@@ -62,7 +62,7 @@ export default function LastSection() {
           <div className="absolute -right-20 -bottom-20 w-64 h-64 rounded-full bg-white/5 blur-2xl pointer-events-none" />
 
           
-          <div className="relative z-10 flex flex-col items-center max-w-2xl mx-auto gap-4 ">
+          <div className="relative z-10 flex flex-col items-center  w-full  gap-1 ">
             <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/10 text-white mb-2">
               <BsEnvelope className="text-2xl" />
             </div>
