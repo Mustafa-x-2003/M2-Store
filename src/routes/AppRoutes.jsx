@@ -9,7 +9,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
 import ProductsPage from "../features/product/pages/ProductsPage";
 import CartsPage from "../features/cart/pages/CartsPage";
-import ProductDetailsPage from "../features/products/pages/ProductDetailsPage";
+import ProductDetailsPage from "../features/productDeatails/pages/ProductDetailsPage";
 import OrderDetailsPage from "../features/orders/pages/OrderDetailsPage";
 import Wishlist from "../features/Wishlist/page/Wishlist";
 import HomePage from "../features/HomePage/pages/HomePage";
@@ -44,7 +44,7 @@ export default function AppRoutes() {
           path="/orders"
           element={
             <ProtectedRoute>
-              <OrderPage/>
+              <OrderPage />
             </ProtectedRoute>
           }
         />
@@ -86,13 +86,13 @@ export default function AppRoutes() {
         />
 
         <Route
-    path="/success/:id"
-    element={
-        <ProtectedRoute>
-            <OrderSuccessPage />
-        </ProtectedRoute>
-    }
-/>
+          path="/success/:id"
+          element={
+            <ProtectedRoute>
+              <OrderSuccessPage />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Route>

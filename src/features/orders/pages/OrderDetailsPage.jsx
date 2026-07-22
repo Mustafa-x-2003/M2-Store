@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router";
 import { FiMapPin, FiCreditCard, FiPackage, FiXCircle } from "react-icons/fi";
 import { getOrderById, cancelOrder } from "../services/orderService";
 import OrderProgress from "../components/OrderProgress";
+import Loading from "../../../components/common/Loading";
 
 export default function OrderDetailsPage() {
   const { id } = useParams();
@@ -48,8 +49,8 @@ export default function OrderDetailsPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <p className="text-[var(--text-secondary)]">Loading order details...</p>
+      <div className="min-h-[100vh] flex justify-center items-center ">
+        <Loading />
       </div>
     );
   }
