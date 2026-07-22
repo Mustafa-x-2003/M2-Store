@@ -125,7 +125,7 @@ setCartCount(totalQuantity);
             Home
           </NavLink>
 
-          <NavLink to="/products" className={navLinkClass}>
+            <NavLink to="/Shop" className={navLinkClass}>
             Shop
           </NavLink>
 
