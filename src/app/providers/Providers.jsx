@@ -1,10 +1,15 @@
-import React from 'react'
+import { ThemeProvider } from "../../context/ThemeContext";
+import { AuthProvider } from "../../context/AuthContext";
+import { WishlistProvider } from "../../features/Wishlist/context/WishlistContext";
 
-export default function Providers() {
+export default function Providers({ children }) {
   return (
-    <div>
-      
-    </div>
-  )
+    <ThemeProvider>
+      <AuthProvider>
+        <WishlistProvider>
+          {children}
+        </WishlistProvider>
+      </AuthProvider>
+    </ThemeProvider>
+  );
 }
-

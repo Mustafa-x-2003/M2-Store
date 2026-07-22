@@ -1,10 +1,17 @@
-import React from 'react'
+import { Toaster } from "react-hot-toast";
+import AppRoutes from "../routes/AppRoutes";
 
 export default function App() {
   return (
-    <div>
-      <h1>My Store</h1>
-    </div>
-  )
-}
+    <>
+      <AppRoutes />
 
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 3500,
+        }}
+      />
+    </>
+  );
+}
