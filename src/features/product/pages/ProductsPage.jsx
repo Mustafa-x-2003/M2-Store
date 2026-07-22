@@ -105,10 +105,8 @@ export default function ProductsPage() {
     "text-xl p-1 px-4 rounded-full bg-blue-500/15 text-blue-400";
 
   return (
-    <section className="  ">
-      
+    <section className=" pt-20 bg-[var(--surface)] ">
       <div className="flex flex-col gap-2 max-w-7xl mx-auto w-full px-5">
-
         {/* Search */}
         <div className="flex justify-between gap-4 relative mt-5">
           <CiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-xl text-gray-400" />
@@ -117,7 +115,7 @@ export default function ProductsPage() {
             type="text"
             value={filters.search}
             placeholder="Search products..."
-            className="w-full h-12 rounded-xl border border-gray-300/50 bg-white/70 dark:bg-[var(--surface)] pl-12 pr-4 text-base font-medium text-black dark:text-white shadow-sm focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition"
+            className="w-full h-12 rounded-xl border border-[var(--border)] bg-[var(--input-bg)]  pl-12 pr-4 text-base font-medium text-[var(--text)]  shadow-sm focus:outline-none focus:border-[var(--input-focus)]  transition-colors duration-300"
             onChange={(e) => {
               setFilter("search", e.target.value);
             }}
@@ -181,21 +179,15 @@ export default function ProductsPage() {
           <div className="cardsSide flex-1">
             <ProductSkelton isloading={isloading}>
               <div className="grid w-full grid-cols-1 gap-7  md:grid-cols-2 lg:grid-cols-4 ">
-              {products?.length > 0 ? (
-                products.map((item) => {
-                  return (
-                                        <ProductCard
-                                            key={item._id}
-                                            product={item}
-                                        />
-                                   
-                  );
-                })
-              ) : (
-                <div className=" flex col-span-4  justify-center xl:ml-[-230px]   text-4xl">
-                  No Product Found
-                </div>
-              )}
+                {products?.length > 0 ? (
+                  products.map((item) => {
+                    return <ProductCard key={item._id} product={item} />;
+                  })
+                ) : (
+                  <div className=" flex col-span-4  justify-center xl:ml-[-230px]   text-4xl">
+                    No Product Found
+                  </div>
+                )}
               </div>
             </ProductSkelton>
 

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { FaHeart } from "react-icons/fa";
 import useProductCart from "../../features/HomePage/hooks/useProductCart";
 import {addToWishlist, removeFromWishlist,
-} from "../../features/products/service/productService";
+} from "../../features/productDeatails/service/productService";
 import { FaStar } from "react-icons/fa";
 import { useWishlist } from "../../features/Wishlist/context/WishlistContext";
 import toast from "react-hot-toast";

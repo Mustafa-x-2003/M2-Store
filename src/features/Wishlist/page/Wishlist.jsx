@@ -1,85 +1,70 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Loading from "../../../components/common/Loading";
 import WishlistCard from "../components/WishlistCard";
-import { getMyWishlist,removeFromWishlist,} from "../../products/service/productService";
+import {
+  getMyWishlist,
+  removeFromWishlist,
+} from "../../productDeatails/service/productService";
 import { clearWishlist } from "../services/wishlistApi";
 import { addToCart } from "../../cart/services/CartsApi";
 import toast from "react-hot-toast";
 import EmptyWishlist from "../components/EmptyWishlist";
 import { useWishlist } from "../../Wishlist/context/WishlistContext";
-const Wishlist =()=>{
+const Wishlist = () => {
+  const [wishlist, setWishlist] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { removeWishlistLocally, clearWishlistLocally } = useWishlist();
+  const fetchWishlist = async () => {
+    try {
+      setLoading(true);
+      const data = await getMyWishlist();
 
-const [wishlist, setWishlist] = useState([]);
-const [loading, setLoading] = useState(true);
-  const {
-    removeWishlistLocally,
-    clearWishlistLocally,
-  } = useWishlist();
-const fetchWishlist =async ()=>{
-try{
-setLoading(true);
-const data = await getMyWishlist();
+      setWishlist(data.wishlist?.products || data.products || []);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to load wishlist");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-setWishlist(
-  data.wishlist?.products ||
-  data.products ||
-  []
-);
-}
-catch(error){
-console.error(error)
-toast.error("Failed to load wishlist");
-}
-finally {
-setLoading(false);
-}
-}
+  useEffect(() => {
+    fetchWishlist();
+  }, []);
 
-useEffect(() => {
-fetchWishlist();
-}, []);
+  const handleRemovefromWishlist = async (productId) => {
+    try {
+      await removeFromWishlist(productId);
 
-          const handleRemovefromWishlist = async (productId) => {
-            try {
-              await removeFromWishlist(productId);
+      removeWishlistLocally(productId);
 
-              removeWishlistLocally(productId);
+      setWishlist((prev) => prev.filter((item) => item._id !== productId));
 
-              setWishlist((prev) =>
-                prev.filter((item) => item._id !== productId)
-              );
+      window.dispatchEvent(new Event("navbar-counts-update"));
 
-              window.dispatchEvent(new Event("navbar-counts-update"));
+      toast.success("Removed from wishlist");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to remove from wishlist");
+    }
+  };
 
-              toast.success("Removed from wishlist");
-            } catch (error) {
-              console.error(error);
-              toast.error("Failed to remove from wishlist");
-            }
-          };  
+  const handleAddToCart = async (productId) => {
+    try {
+      await addToCart(productId);
 
-const handleAddToCart = async (productId)=>{
-try{
-await addToCart(productId);
+      window.dispatchEvent(new Event("navbar-counts-update"));
 
-window.dispatchEvent(new Event("navbar-counts-update"));
-
-toast.success("Added to cart");
-}
-catch (error){
-console.error(error)
-toast.error("Failed to add to cart");
-}
-}
-
+      toast.success("Added to cart");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add to cart");
+    }
+  };
 
   const handleClearWishlist = async () => {
     try {
-      if (
-        !window.confirm(
-          "Are you sure you want to clear your wishlist?"
-        )
-      ) {
+      if (!window.confirm("Are you sure you want to clear your wishlist?")) {
         return;
       }
 
@@ -97,59 +82,49 @@ toast.error("Failed to add to cart");
       toast.error("Failed to clear wishlist");
     }
   };
-if (loading) {
-return <Loading />;
-}
+  if (loading) {
+    return (
+      <div className="min-h-[100vh] flex justify-center items-center ">
+          <Loading />
+        </div>
+    );
+  }
 
+  return (
+    <div className="w-[90%] pt-20 md:w-[85%] lg:w-[78%] xl:w-[70%] min-h-[100vh] mx-auto">
+      {wishlist.length === 0 ? (
+        <EmptyWishlist />
+      ) : (
+        <div className=" container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold">My Wishlist</h2>
 
-return(
-<>
+            {wishlist.length > 0 && (
+              <button
+                onClick={handleClearWishlist}
+                className="bg-[var(--danger)] hover:opacity-90 text-[var(--text-inverse)]  px-5 py-2 rounded-lg"
+              >
+                Clear Wishlist
+              </button>
+            )}
+          </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+            {wishlist.map((product) => {
+              return (
+                <WishlistCard
+                  key={product._id}
+                  product={product}
+                  onAddToCart={handleAddToCart}
+                  onRemovefromWishlist={handleRemovefromWishlist}
+                />
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
-<div>
-{wishlist.length === 0 ? 
-<EmptyWishlist /> 
-
-: <div className=" container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-<div className="flex justify-between items-center mb-8">
-<h2 className="text-3xl font-bold">My Wishlist</h2>
-
-{wishlist.length > 0 && (
-<button
-onClick={handleClearWishlist}
-className="bg-[var(--danger)] hover:opacity-90 text-[var(--text-inverse)]  px-5 py-2 rounded-lg"
->
-Clear Wishlist
-</button>
-)}
-</div>
-
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
-{
-wishlist.map((product) => {
-return (
-<WishlistCard key={product._id} product={product} onAddToCart={handleAddToCart} onRemovefromWishlist={handleRemovefromWishlist} />
-)
-})
-}
-
-
-</div>
-</div>
-
-}
-</div>
-
-
-
-
-
-</>
-
-
-
-)
-}
-
-export default Wishlist
+export default Wishlist;

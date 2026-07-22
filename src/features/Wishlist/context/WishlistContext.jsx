@@ -4,7 +4,7 @@ import {
     getMyWishlist,
     addToWishlist,
     removeFromWishlist,
-} from "../../products/service/productService";
+} from "../../productDeatails/service/productService";
 import toast from "react-hot-toast";
 
 const WishlistContext = createContext();

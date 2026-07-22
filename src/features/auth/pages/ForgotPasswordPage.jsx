@@ -50,7 +50,7 @@ export default function ForgotPasswordPage() {
     "h-11 w-full rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] pl-11 pr-4 text-sm text-[var(--text)] outline-none placeholder:text-[var(--text-muted)] focus:border-[var(--input-focus)] focus:ring-2 focus:ring-[var(--input-focus)]/15";
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4 py-10">
+    <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4 py-10 transition-colors duration-300">
       <div className="w-full max-w-[500px]">
         <div className="mb-10 text-center">
           <div className="mb-3 flex items-center justify-center text-[var(--primary)]">

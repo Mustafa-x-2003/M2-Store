@@ -1,216 +1,199 @@
 @import "tailwindcss";
+
 @custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-    /* =========================
+  /* =========================
       BACKGROUND
   ========================== */
 
-    --background: #F8FAFC;
-    --surface: #FFFFFF;
-    --surface-secondary: #F1F5F9;
-    --card: #FFFFFF;
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-secondary: #f1f5f9;
+  --card: #ffffff;
 
-    /* =========================
+  /* =========================
       TEXT
   ========================== */
 
-    --text: #0F172A;
-    --text-secondary: #64748B;
-    --text-muted: #94A3B8;
-    --text-inverse: #FFFFFF;
-    --text-darker: #475569;
+  --text: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --text-darker: #475569;
+  --text-inverse: #ffffff;
 
-    /* =========================
+  /* =========================
       BORDER
   ========================== */
 
-    --border: #E2E8F0;
-    --border-hover: #CBD5E1;
+  --border: #e2e8f0;
+  --border-hover: #cbd5e1;
 
-    /* =========================
+  /* =========================
       PRIMARY
   ========================== */
 
-    --primary: #2563EB;
-    --primary-hover: #1D4ED8;
-    --primary-light: #c0d7f5;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #dbeafe;
 
-    /* =========================
+  /* =========================
       STATUS
   ========================== */
 
-    --success: #16A34A;
-    --success-light: #9df0ba;
+  --success: #16a34a;
+  --success-light: #dcfce7;
 
-    --warning: #F59E0B;
-    --warning-light: #FEF3C7;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
 
-    --danger: #DC2626;
-    --danger-light: #ffd0d0;
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
 
-    --info: #0EA5E9;
-    --info-light: #E0F2FE;
+  --info: #0ea5e9;
+  --info-light: #e0f2fe;
 
-    --purple: #A855F7;
-    --purple-light: rgba(168, 85, 247, 0.15);
-
-    --teal: #14B8A6;
-    --teal-light: rgba(20, 184, 166, 0.15);
-
-    /* =========================
+  /* =========================
       LAYOUT
   ========================== */
 
-    --sidebar: #FFFFFF;
-    --navbar: #FFFFFF;
-    --sidebar-hover: #F1F5F9;
-    --sidebar-active: #DBEAFE;
+  --sidebar: #ffffff;
+  --navbar: #ffffff;
+  --sidebar-hover: #f1f5f9;
+  --sidebar-active: #dbeafe;
 
-    /* =========================
+  /* =========================
       INPUT
   ========================== */
 
-    --input-bg: #FFFFFF;
-    --input-border: #CBD5E1;
-    --input-focus: #2563EB;
+  --input-bg: #ffffff;
+  --input-border: #cbd5e1;
+  --input-focus: #2563eb;
 
-    /* =========================
+  /* =========================
       BUTTON
   ========================== */
 
-    --button-secondary: #F1F5F9;
-    --button-secondary-hover: #f1f1f1;
+  --button-secondary: #f1f5f9;
+  --button-secondary-hover: #e2e8f0;
 
-    /* =========================
+  /* =========================
       TABLE
   ========================== */
 
-    --table-header: #e4edf8;
-    --table-hover: #F8FAFC;
-    --table-striped: #F9FAFB;
+  --table-header: #f8fafc;
+  --table-hover: #f8fafc;
+  --table-striped: #f9fafb;
 
-    /* =========================
+  /* =========================
       SHADOW
   ========================== */
 
-    --shadow:
-        0 4px 8px rgba(0, 0, 0, .05),
-        0 4px 8px rgba(0, 0, 0, .05);
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.05);
 
-    /* =========================
+  /* =========================
       OVERLAY
   ========================== */
 
-    --overlay: rgba(15, 23, 42, .5);
+  --overlay: rgba(15, 23, 42, 0.5);
 }
 
 /* ==================================================================== */
-.dark {
 
-    /* =========================
+.dark {
+  /* =========================
       BACKGROUND
   ========================== */
 
-    --background: #020617;
-    --surface: #0F172A;
-    --surface-secondary: #1E293B;
-    --card: #111827;
+  --background: #020617;
+  --surface: #0f172a;
+  --surface-secondary: #1e293b;
+  --card: #111827;
 
-    /* =========================
+  /* =========================
       TEXT
   ========================== */
 
-    --text: #F8FAFC;
-    --text-secondary: #CBD5E1;
-    --text-muted: #94A3B8;
-    --text-inverse: #020617;
-    --text-darker: #CBD5E1;
+  --text: #eeefef;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-darker: #cbd5e1;
+  --text-inverse: #020617;
 
-    /* =========================
+  /* =========================
       BORDER
   ========================== */
 
-    --border: #334155;
-    --border-hover: #475569;
+  --border: #334155;
+  --border-hover: #475569;
 
-    /* =========================
+  /* =========================
       PRIMARY
   ========================== */
 
-    --primary: #1e58b6;
-    --primary-hover: #60A5FA;
-    --primary-light: rgba(59, 130, 246, .15);
-    --primary-soft: rgba(59, 130, 246, .08);
-    --primary-soft-hover: rgba(59, 130, 246, .04);
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --primary-light: rgba(59, 130, 246, 0.15);
 
-    /* =========================
+  /* =========================
       STATUS
   ========================== */
 
-    --success: #117f39;
-    --success-light: rgba(34, 197, 94, .15);
+  --success: #22c55e;
+  --success-light: rgba(34, 197, 94, 0.15);
 
-    --warning: #FBBF24;
-    --warning-light: rgba(251, 191, 36, .15);
+  --warning: #fbbf24;
+  --warning-light: rgba(251, 191, 36, 0.15);
 
-    --danger: #ca2f2f;
-    --danger-light: rgba(239, 68, 68, .15);
+  --danger: #ef4444;
+  --danger-light: rgba(239, 68, 68, 0.15);
 
-    --info: #38BDF8;
-    --info-light: rgba(56, 189, 248, .15); 
+  --info: #38bdf8;
+  --info-light: rgba(56, 189, 248, 0.15);
 
-    --teal: #2DD4BF;
-    --teal-light: rgba(45, 212, 191, 0.15);
-
-    --purple: #C084FC;
-    --purple-light: rgba(192, 132, 252, 0.15);
-
-    /* =========================
+  /* =========================
       LAYOUT
   ========================== */
 
-    --sidebar: #020617;
-    --navbar: #020617;
-    --sidebar-hover: #1E293B;
-    --sidebar-active: rgba(59, 130, 246, .18);
+  --sidebar: #020617;
+  --navbar: #020617;
+  --sidebar-hover: #1e293b;
+  --sidebar-active: rgba(59, 130, 246, 0.18);
 
-    /* =========================
+  /* =========================
       INPUT
   ========================== */
 
-    --input-bg: #0F172A;
-    --input-border: #334155;
-    --input-focus: #60A5FA;
+  --input-bg: #0f172a;
+  --input-border: #334155;
+  --input-focus: #60a5fa;
 
-    /* =========================
+  /* =========================
       BUTTON
   ========================== */
 
-    --button-secondary: #1E293B;
-    --button-secondary-hover: #1F2937;
+  --button-secondary: #1e293b;
+  --button-secondary-hover: #334155;
 
-    /* =========================
+  /* =========================
       TABLE
   ========================== */
 
-    --table-header: #0f1a38;
-    --table-hover: #1E293B;
-    --table-striped: #111827;
+  --table-header: #0f172a;
+  --table-hover: #1e293b;
+  --table-striped: #111827;
 
-    /* =========================
+  /* =========================
       SHADOW
   ========================== */
 
-    --shadow:
-        0 1px 2px rgba(0, 0, 0, .35),
-        0 8px 16px rgba(0, 0, 0, .45);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 16px rgba(0, 0, 0, 0.45);
 
-    /* =========================
+  /* =========================
       OVERLAY
   ========================== */
 
-    --overlay: rgba(0, 0, 0, .65);
-
+  --overlay: rgba(0, 0, 0, 0.65);
 }
 
 @keyframes zoomIn {

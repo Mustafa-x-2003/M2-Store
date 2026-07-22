@@ -3,12 +3,7 @@ import { HiOutlineEmojiSad, HiArrowNarrowRight } from "react-icons/hi"
 import { useNavigate } from "react-router"
 export default function ProductList({products, loading, error, AddToCart }) {
     const navigate = useNavigate()
-    if (loading) return (
-        <div className="flex flex-col items-center justify-center py-24 gap-4">
-            <div className="w-10 h-10 border-4 border-teal-500 border-t-transparent rounded-full animate-spin" />
-            <p className="text-gray-400 dark:text-gray-500 text-sm font-medium">Loading products...</p>
-        </div>
-    )
+ 
 
     if (error) return (
         <div className="flex items-center justify-center py-16">
@@ -27,7 +22,7 @@ export default function ProductList({products, loading, error, AddToCart }) {
     )
 
     return (
-        <div className=" mx-auto px-4 sm:px-8 md:px-12 max-w-[1350px] lg:px-20 pb-12 pt-10">
+        <div className=" mx-auto px-4 sm:px-8 md:px-12 max-w-[1350px]  lg:px-20 pb-12 pt-10">
             {/* Header Section */}
             <div className="flex items-start justify-between mb-8">
                 <div>
