@@ -105,7 +105,7 @@ export default function ProductsPage() {
     "text-xl p-1 px-4 rounded-full bg-blue-500/15 text-blue-400";
 
   return (
-    <section className="  pt-20 bg-[var(--surface)] ">
+    <section className="  pt-30 pb-10 bg-[var(--surface)] ">
       <div className="flex flex-col gap-2 max-w-7xl mx-auto w-full px-5">
         {/* Search */}
         <div className="flex justify-between gap-4 relative mt-5">
