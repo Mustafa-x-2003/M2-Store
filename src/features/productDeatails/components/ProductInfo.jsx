@@ -7,6 +7,8 @@ import {
   Heart,
   ChevronLeft,
   ChevronRight,
+  ShieldCheck,
+  Truck,
 } from "lucide-react";
 import { useProduct } from "../context/ProductContext";
 
@@ -29,36 +31,43 @@ export default function ProductInfo() {
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // ── Loading skeleton ──
+  /* =========================
+      LOADING STATE
+  ========================== */
+
   if (loading) {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 animate-pulse">
-        <div className="h-[350px] sm:h-[400px] lg:h-[550px] rounded-[2rem] bg-slate-200 dark:bg-slate-800" />
-        <div className="flex flex-col justify-center gap-6">
-          <div className="h-6 w-32 rounded-full bg-slate-200 dark:bg-slate-800" />
-          <div className="h-12 w-3/4 rounded-xl bg-slate-200 dark:bg-slate-800" />
-          <div className="h-5 w-48 rounded-full bg-slate-200 dark:bg-slate-800" />
-          <div className="h-10 w-40 rounded-xl bg-slate-200 dark:bg-slate-800" />
-          <div className="h-20 w-full rounded-xl bg-slate-200 dark:bg-slate-800" />
-          <div className="h-14 w-full rounded-2xl bg-slate-200 dark:bg-slate-800" />
+      <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 xl:gap-14 animate-pulse">
+        <div className="h-[380px] sm:h-[480px] lg:h-[620px] rounded-3xl bg-[var(--surface-secondary)]" />
+
+        <div className="flex flex-col justify-center gap-5">
+          <div className="h-6 w-32 rounded-lg bg-[var(--surface-secondary)]" />
+          <div className="h-12 w-full max-w-xl rounded-xl bg-[var(--surface-secondary)]" />
+          <div className="h-5 w-52 rounded-lg bg-[var(--surface-secondary)]" />
+          <div className="h-12 w-44 rounded-xl bg-[var(--surface-secondary)]" />
+          <div className="h-24 w-full rounded-xl bg-[var(--surface-secondary)]" />
+          <div className="h-16 w-full rounded-xl bg-[var(--surface-secondary)]" />
         </div>
       </div>
     );
   }
 
-  // ── Error state ──
+  /* =========================
+      ERROR STATE
+  ========================== */
+
   if (error) {
     return (
-      <div className="text-center py-20">
-        <p className="text-lg text-[var(--danger)] font-medium">{error}</p>
+      <div className="flex min-h-[300px] items-center justify-center">
+        <div className="rounded-2xl border border-[var(--danger-light)] bg-[var(--danger-light)] px-6 py-4 text-center">
+          <p className="font-medium text-[var(--danger)]">{error}</p>
+        </div>
       </div>
     );
   }
 
-  // ── No product found ──
   if (!product) return null;
 
-  // Pick the current image or use a fallback
   const images = product.images || [];
   const currentImage = images[currentImageIndex]?.url || "";
   const hasMultipleImages = images.length > 1;
@@ -72,62 +81,199 @@ export default function ProductInfo() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-      {/* Image Gallery */}
-      <div className="flex flex-col gap-4">
-        <div className="relative h-[350px] sm:h-[400px] lg:h-[550px] w-full rounded-2xl  p-4 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800/50 flex items-center justify-center  border border-[var(--border)]  shadow-2xl shadow-slate-200/50 dark:shadow-none group">
-          <div className="absolute inset-0 bg-white/40 dark:bg-black/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 rounded-[2rem]" />
-          <img
-            alt={product.name}
-            className="w-full  h-full object-contain relative z-20 group-hover:scale-105 transition-transform duration-700 ease-out drop-shadow-2xl "
-            src={currentImage}
+    <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 xl:gap-14">
+      {/* =====================================================
+          IMAGE GALLERY
+      ====================================================== */}
+
+      <div className="min-w-0">
+        {/* Main Image */}
+        <div
+          className="
+            group relative
+            flex aspect-square
+            min-h-[320px]
+            w-full
+            items-center justify-center
+            overflow-hidden
+            rounded-3xl
+            border border-[var(--border)]
+            bg-[var(--surface)]
+            p-6 sm:p-10
+            shadow-[var(--shadow)]
+             transition-colors duration-300
+          "
+        >
+          {/* Soft Background Decoration */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              -right-24
+              -top-24
+              h-64
+              w-64
+              rounded-full
+              bg-[var(--primary-light)]
+              blur-3xl
+               transition-colors duration-300
+            "
           />
 
-          {/* Navigation Buttons */}
+          <img
+            src={currentImage}
+            alt={product.name}
+            className="
+              relative z-10
+              h-full
+              w-full
+              object-contain
+              transition-transform
+              duration-500
+              ease-out
+              group-hover:scale-[1.04]
+            "
+          />
+
+          {/* Image Counter */}
+          {hasMultipleImages && (
+            <div
+              className="
+                absolute
+                left-4
+                top-4
+                z-20
+                rounded-full
+                border
+                border-[var(--border)]
+                bg-[var(--surface)]/90
+                px-3
+                py-1.5
+                text-xs
+                font-medium
+                text-[var(--text-secondary)]
+                backdrop-blur-md
+                 transition-colors duration-300
+              "
+            >
+              {currentImageIndex + 1} / {images.length}
+            </div>
+          )}
+
+          {/* Navigation */}
           {hasMultipleImages && (
             <>
               <button
+                type="button"
                 onClick={prevImage}
-                className="absolute left-4 z-30 p-2 sm:p-3 rounded-full bg-white/80 dark:bg-slate-900/80 text-slate-800 dark:text-white backdrop-blur-md border border-white/50 dark:border-slate-700/50 shadow-lg hover:bg-white dark:hover:bg-slate-800 hover:scale-110 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 cursor-pointer"
+                aria-label="Previous image"
+                className="
+                  absolute
+                  left-4
+                  top-1/2
+                  z-20
+                  -translate-y-1/2
+                  rounded-full
+                  border
+                  border-[var(--border)]
+                  bg-[var(--surface)]/90
+                  p-2.5
+                  text-[var(--text)]
+                  opacity-0
+                  shadow-sm
+                  backdrop-blur-md
+                  transition-all
+                  duration-300
+                  hover:border-[var(--primary)]
+                  hover:bg-[var(--primary)]
+                  hover:text-white
+                  group-hover:opacity-100
+                  focus:opacity-100
+                   transition-colors duration-300
+                "
               >
-                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                <ChevronLeft className="h-5 w-5" />
               </button>
+
               <button
+                type="button"
                 onClick={nextImage}
-                className="absolute right-4 z-30 p-2 sm:p-3 rounded-full bg-white/80 dark:bg-slate-900/80 text-slate-800 dark:text-white backdrop-blur-md border border-white/50 dark:border-slate-700/50 shadow-lg hover:bg-white dark:hover:bg-slate-800 hover:scale-110 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 cursor-pointer"
+                aria-label="Next image"
+                className="
+                  absolute
+                  right-4
+                  top-1/2
+                  z-20
+                  -translate-y-1/2
+                  rounded-full
+                  border
+                  border-[var(--border)]
+                  bg-[var(--surface)]/90
+                  p-2.5
+                  text-[var(--text)]
+                  opacity-0
+                  shadow-sm
+                  backdrop-blur-md
+                  transition-all
+                  duration-300
+                  hover:border-[var(--primary)]
+                  hover:bg-[var(--primary)]
+                  hover:text-white
+                  group-hover:opacity-100
+                  focus:opacity-100
+                   transition-colors duration-300
+                "
               >
-                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                <ChevronRight className="h-5 w-5" />
               </button>
             </>
           )}
 
-          {/* Out-of-stock overlay */}
+          {/* Out Of Stock */}
           {isOutOfStock && (
-            <div className="absolute inset-0 bg-black/50 z-30 flex items-center justify-center rounded-[2rem]">
-              <span className="text-white text-2xl font-bold tracking-wide">
+            <div className="absolute inset-0 z-30 flex items-center justify-center bg-[var(--overlay)]   transition-colors duration-300">
+              <span className="rounded-full bg-[var(--surface)] px-5 py-2.5 text-sm font-bold text-[var(--danger)] shadow-lg  transition-colors duration-300">
                 Out of Stock
               </span>
             </div>
           )}
         </div>
 
-        {/* Thumbnail Strip */}
+        {/* Thumbnails */}
         {hasMultipleImages && (
-          <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
-            {images.map((img, idx) => (
+          <div className="mt-4 flex gap-3 overflow-x-auto pb-2">
+            {images.map((img, index) => (
               <button
-                key={img.public_id || idx}
-                onClick={() => setCurrentImageIndex(idx)}
-                className={`relative flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 transition-all cursor-pointer bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 ${
-                  currentImageIndex === idx
-                    ? "border-indigo-600 dark:border-indigo-400 opacity-100"
-                    : "border-transparent opacity-60 hover:opacity-100"
-                }`}
+                key={img.public_id || index}
+                type="button"
+                onClick={() => setCurrentImageIndex(index)}
+                aria-label={`View image ${index + 1}`}
+                className={`
+                  relative
+                  h-20
+                  w-20
+                  shrink-0
+                  overflow-hidden
+                  rounded-2xl
+                  border
+                  bg-[var(--surface)]
+                  p-2
+                  transition-all
+                  duration-200
+                  sm:h-24
+                  sm:w-24
+                   transition-colors duration-300
+                  ${
+                    currentImageIndex === index
+                      ? "border-2 border-[var(--primary)] shadow-sm  transition-colors duration-300"
+                      : "border-[var(--border)] opacity-60 hover:border-[var(--border-hover)] hover:opacity-100  transition-colors duration-300"
+                  }
+                `}
               >
                 <img
                   src={img.url}
-                  alt={`${product.name} thumbnail ${idx + 1}`}
-                  className="w-full h-full object-contain p-2"
+                  alt={`${product.name} thumbnail ${index + 1}`}
+                  className="h-full w-full object-contain"
                 />
               </button>
             ))}
@@ -135,140 +281,315 @@ export default function ProductInfo() {
         )}
       </div>
 
-      {/* Product Info */}
-      <div className="flex flex-col justify-center">
-        {/* Tags & Title */}
-        <div className="mb-6">
-          <div className="flex flex-wrap gap-2 mb-4">
-            {product.tags?.map((tag, index) => (
-              <span
-                key={index}
-                className="inline-flex items-center px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition duration-300"
-              >
-                {tag}
-              </span>
-            ))}
-            <span className="inline-flex items-center px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800/50 transition duration-300">
-              {product.category}
+      {/* =====================================================
+          PRODUCT INFO
+      ====================================================== */}
+
+      <div className="flex min-w-0 flex-col justify-center">
+        {/* Tags */}
+        <div className="mb-5 flex flex-wrap gap-2">
+          {product.tags?.map((tag, index) => (
+            <span
+              key={index}
+              className="
+                rounded-full
+                border
+                border-[var(--border)]
+                bg-[var(--surface-secondary)]
+                px-3
+                py-1
+                text-xs
+                font-semibold
+                text-[var(--text-secondary)]
+                 transition-colors duration-300
+              "
+            >
+              {tag}
             </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text)] transition duration-300 mb-2">
-            {product.name}
-          </h1>
+          ))}
+
+          <span
+            className="
+              rounded-full
+              border
+              border-[var(--primary-light)]
+              bg-[var(--primary-light)]
+              px-3
+              py-1
+              text-xs
+              font-semibold
+              text-[var(--primary)]
+               transition-colors duration-300
+            "
+          >
+            {product.category}
+          </span>
         </div>
 
-        {/* Rating */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className="flex items-center gap-1">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Star
-                key={star}
-                className={`w-5 h-5 ${
-                  star <= Math.round(product.averageRating)
-                    ? "fill-amber-400 text-amber-400 transition duration-300"
-                    : "fill-slate-200 dark:fill-slate-700 text-slate-200 dark:text-slate-700 transition duration-300"
-                }`}
-              />
-            ))}
-            <span className="text-sm font-medium text-slate-600 dark:text-slate-400 ml-2 transition duration-300">
-              ({product.numReviews} Reviews)
+        {/* Title */}
+        <h1
+          className="
+            max-w-2xl
+            text-3xl
+            font-bold
+            leading-tight
+            tracking-tight
+            text-[var(--text)]
+            sm:text-4xl
+            xl:text-5xl
+             transition-colors duration-300
+          "
+        >
+          {product.name}
+        </h1>
+
+        {/* Rating + Stock */}
+        <div className="mt-5 flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-0.5">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star
+                  key={star}
+                  className={`h-4 w-4 ${
+                    star <= Math.round(product.averageRating)
+                      ? "fill-[var(--warning)] text-[var(--warning)]  transition-colors duration-300"
+                      : "fill-[var(--surface-secondary)] text-[var(--border)]  transition-colors duration-300"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <span className="text-sm text-[var(--text-secondary)]  transition-colors duration-300">
+              {product.averageRating} ({product.numReviews} reviews)
             </span>
           </div>
-          <div className="h-4 w-px bg-slate-300 dark:bg-slate-700 transition duration-300" />
+
+          <span className="h-4 w-px bg-[var(--border)]  transition-colors duration-300" />
+
           <span
-            className={`inline-flex items-center px-2.5 py-1 text-xs font-medium rounded-full ${
-              isOutOfStock
-                ? "bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400 transition duration-300"
-                : "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 transition duration-300"
-            }`}
+            className={`
+              rounded-full
+              px-3
+              py-1
+              text-xs
+              font-semibold
+              ${
+                isOutOfStock
+                  ? "bg-[var(--danger-light)] text-[var(--danger)]  transition-colors duration-300"
+                  : "bg-[var(--success-light)] text-[var(--success)]  transition-colors duration-300"
+              }
+            `}
           >
-            {isOutOfStock ? "Out of Stock " : "In Stock"}
+            {isOutOfStock ? "Out of Stock" : "In Stock"}
           </span>
         </div>
 
         {/* Price */}
-        <div className="flex items-end gap-4 mb-8">
-          <span className="text-4xl  font-extrabold text-[#1e58b6] dark:text-[#1e58b6] tracking-tight transition duration-300">
-            EGP&nbsp;{product.discountPrice}
+        <div className="mt-7 flex flex-wrap items-center gap-3">
+          <span className="text-3xl font-bold tracking-tight text-[var(--primary)] sm:text-4xl  transition-colors duration-300">
+            EGP {product.discountPrice}
           </span>
+
           {product.discountPrice < product.price && (
             <>
-              <span className="text-xl sm:text-2xl text-slate-400 dark:text-slate-500 line-through transition duration-300 mb-1">
-                EGP&nbsp;{product.price}
+              <span className="text-lg text-[var(--text-muted)] line-through  transition-colors duration-300">
+                EGP {product.price}
               </span>
-              <span className="inline-flex items-center px-2.5 py-1 text-sm font-bold rounded-lg bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 transition duration-300 mb-2">
+
+              <span
+                className="
+                  rounded-lg
+                  bg-[var(--danger-light)]
+                  px-2.5
+                  py-1
+                  text-xs
+                  font-bold
+                  text-[var(--danger)]
+                   transition-colors duration-300
+                "
+              >
                 -{discountPercentage}%
               </span>
             </>
           )}
         </div>
 
-        {/* Description Preview */}
-        <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed transition duration-300 mb-10">
+        {/* Description */}
+        <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--text-secondary)]  transition-colors duration-300  transition-colors duration-300">
           {product.shortDescription}
         </p>
 
+        {/* Divider */}
+        <div className="my-7 h-px bg-[var(--border)]  transition-colors duration-300  transition-colors duration-300" />
+
         {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-4 lg:gap-6">
-          {/* Quantity Selector */}
+        <div className="flex flex-col gap-3 sm:flex-row">
+          {/* Quantity */}
           <div
-            className={`flex items-center justify-between sm:justify-start p-1 border-2 rounded-2xl ${isOutOfStock ? "opacity-50 pointer-events-none border-slate-200 dark:border-slate-800" : "border-slate-200 dark:border-slate-800"} bg-white dark:bg-slate-950 transition duration-300`}
+            className={`
+              flex
+              h-14
+              items-center
+              justify-between
+              rounded-2xl
+              border
+              bg-[var(--surface)]
+              p-1
+              sm:w-[145px]
+              ${
+                isOutOfStock
+                  ? "border-[var(--border)] opacity-50  transition-colors duration-300"
+                  : "border-[var(--input-border)]  transition-colors duration-300"
+              }
+            `}
           >
             <button
+              type="button"
               onClick={decreaseQuantity}
               disabled={isOutOfStock}
-              className="p-2 sm:p-3 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors cursor-pointer disabled:cursor-not-allowed"
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-xl
+                text-[var(--text-secondary)]
+                transition-colors
+                hover:bg-[var(--button-secondary)]
+                hover:text-[var(--text)]
+                disabled:cursor-not-allowed
+                 transition-colors duration-300
+              "
             >
-              <Minus className="w-5 h-5" />
+              <Minus className="h-4 w-4" />
             </button>
-            <span className="w-12 text-center text-lg font-bold">
-              {quantity}
-            </span>
+
+            <span className="font-semibold text-[var(--text)]  transition-colors duration-300">{quantity}</span>
+
             <button
+              type="button"
               onClick={increaseQuantity}
               disabled={isOutOfStock}
-              className="p-2 sm:p-3 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors cursor-pointer disabled:cursor-not-allowed"
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-xl
+                text-[var(--text-secondary)]
+                transition-colors
+                hover:bg-[var(--button-secondary)]
+                hover:text-[var(--text)]
+                disabled:cursor-not-allowed
+                 transition-colors duration-300
+              "
             >
-              <Plus className="w-5 h-5" />
+              <Plus className="h-4 w-4" />
             </button>
           </div>
 
-          {/* Add to Cart */}
+          {/* Add To Cart */}
           <button
+            type="button"
             onClick={handleAddToCart}
             disabled={isOutOfStock || addToCartLoading}
-            className={`flex-1 flex items-center justify-center gap-3 px-8 py-4 sm:py-0 rounded-2xl font-bold text-lg transition-all cursor-pointer disabled:cursor-not-allowed ${
-              isOutOfStock
-                ? "bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 transition-colors duration-300"
-                : "bg-[#1e58b6] text-white hover:bg-[#1a4fa0] shadow-[0_8px_30px_rgb(30,88,182,0.35)] hover:shadow-none hover:scale-[0.98] transition-colors duration-300"
-            }`}
+            className={`
+              flex
+              h-14
+              flex-1
+              items-center
+              justify-center
+              gap-3
+              rounded-2xl
+              px-6
+              font-semibold
+              transition-all
+              duration-200
+              ${
+                isOutOfStock
+                  ? "cursor-not-allowed bg-[var(--button-secondary)] text-[var(--text-muted)]  transition-colors duration-300"
+                  : "bg-[var(--primary)] text-white shadow-lg shadow-blue-500/20 hover:bg-[var(--primary-hover)] active:scale-[0.98]  transition-colors duration-300"
+              }
+            `}
           >
             {addToCartLoading ? (
-              <span className="w-6 h-6 border-2 border-current border-t-transparent rounded-full animate-spin" />
+              <span className="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent" />
             ) : (
-              <ShoppingCart className="w-6 h-6" />
+              <ShoppingCart className="h-5 w-5" />
             )}
-            {isOutOfStock
-              ? "Out of Stock"
-              : addToCartLoading
-                ? "Adding..."
-                : "Add to Cart"}
+
+            <span>
+              {isOutOfStock
+                ? "Out of Stock"
+                : addToCartLoading
+                  ? "Adding..."
+                  : "Add to Cart"}
+            </span>
           </button>
 
           {/* Wishlist */}
           <button
+            type="button"
             onClick={() => toggleWishlist(product._id)}
             disabled={wishlistLoading}
-            className={`p-3 sm:p-0 sm:w-11 sm:h-11 flex items-center self-center justify-center border-2 rounded-xl transition-all group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
-              isInWishlist
-                ? "border-rose-500 bg-rose-50 dark:bg-rose-950/30 text-rose-500"
-                : "border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 text-slate-400 hover:text-rose-500"
-            }`}
+            aria-label="Add to wishlist"
+            className={`
+              flex
+              h-14
+              w-full
+              items-center
+              justify-center
+              rounded-2xl
+              border
+              transition-all
+              duration-200
+              sm:w-14
+              ${
+                isInWishlist
+                  ? "border-[var(--danger)] bg-[var(--danger-light)] text-[var(--danger)]  transition-colors duration-300"
+                  : "border-[var(--border)] bg-[var(--surface)] text-[var(--text-secondary)] hover:border-[var(--danger)] hover:bg-[var(--danger-light)] hover:text-[var(--danger)]  transition-colors duration-300"
+              }
+            `}
           >
             <Heart
-              className={`w-[18px] h-[18px] transition-colors ${isInWishlist ? "fill-rose-500" : "group-hover:fill-rose-500"}`}
+              className={`h-5 w-5 ${isInWishlist ? "fill-current" : ""}`}
             />
           </button>
+        </div>
+
+        {/* Features */}
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface-secondary)] p-4  transition-colors duration-300">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-light)] text-[var(--primary)]  transition-colors duration-300">
+              <Truck className="h-5 w-5" />
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-[var(--text)]  transition-colors duration-300">
+                Fast Delivery
+              </p>
+              <p className="text-xs text-[var(--text-secondary)]  transition-colors duration-300">
+                Quick and secure shipping
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface-secondary)] p-4  transition-colors duration-300">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--success-light)] text-[var(--success)]  transition-colors duration-300">
+              <ShieldCheck className="h-5 w-5" />
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-[var(--text)]  transition-colors duration-300">
+                Secure Purchase
+              </p>
+              <p className="text-xs text-[var(--text-secondary)]  transition-colors duration-300">
+                Safe and trusted checkout
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

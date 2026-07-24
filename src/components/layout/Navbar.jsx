@@ -241,13 +241,13 @@ export default function Navbar() {
             aria-expanded={isMenuOpen}
             className="ml-2 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] shadow-sm transition hover:border-[var(--border-hover)] hover:bg-[var(--surface-secondary)] min-[780px]:hidden"
           >
-            {isMenuOpen ? <Menu size={22} /> : <X size={22} />}
+            {isMenuOpen ? <X size={22} /> :  <Menu size={22} />}
           </button>
         </div>
       </div>
 
       <div
-        className={`fixed w-full ${isMenuOpen ? "-top-80" : "top-20 "}    border-t border-[var(--border)] bg-[var(--navbar)] px-4 py-4 min-[780px]:hidden transition-all duration-300`}
+        className={`fixed w-full ${isMenuOpen ? "top-20" : "-top-80 "}    border-t border-[var(--border)] bg-[var(--navbar)] px-4 py-4 min-[780px]:hidden transition-all duration-300`}
       >
         <nav className="flex flex-col gap-1">
           <NavLink
