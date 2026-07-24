@@ -78,7 +78,7 @@ export default function Address({ user }) {
       toast.error(error.message || "Failed to delete address");
     }
   };
-  const inputClass = "w-full rounded-lg border border-[var(--border)] bg-[var(--input-bg)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-colors duration-300";
+  const inputClass = "w-full rounded-lg border border-[var(--border)] focus:border-[var(--input-focus)] bg-[var(--input-bg)] px-4 py-3 text-sm text-[var(--text)] outline-none transition-colors duration-300";
   if (isLoading) {
     return (
       <div className="mt-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-sm transition-colors duration-300">

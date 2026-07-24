@@ -91,8 +91,9 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="w-[90%] pt-20 md:w-[85%] lg:w-[78%] xl:w-[70%] min-h-[100vh] mx-auto">
+    <div className="w-[90%] pt-30 pb-10 min-h-[100vh] md:w-[85%] lg:w-[78%] xl:w-[70%] mx-auto">
       {wishlist.length === 0 ? (
+        
         <EmptyWishlist />
       ) : (
         <div className=" container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

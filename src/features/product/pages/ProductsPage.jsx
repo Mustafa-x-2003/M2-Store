@@ -4,7 +4,7 @@ import FilterCom from "../components/FilterCom";
 import { GetProduct } from "../service/ProductPageService";
 import ProductSkelton from "../components/ProductSkelton";
 import "react-loading-skeleton/dist/skeleton.css";
-import ProductCard from "../../../components/common/productCard";
+import ProductCard from "../../../components/common/ProductCards/ProductCard";
 import useProductsFilter from "../../../hooks/useProductsFilter";
 import { LuSlidersHorizontal } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
@@ -105,7 +105,7 @@ export default function ProductsPage() {
     "text-xl p-1 px-4 rounded-full bg-blue-500/15 text-blue-400";
 
   return (
-    <section className=" pt-20 bg-[var(--surface)] ">
+    <section className="  pt-20 bg-[var(--surface)] ">
       <div className="flex flex-col gap-2 max-w-7xl mx-auto w-full px-5">
         {/* Search */}
         <div className="flex justify-between gap-4 relative mt-5">
@@ -178,7 +178,7 @@ export default function ProductsPage() {
           </div>
           <div className="cardsSide flex-1">
             <ProductSkelton isloading={isloading}>
-              <div className="grid w-full grid-cols-1 gap-7  md:grid-cols-2 lg:grid-cols-4 ">
+              <div className="grid w-full grid-cols-1 gap-4  md:grid-cols-2 lg:grid-cols-4 ">
                 {products?.length > 0 ? (
                   products.map((item) => {
                     return <ProductCard key={item._id} product={item} />;

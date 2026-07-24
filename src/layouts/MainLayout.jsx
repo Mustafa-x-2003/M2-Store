@@ -9,7 +9,7 @@ export default function MainLayout() {
     <div className="flex min-h-screen flex-col bg-[var(--background)] text-[var(--text)] transition-colors duration-300">
       <Navbar />
 
-      <main className="flex-1 bg-[var(--surface-secondary)] transition-colors duration-300">
+      <main className="  flex-1  bg-[var(--surface-secondary)] transition-colors duration-300">
         <Outlet />
       </main>
 

@@ -1,90 +1,132 @@
 import { BsStars } from "react-icons/bs";
+import { FiArrowUpRight, FiCheck } from "react-icons/fi";
 import { useNavigate } from "react-router";
+import { FaStar } from "react-icons/fa";
+import { SiShopify } from "react-icons/si";
 
 export default function FirstSection() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#3730a3] dark:bg-[#0d0b2b] min-h-[75vh]">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#4338ca] via-[#4f46e5] to-[#3730a3] dark:from-[#312e81] dark:via-[#1e1b4b] dark:to-[#0d0b2b] opacity-90" />
+    <section className="relative  isolate min-h-screen pt-10 overflow-hidden bg-[var(--background)] transition-colors duration-300">
+      <div className="absolute -right-40 top-1/2 -z-10 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[var(--primary)]/20 blur-[120px]" />
 
-      <div className="absolute -right-24 top-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-[#6366f1]/30 blur-3xl pointer-events-none" />
+      <div className="mx-auto grid min-h-[calc(100vh-80px)] max-w-7xl items-center gap-16 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:px-12">
+        {/* =========================
+            LEFT CONTENT
+        ========================== */}
+        <div className="max-w-2xl">
+          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/70 px-4 py-2 text-sm text-[var(--text-secondary)] shadow-[var(--shadow)] backdrop-blur-md transition-colors duration-300">
+            <BsStars className="text-[var(--warning)]" />
 
-      <div
-        className="
-        relative z-10
-        lg:mx-32
-        px-6 sm:px-10 
-         py-20
-        flex flex-col
-        justify-center 
-        max-w-[650px]
-        min-h-[75vh] 
-      "
-      >
-        <div className="flex items-center gap-2 mb-5">
-          <BsStars className="text-yellow-300 text-xl" />
+            <span>Premium Shopping Experience</span>
+          </div>
 
-          <span
-            className="
-            text-base
-            font-semibold
-            text-white/90
-          "
-          >
-            Premium Shopping Experience
-          </span>
-        </div>
+          <h1 className="mb-7 text-5xl font-bold leading-[1.05] tracking-[-0.04em] text-[var(--text)] sm:text-6xl lg:text-7xl">
+            Shop smarter.
+            <br />
+            <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--info)] bg-clip-text text-transparent">
+              Live better.
+            </span>
+          </h1>
 
-        <h1
-          className="
-          text-[48px]
-          sm:text-[56px]
-          lg:text-[64px]
-          font-bold
-          text-white
-          leading-[1.05]
-          tracking-tight
-          mb-6
-        "
-        >
-          Shop the future,
-          <br />
-          delivered today
-        </h1>
+          <p className="mb-9 max-w-xl text-lg leading-8 text-[var(--text-secondary)] sm:text-xl">
+            Discover premium products, unbeatable prices, and a shopping
+            experience designed around you.
+          </p>
 
-        <p
-          className="
-          text-xl
-          font-normal
-          text-white/75
-          leading-relaxed
-          max-w-[540px]
-          mb-8
-        "
-        >
-          Discover premium products at unbeatable prices. Fast delivery, easy
-          returns, and exceptional quality.
-        </p>
-
-        <div className="flex gap-4">
-          <div className="flex flex-wrap gap-3 mt-1">
+          <div className="flex flex-wrap items-center gap-4">
             <button
-              onClick={() => navigate("/products")}
-              className="px-6 py-3 rounded-md bg-white text-[#4338ca] text-sm font-semibold hover:bg-white/90 active:scale-95 transition-all duration-150 cursor-pointer"
+              onClick={() => navigate("/shop")}
+              className="group flex cursor-pointer items-center gap-2 rounded-xl bg-[var(--primary)] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[var(--primary)]/20 transition-all duration-200 hover:bg-[var(--primary-hover)] active:scale-95"
             >
               Shop Now
+              <FiArrowUpRight className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </button>
+
             <button
-              className="px-6 py-3 rounded-md border border-white/60 text-white text-sm font-semibold hover:bg-white/10 active:scale-95 transition-all duration-150 cursor-pointer"
               onClick={() =>
                 document
                   .getElementById("shopCategory")
-                  .scrollIntoView({ behavior: "smooth" })
+                  ?.scrollIntoView({ behavior: "smooth" })
               }
+              className="cursor-pointer rounded-xl border border-[var(--border)] bg-[var(--surface)] px-6 py-3.5 text-sm font-semibold text-[var(--text)] shadow-sm transition-all duration-200 hover:border-[var(--border-hover)] hover:bg-[var(--surface-secondary)] active:scale-95"
             >
-              View Categories
+              Explore Categories
             </button>
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-[var(--text-secondary)]">
+            <div className="flex items-center gap-2">
+              <FiCheck className="text-[var(--success)]" />
+              Fast Delivery
+            </div>
+
+            <div className="flex items-center gap-2">
+              <FiCheck className="text-[var(--success)]" />
+              Easy Returns
+            </div>
+
+            <div className="flex items-center gap-2">
+              <FiCheck className="text-[var(--success)]" />
+              Premium Quality
+            </div>
+          </div>
+        </div>
+
+        {/* =========================
+            RIGHT VISUAL
+        ========================== */}
+
+        <div className="relative hidden h-[500px] items-center justify-center lg:flex transition-colors duration-300">
+       
+          <div className="relative z-10 w-[360px] rounded-3xl border border-[var(--border)] bg-[var(--surface)]/70 p-4 shadow-[var(--shadow)] backdrop-blur-xl transition-colors duration-300">
+            <div className="flex aspect-[4/5] items-center justify-center overflow-hidden rounded-2xl bg-[var(--primary-light)] transition-colors duration-300">
+              <div className="text-center">
+                <div className="mb-4 flex justify-center  text-8xl">
+                  <SiShopify className="text-9xl text-[var(--primary)] transition-colors duration-300" />
+                </div>
+
+                <p className="text-lg font-semibold text-[var(--text)] transition-colors duration-300">
+                  Curated for you
+                </p>
+
+                <p className="mt-1 text-sm text-[var(--text-secondary)] transition-colors duration-300">
+                  Discover something amazing
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between px-2 pt-4">
+              <div>
+                <p className="text-sm font-semibold text-[var(--text)] transition-colors duration-300">
+                  Premium Collection
+                </p>
+
+                <p className="mt-1 text-xs text-[var(--text-muted)] transition-colors duration-300">
+                  New arrivals available
+                </p>
+              </div>
+
+              <div className="rounded-full bg-[var(--primary-light)] px-3 py-1 text-xs font-medium text-[var(--primary)] transition-colors duration-300">
+                New
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute -bottom-4 -left-4 z-20 rounded-2xl border border-[var(--border)] bg-[var(--surface)]/80 px-5 py-4 shadow-[var(--shadow)] backdrop-blur-xl transition-colors duration-300">
+            <p className="text-xs text-[var(--text-muted)] transition-colors duration-300">Happy customers</p>
+
+            <p className="mt-1 text-xl font-bold text-[var(--text)] transition-colors duration-300">10K+</p>
+          </div>
+
+          <div className="absolute -right-4 -top-4 z-20 rounded-2xl border border-[var(--border)] bg-[var(--surface)]/80 px-5 py-4 shadow-[var(--shadow)] backdrop-blur-xl transition-colors duration-300">
+            <p className="text-xs text-[var(--text-muted)] transition-colors duration-300">Customer rating</p>
+
+            <p className="mt-1 flex gap-1 items-center text-xl font-bold text-[var(--text)] transition-colors duration-300">
+              <span> 4.9 </span>
+              <FaStar className="text-amber-400" />
+            </p>
           </div>
         </div>
       </div>
