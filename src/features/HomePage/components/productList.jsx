@@ -1,6 +1,7 @@
-import ProductCard from "../../../components/common/productCard"
+// import ProductCard from "../../../components/common/productCard"
 import { HiOutlineEmojiSad, HiArrowNarrowRight } from "react-icons/hi"
 import { useNavigate } from "react-router"
+import ProductCard from "../../../components/common/ProductCards/ProductCard"
 export default function ProductList({products, loading, error, AddToCart }) {
     const navigate = useNavigate()
  
@@ -45,7 +46,6 @@ export default function ProductList({products, loading, error, AddToCart }) {
                     <ProductCard
                         key={product._id}
                         product={product}
-                        AddToCart={AddToCart}
                     />
                 ))}
             </div>
