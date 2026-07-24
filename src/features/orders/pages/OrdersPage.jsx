@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getorders } from "../services/ordersApi";
 import OrderHeader from "../components/OrderHeader.jsx";
-import Orders from "../components/Orders.jsx";
-import OrderEmpty from "../components/OrderEmpty.jsx";
+import Orders from "../components/orders/Orders.jsx";
+import OrderEmpty from "../components/orders/OrderEmpty.jsx";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Loading from "../../../components/common/Loading.jsx";
 const OrderPage = () => {
@@ -22,19 +22,18 @@ const OrderPage = () => {
     getmyorders();
   }, []);
   return (
-    <div className="w-[90%]   md:w-[85%] lg:w-[78%] xl:w-[70%] mx-auto ">
+    <div className=" px-4 lg:px-0 md:w-[85%] lg:w-[78%] xl:w-[70%] mx-auto ">
       {loading ? (
-        <div className="min-h-[100vh] flex justify-center items-center ">
+        <div className=" min-h-[100vh] flex justify-center items-center ">
           <Loading />
         </div>
       ) : myorders.length > 0 ? (
-        <div className="pt-20 ">
-          <OrderHeader />
+        <div className=" pt-30 pb-10 min-h-[100vh]">
+          <OrderHeader title={"My Orders"} />
           <Orders orders={myorders} />
         </div>
       ) : (
         <div className="min-h-[100vh] flex justify-center items-center ">
-
           <OrderEmpty />
         </div>
       )}

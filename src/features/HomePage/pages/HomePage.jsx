@@ -10,11 +10,10 @@ export default function HomePage() {
   const { products, loading, error } = useProducts();
 
   return (
-    <div className="pt-20 bg-[var(--surface)] transition-colors duration-300">
+    <div className="bg-[var(--surface)] transition-colors duration-300">
       <FirstSection />
       {loading ? (
         <div className="h-screen flex justify-center items-center">
-
           <Loading />
         </div>
       ) : (
