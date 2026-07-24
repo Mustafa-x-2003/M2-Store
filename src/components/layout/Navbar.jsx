@@ -101,6 +101,8 @@ export default function Navbar() {
 
       navigate(`/Shop?search=${encodeURIComponent(e.target.value)}`);
       setShowSearch(false);
+      e.target.value = "";
+      setIsMenuOpen(false);
     }
   };
 
@@ -115,7 +117,7 @@ export default function Navbar() {
           />
         </Link>
 
-        <div className="hidden flex-1 justify-center min-[780px]:flex">
+        <div className="hidden flex-1 justify-center lg:flex">
           <nav className="flex items-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] p-2 shadow-sm transition-colors duration-300">
             <NavLink to="/home" className={navLinkClass}>
               Home
@@ -137,15 +139,15 @@ export default function Navbar() {
 
         <div className="ml-auto flex shrink-0 items-center gap-1.5 min-[780px]:gap-2">
           <div
-            className={`hidden ${showSearch ? "    min-[780px]:flex" : "items-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] pl-4 shadow-sm min-[780px]:flex"} border-2 border-[var(--border)] rounded-full transition-all duration-300`}
+            className={`hidden ${showSearch ? "items-center rounded-full border border-[var(--border)] bg-[var(--surface-secondary)] pl-4 shadow-sm min-[780px]:flex" : "min-[780px]:flex"} border-2 border-[var(--border)] rounded-full transition-all duration-300`}
           >
             {showSearch ? (
-              ""
-            ) : (
               <Search
                 size={18}
                 className="text-[var(--text-muted)] transition-colors duration-300"
               />
+            ) : (
+              ""
             )}
 
             <input
@@ -155,26 +157,26 @@ export default function Navbar() {
               onKeyDown={(e) => {
                 handleSearch(e);
               }}
-              className={`${showSearch ? "w-0" : "w-40 bg-transparent pl-3  text-[var(--text)] outline-none placeholder:text-[var(--text-muted)]"}  transition-all duration-300`}
+              className={`${showSearch ? "w-40 bg-transparent pl-3  text-[var(--text)] outline-none placeholder:text-[var(--text-muted)] " : "w-0"} border-0 outline-0 transition-all duration-300`}
             />
 
             {showSearch ? (
               <button
                 type="button"
                 onClick={() => setShowSearch(false)}
-                aria-label="Open search"
-                className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)]  hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)] min-[780px]:flex "
+                aria-label="Close search"
+                className="hidden h-9 w-9 shrink-0 items-center  justify-center rounded-full  bg-[var(--surface-secondary)] text-[var(--text-secondary)]   hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)] min-[780px]:flex "
               >
-                <Search size={18} />
+                <X size={18} />
               </button>
             ) : (
               <button
                 type="button"
                 onClick={() => setShowSearch(true)}
-                aria-label="Close search"
-                className="hidden h-9 w-9 shrink-0 items-center  justify-center rounded-full  bg-[var(--surface-secondary)] text-[var(--text-secondary)]   hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)] min-[780px]:flex "
+                aria-label="Open search"
+                className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--surface-secondary)] text-[var(--text-secondary)]  hover:bg-[var(--surface)] dark:hover:text-[var(--primary-hover)] min-[780px]:flex "
               >
-                <X size={18} />
+                <Search size={18} />
               </button>
             )}
           </div>
@@ -239,15 +241,15 @@ export default function Navbar() {
             onClick={() => setIsMenuOpen((current) => !current)}
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
-            className="ml-2 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] shadow-sm transition hover:border-[var(--border-hover)] hover:bg-[var(--surface-secondary)] min-[780px]:hidden"
+            className="ml-2 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] shadow-sm transition hover:border-[var(--border-hover)] hover:bg-[var(--surface-secondary)] lg:hidden"
           >
-            {isMenuOpen ? <X size={22} /> :  <Menu size={22} />}
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
       <div
-        className={`fixed w-full ${isMenuOpen ? "top-20" : "-top-80 "}    border-t border-[var(--border)] bg-[var(--navbar)] px-4 py-4 min-[780px]:hidden transition-all duration-300`}
+        className={`fixed w-full ${isMenuOpen ? "top-20" : "-top-80 "}    border-t border-[var(--border)] bg-[var(--navbar)] px-4 py-4 lg:hidden transition-all duration-300`}
       >
         <nav className="flex flex-col gap-1">
           <NavLink
