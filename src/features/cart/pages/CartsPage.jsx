@@ -7,25 +7,25 @@ import CartEmpty from "../components/cart/CartEmpty";
 import { OrderSummary } from "../components/cart/OrderSummary";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router";
-import { clearcart } from "../services/cartApi";
+import { clearCart } from "../services/cartApi";
+import { useCart } from "../context/CartContext";
 import toast from "react-hot-toast";
 export default function CartsPage() {
-  const [cart, setCart] = useState(null);
+  const { cart, fetchCart } = useCart();
   const getCartItems = async () => {
     try {
       const res = await getCart();
-      setCart(res.data);
     } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
-    getCartItems();
+    fetchCart();
   }, []);
   const deletecart = async () => {
     try {
-      const res = await clearcart();
-      await getCartItems();
+      const res = await clearCart();
+      await fetchCart();
       toast.success("cart cleared!");
     } catch (err) {
       toast.error("Failed to clear cart");
@@ -45,7 +45,7 @@ export default function CartsPage() {
         >
           <div className="flex flex-col gap-y-4 w-full">
             <CartHeader />
-            <CartItems cart={cart} getCartItems={getCartItems} />
+            <CartItems cart={cart} />
             <CouponSection getCartItems={getCartItems} cart={cart} />
             <button
               className="w-[150px] text-lg font-bold bg-[var(--primary)] p-2 rounded-2xl text-[var(--text-inverse)] hover:bg-[var(--primary-hover)] transition-all duration-200"

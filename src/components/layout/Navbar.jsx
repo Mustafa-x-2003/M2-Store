@@ -15,9 +15,9 @@ import {
 
 import { useAuth } from "../../context/AuthContext";
 import { useTheme } from "../../context/ThemeContext";
-
-import { getCart } from "../../features/cart/services/cartApi";
+import { useCart } from "../../features/cart/context/CartContext";
 import { getWishlist } from "../../features/Wishlist/services/wishlistApi";
+import { useWishlist } from "../../features/Wishlist/context/WishlistContext";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -33,60 +33,20 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
-  const [cartCount, setCartCount] = useState(0);
-  const [wishlistCount, setWishlistCount] = useState(0);
+  const { cart } = useCart();
+  const cartCount = cart?.items?.reduce(
+    (total, item) => total + item.quantity,
+    0
+  ) || 0;
+  const { wishlistProductIds } = useWishlist();
+  const wishlistCount = wishlistProductIds.length;
 
   const handleLogout = () => {
     logout();
     navigate("/login", { replace: true });
   };
 
-  useEffect(() => {
-    const fetchCounts = async () => {
-      if (!user) {
-        setCartCount(0);
-        setWishlistCount(0);
-        return;
-      }
 
-      try {
-        const cartResponse = await getCart();
-
-        const items = cartResponse.data?.items || [];
-
-        const totalQuantity = items.reduce(
-          (total, item) => total + (item.quantity || 0),
-          0,
-        );
-
-        setCartCount(totalQuantity);
-      } catch (error) {
-        console.error("Failed to fetch cart count:", error);
-        setCartCount(0);
-      }
-
-      try {
-        const wishlistResponse = await getWishlist();
-
-        setWishlistCount(
-          wishlistResponse.data?.totalProducts ??
-            wishlistResponse.data?.products?.length ??
-            0,
-        );
-      } catch (error) {
-        console.error("Failed to fetch wishlist count:", error);
-        setWishlistCount(0);
-      }
-    };
-
-    fetchCounts();
-
-    window.addEventListener("navbar-counts-update", fetchCounts);
-
-    return () => {
-      window.removeEventListener("navbar-counts-update", fetchCounts);
-    };
-  }, [user]);
 
   const navLinkClass = ({ isActive }) =>
     `whitespace-nowrap rounded-full px-6 py-1.5 text-base font-semibold transition ${
