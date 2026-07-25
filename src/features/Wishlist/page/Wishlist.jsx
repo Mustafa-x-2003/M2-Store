@@ -6,7 +6,7 @@ import {
   removeFromWishlist,
 } from "../../productDeatails/service/productService";
 import { clearWishlist } from "../services/wishlistApi";
-import { addToCart } from "../../cart/services/CartsApi";
+import { addToCart } from "../../cart/services/cartApi";
 import toast from "react-hot-toast";
 import EmptyWishlist from "../components/EmptyWishlist";
 import { useWishlist } from "../../Wishlist/context/WishlistContext";

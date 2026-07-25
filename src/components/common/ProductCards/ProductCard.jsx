@@ -1,38 +1,38 @@
 
 import { useState } from "react";
-import useProductCart from "../../../features/HomePage/hooks/useProductCart";
 import { useWishlist } from "../../../features/Wishlist/context/WishlistContext";
 import { useNavigate } from "react-router";
 import ProductMedia from "./ProductMedia";
 import ProductInfo from "./ProductInfo";
 import AddToCartButton from "./AddToCartButton";
+import { useCart } from "../../../features/cart/context/CartContext";
 export default function ProductCard({
     product,
     onAddToCart,
     loading: externalLoading,
 }) {
     const {
-        loading: cartLoading,
-        addProduct,
-    } = useProductCart();
-    const loading = externalLoading ?? cartLoading;
-    const [clickAdd, setClickAdd] = useState(false);
-    const navigate = useNavigate();
-    const { wishlistProductIds, toggleWishlist } = useWishlist();
-    const isInWishlist = wishlistProductIds.includes(product._id);
+        addToCart,
+        cartLoading,
+        cartProductIds,
+    } = useCart();
+
     const handleAdd = async (id) => {
         if (onAddToCart) {
             await onAddToCart(id);
             return;
         }
 
-        const res = await addProduct({
-            productId: id,
-            quantity: 1,
-        });
-
-        if (res) setClickAdd(true);
+        await addToCart(id, 1);
     };
+    const loading =
+        externalLoading ??
+        cartLoading.includes(product._id);
+    const navigate = useNavigate();
+    const { wishlistProductIds, toggleWishlist } = useWishlist();
+    const isInWishlist = wishlistProductIds.includes(product._id);
+   
+    
     return (
        
             <div
@@ -62,10 +62,11 @@ export default function ProductCard({
                     productId={product._id}
                     outOfStock={Number(product.stock) === 0}
                     loading={loading}
-                    added={clickAdd}
+                    added={cartProductIds.includes(product._id)}
                     onAdd={handleAdd}
                 
                 />
+                
             </div>
             </div>
    

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CiDiscount1 } from "react-icons/ci";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { updatecoupon } from "../../services/cartApi";
+import { updateCoupon } from "../../services/cartApi";
 import toast from "react-hot-toast";
 import { removeCoupon } from "../../services/cartApi";
 const CouponSection=({getCartItems,cart})=>{
@@ -12,7 +12,7 @@ const CouponSection=({getCartItems,cart})=>{
         const code = coupon.trim().toUpperCase();
         setLoading(true);
         if(code==='SAVE10'||code==='SAVE20'){
-       const res = await updatecoupon(coupon);
+        const res = await updateCoupon(coupon);
        toast.success(res.data.message);
         getCartItems();
         }
