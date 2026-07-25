@@ -10,7 +10,7 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../service/productService";
-import { addToCart } from "../../cart/services/cartService";
+import {addToCart} from "../../cart/services/cartApi";
 import toast from "react-hot-toast";
 import { initialState, productReducer } from "./productReducer";
 
