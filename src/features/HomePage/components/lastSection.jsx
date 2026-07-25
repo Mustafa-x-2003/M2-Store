@@ -1,8 +1,31 @@
+import { useState } from "react";
 import { BsBag, BsCreditCard, BsTruck, BsEnvelope } from "react-icons/bs";
-
+import { toast } from "react-hot-toast";
 export default function LastSection() {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+
+    if (!email.trim()) {
+      toast.error("Please enter your email."); 
+      return;
+    }
+    const storedEmails =
+      JSON.parse(localStorage.getItem("subscribers")) || [];
+
+    if (!storedEmails.includes(email)) {
+      storedEmails.push(email);
+      localStorage.setItem("subscribers", JSON.stringify(storedEmails));
+      toast.success("Subscribed successfully!");
+    } else {
+      toast.error("This email is already subscribed.");
+    }
+    setEmail("");
+  };
+
   return (
-    <section className="w-full  py-16 px-4 sm:px-8 md:px-12 lg:px-20">
+    <section className="w-full relative overflow-hidden rounded-[32px]  py-16 px-4 sm:px-8 md:px-12 lg:px-20">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">
           How It Works
@@ -47,43 +70,52 @@ export default function LastSection() {
         </div>
       </div>
 
-      <div className="max-w-7xl w-full p-4 mx-auto mt-20">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#4f46e5] to-[#4338ca]   dark:from-[#312e81] dark:via-[#1e1b4b] dark:to-[#0d0b2b] px-6 py-12 sm:px-12 sm:py-16 md:py-20 text-center shadow-xl shadow-indigo-100 dark:shadow-none">
-          <div className="absolute -left-20 -top-20 w-64 h-64 rounded-full bg-white/5 blur-2xl pointer-events-none" />
-          <div className="absolute -right-20 -bottom-20 w-64 h-64 rounded-full bg-white/5 blur-2xl pointer-events-none" />
+      <div className="max-w-7xl mx-auto mt-14 px-4">
+        <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-[#38bdf8] via-[#2563eb] to-[#1e40af] dark:from-slate-900 dark:via-indigo-900 dark:to-violet-900 px-6 py-8 sm:px-10 sm:py-10 shadow-2xl">
 
-          <div className="relative z-10 flex flex-col items-center  w-full  gap-1 ">
-            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/10 text-white mb-2">
-              <BsEnvelope className="text-2xl" />
+         
+          <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/15 blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-pink-300/20 blur-3xl" />
+
+          <div className="relative z-10 flex flex-col items-center">
+
+            <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 mb-4">
+              <BsEnvelope className="text-2xl text-white" />
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h3 className="text-3xl font-extrabold text-white tracking-tight">
               Stay Updated
             </h3>
-            <p className="text-sm sm:text-base text-indigo-100 max-w-md leading-relaxed">
-              Subscribe to our newsletter and get exclusive deals and new
-              arrivals first.
+
+            <p className="mt-2 max-w-lg text-center text-sm sm:text-base text-white/80 leading-relaxed">
+              Subscribe to our newsletter and receive exclusive offers,
+              discounts, and the latest arrivals before everyone else.
             </p>
 
             <form
-              onSubmit={(e) => e.preventDefault()}
-              className="flex flex-col sm:flex-row w-full max-w-md gap-3 mt-4"
+              onSubmit={handleSubscribe}
+              className="mt-8 flex w-full max-w-lg flex-col gap-3 sm:flex-row"
             >
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full px-5 py-3 rounded-xl bg-indigo-700/40 border border-indigo-400/30 text-white placeholder-indigo-200 text-sm focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="flex-1 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md px-4 py-3 text-sm text-white placeholder:text-white/60 outline-none transition-all duration-300 focus:border-white focus:ring-2 focus:ring-white/30"
               />
+
               <button
                 type="submit"
-                className="px-6 py-3 rounded-xl bg-white text-indigo-700 text-sm font-semibold hover:bg-indigo-50 active:scale-95 transition-all duration-150 shadow cursor-pointer whitespace-nowrap"
+                className="rounded-xl bg-white py-3.5 px-7 text-sm font-semibold text-blue-700 hover:bg-slate-100 shadow-lg transition-all duration-300 hover:-translate-y-1  active:scale-95 cursor-pointer"
               >
                 Subscribe
               </button>
             </form>
+
           </div>
         </div>
       </div>
-    </section>
+        </section>
   );
 }
